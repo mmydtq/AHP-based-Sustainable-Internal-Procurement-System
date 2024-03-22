@@ -10,7 +10,7 @@ app = Flask(__name__)
 # conn = MySQLdb.connect(host='LAPTOP-12893DCP', user='eric', password='Xingyangniubi1!', database='group9')
 # setRouter(app,mysql)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://eric:Xingyangniubi1!@LAPTOP-12893DCP:3306/group9?connect_timeout=10'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://developer:Xingyangniubi1!@LAPTOP-12893DCP:3306/group9?connect_timeout=10'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 #setRouter(app)

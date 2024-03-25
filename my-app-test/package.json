@@ -1,0 +1,29 @@
+{
+  "name": "my-app-test",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@ant-design/cssinjs": "^1.18.5",
+    "@ant-design/icons": "^5.3.5",
+    "antd": "^5.15.3",
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "json5": "^2.2.3",
+    "lodash": "^4.17.21",
+    "next": "14.1.4",
+    "react": "^18",
+    "react-dom": "^18"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "typescript": "^5"
+  }
+}

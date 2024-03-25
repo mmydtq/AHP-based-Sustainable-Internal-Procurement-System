@@ -1,0 +1,22 @@
+.search{
+    position: absolute;
+    left: 80%;
+    top: 1.3%;
+    width: 200px;
+}
+.shop{
+    position: absolute;
+    left: 20%;
+    top: 1.3%;
+}
+.title{
+    background-color: #F5F2F4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.im{
+    position: absolute;
+    left: 33%;
+    top: 1.3%;
+}

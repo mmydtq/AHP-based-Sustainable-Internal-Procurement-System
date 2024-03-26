@@ -12,6 +12,7 @@
     "@ant-design/cssinjs": "^1.18.5",
     "@ant-design/icons": "^5.3.5",
     "antd": "^5.15.3",
+    "axios": "^1.6.8",
     "babel-core": "^6.26.3",
     "babel-preset-env": "^1.7.0",
     "json5": "^2.2.3",

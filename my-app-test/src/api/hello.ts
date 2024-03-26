@@ -1,13 +1,22 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import type { NextApiRequest, NextApiResponse } from "next";
+import{
+  LoginType,
+  UserType
 
-type Data = {
-  name: string;
+} from '@/util/appType';
+
+
+import axios from 'axios';
+
+const host = '127.0.0.1';
+const port = '8080';
+
+
+
+export const postUserLogin = async (args: UserType) => {
+  const { data } = await axios.post(
+    'http://' + host + ':' + port + '/ta/user/login',
+    {
+      ...args
+    });
+  return data;
 };
-
-export default function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<Data>,
-) {
-  res.status(200).json({ name: "John Doe" });
-}

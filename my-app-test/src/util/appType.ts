@@ -2,14 +2,18 @@ export interface TitleProps {
     select: string;
 }
 export interface LoginType {
-    username?: string;
-    password?: string;
+    uName: string;
+    password: string;
 };
 export interface UserType {
-    userId?: number;
-    username?: string;
-    password?: string;
-    phone?: number;
-    address?: String;
-    email?: String;
+    uId: number;
+    uName: string;
+    password: string;
+    phone: number;
+    room: String;
+    email: String;
 };
+export interface ChangePassword {
+    uName: string;
+    rePassword: string;
+}

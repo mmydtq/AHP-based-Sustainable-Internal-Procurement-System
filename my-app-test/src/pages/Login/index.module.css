@@ -22,13 +22,13 @@
     text-align: center;
     margin-top: 100px;
     font-size: 30px;
-    font-family: "playball", sans-serif;
+    font-family: "QFRegular", sans-serif;
 }
 .subtitle{
     text-align: center;
     margin-top: 60px;
     font-size: 24px;
-    font-family: "playball", sans-serif;
+    font-family: "QFRegular", sans-serif;
 }
 .button{
     border-radius: 100px;
@@ -41,12 +41,18 @@
     text-align: center;
     margin-top: 20px;
     font-size: 14px;
-    font-family: "playball", sans-serif;
+    font-family: "QFMedium", sans-serif;
+}
+.register{
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    font-family: "QFMedium", sans-serif;
 }
 .change {
     text-align: center; 
     margin-top: 20px;
     font-size: 14px;
-    font-family: "playball", sans-serif;
+    font-family: "QFMedium", sans-serif;
 }
   

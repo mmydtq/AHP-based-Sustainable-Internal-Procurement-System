@@ -2,7 +2,9 @@ import os
 from flask import Flask, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from database import db
-from router import setRouter
+from router import HelloWorld
+from flask_restful import Api
+from register import Register, Login, RePassword
 
 def create_app():
     app = Flask(__name__)
@@ -11,7 +13,12 @@ def create_app():
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + db_path
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     app.debug = True
-    setRouter(app)
+    api = Api(app)
+    # 路由路径待定
+    api.add_resource(HelloWorld, '/') #for testing
+    api.add_resource(Register,'/register')
+    api.add_resource(Login, '/login')
+    api.add_resource(RePassword, '/rePassword')
     return app
 
 def create_database(app):

@@ -1,0 +1,52 @@
+@import '../../assert/font/font.module.css';
+.uname{
+    border-radius: 0px;
+    border-style: solid;
+    border-width: 1px;
+    width: 300px;
+    margin-top: 30px;
+    border: 0.5px solid #0a0a0a;
+}
+.password{
+    border-radius: 0px;
+    border-style: solid;
+    border-width: 1px;
+    width: 300px;
+    margin-top: 30px;
+    background-color: rgb(233, 233, 233);
+}
+.login{
+    display: flex;
+    justify-content: center;
+}
+.title{
+    text-align: center;
+    margin-top: 100px;
+    font-size: 30px;
+    font-family: "QFRegular", sans-serif;
+}
+.subtitle{
+    text-align: center;
+    margin-top: 60px;
+    font-size: 24px;
+    font-family: "QFRegular", sans-serif;
+}
+.button{
+    border-radius: 100px;
+    width: 100px;
+    border: 1.5px solid #0a0a0a;
+    margin-top: 30px;
+    font-family: "playball", sans-serif;
+}
+.admin{
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    font-family: "QFMedium", sans-serif;
+}
+.register{
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    font-family: "QFMedium", sans-serif;
+}

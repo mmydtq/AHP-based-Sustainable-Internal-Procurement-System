@@ -10,7 +10,7 @@
     border-style: solid;
     border-width: 1px;
     width: 25vw;
-    margin-top: 30px;
+    margin-top: 20px;
     border: 0.5px solid #0a0a0a;
 }
 .password{
@@ -49,6 +49,6 @@
     border-style: solid;
     border-width: 1px;
     width: 25vw;
-    margin-top: 5px;
+    margin-top: 20px;
     border: 0.5px solid #0a0a0a;
 }

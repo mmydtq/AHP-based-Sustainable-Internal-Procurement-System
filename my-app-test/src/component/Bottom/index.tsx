@@ -9,7 +9,7 @@ import Link from "next/link" ;
 const Bottom: React.FC = () => (
   <div className={styled.container}>
     
-    <Divider />
+    <Divider className={styled.divider}/>
     <p className={styled.sentence} >Nature, to be commanded, must be obeyed.</p>
     <p className={styled.sentence2} >Make integer Fly~</p>
     <Link  href="/value">

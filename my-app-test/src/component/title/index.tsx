@@ -98,7 +98,9 @@ const items: MenuProps['items'] = [
   key: 'Support',
 },
 {
-  label: 'Administer',
+  label: (
+    <Link href={'/AdminLogin'}>Administer</Link>
+  ),
   key: 'Administer',
 },
 {

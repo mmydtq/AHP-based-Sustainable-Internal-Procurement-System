@@ -1,23 +1,20 @@
-
 import Title from '@/component/title';
 import React, { useState } from 'react';
 import { Input, Form, Button, Select, Tooltip } from 'antd';
 import { InfoCircleOutlined, PhoneOutlined, UserOutlined } from '@ant-design/icons';
 import { LoginType } from '@/util/appType';
 import styled from "./index.module.css"
-import Link from 'next/link';
 import Bottom from '@/component/Bottom';
 
 const Login: React.FC = () => {
    const [uName, setUName] = useState('')
    const [password, setPassword] = useState('')
-   const [room, setRoom] = useState('')
    const [email, setEmail] = useState('')
    const [phome, setPhone] = useState('')
 
     return(
         <div>
-            <Title select = 'Login'/>
+            <Title select = 'Administer'/>
             <div className={styled.intro}><b>Register for faster browse.</b></div>
             <div className={styled.title}><b>Register your ID.</b></div>
             <div className={styled.subtitle}>One Apple ID is all you need to<br/>access all Apple services</div>
@@ -34,22 +31,6 @@ const Login: React.FC = () => {
                     rules={[{ required: true, message: 'Please enter' }]}
                 >
                     <Input placeholder="Please enter real name" prefix={<UserOutlined/>} className={styled.uname}/>
-                </Form.Item>
-
-                <Form.Item<LoginType>
-                    rules={[{ required: true }]}
-                >
-                    <Tooltip title="Select room">
-                        <Select
-                            style={{ width: 210, marginTop: 5}}
-                            placeholder="Your room"
-                            allowClear
-                            options={[
-                                { value: 'jack', label: 'Jack' },
-                                { value: 'lucy', label: 'Lucy' },
-                                { value: 'Yiminghe', label: 'yiminghe' },]}
-                        />
-                    </Tooltip>
                 </Form.Item>
 
                 <Form.Item<LoginType>

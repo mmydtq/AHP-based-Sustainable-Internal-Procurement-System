@@ -1,22 +1,26 @@
 @import '../../assert/font2/font2.module.css';
 .container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* 垂直居中 */
-    align-items: center; /* 水平居中 */
-    min-height: 40vh; /* 设置最小高度为视口高度，确保在页面底部 */
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* 垂直居中 */
+  align-items: center; /* 水平居中 */
+  min-height: 25vh; /* 设置最小高度为视口高度，确保在页面底部 */
+}   
   
-  .logo {
-    margin-top: 10px; /* 设置图片与分割线之间的间距 */
-  }
-  .sentence {
-    font-family: "QFMedium", sans-serif;
-    color: #000000;
-    font-size: 14px;
-  }
+.logo {
+  margin-top: 10px; /* 设置图片与分割线之间的间距 */
+}
+.sentence {
+  font-family: "QFMedium", sans-serif;
+  color: #000000;
+  font-size: 14px;
+  margin-top: -5px;
+}
 .sentence2{
   font-family: "playball", sans-serif;
     color: #165dff;
     font-size: 14px;
+}
+.divider{
+  border-color: black;
 }

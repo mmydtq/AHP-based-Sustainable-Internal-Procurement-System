@@ -29,13 +29,13 @@ const Login: React.FC = () => {
                 <Form.Item<LoginType>
                     rules={[{ required: true, message: 'Please enter' }]}
                 >
-                    <Input placeholder="default size" prefix={<UserOutlined/>} className={styled.uname}/>
+                    <Input placeholder="Please enter" prefix={<UserOutlined/>} className={styled.uname}/>
                 </Form.Item>
 
                 <Form.Item<LoginType>
                     rules={[{ required: true }]}
                 >
-                    <Input.Password variant='filled' className={styled.password}/>
+                    <Input.Password variant='filled' placeholder='Password' className={styled.password}/>
                 </Form.Item>
                 <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
                     <Button htmlType="submit" className={styled.button} >

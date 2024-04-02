@@ -1,5 +1,6 @@
 from database import db
 import json
+from flask import jsonify
 
 class Good(db.Model):
     __tablename__ = 'goods'
@@ -55,3 +56,48 @@ class Good(db.Model):
                 'hint': good.hint
             })
         return {'goods': goods_list}
+    
+    @staticmethod
+    def search(keyword):
+        matched_goods = Good.query.filter(Good.name.ilike(f'%{keyword}%')).all()
+        goods_list = []
+        for good in matched_goods:
+            goods_list.append({
+                'id': good.id,
+                'url': good.url,
+                'environmentalValue': good.environmental_value,
+                'brief': good.brief,
+                'tag': json.loads(good.tag),
+                'name': good.name,
+                'value': good.value,
+                'description': good.description,
+                'hint': good.hint
+            })
+        return goods_list
+    
+    @staticmethod
+    def recommend_related_goods(good_id):
+        target_good = Good.query.get(good_id)
+        if not target_good:
+            return jsonify({'error': 'Invalid good ID'}), 400
+
+        target_tags = json.loads(target_good.tag)
+
+        related_goods = Good.query.filter(Good.tag.op('@>')([json.dumps(target_tags)])).\
+            filter(Good.id != good_id).order_by(Good.environmental_value.desc()).all()
+
+        related_goods_list = []
+        for good in related_goods:
+            related_goods_list.append({
+                'id': good.id,
+                'url': good.url,
+                'environmentalValue': good.environmental_value,
+                'brief': good.brief,
+                'tag': json.loads(good.tag),
+                'name': good.name,
+                'value': good.value,
+                'description': good.description,
+                'hint': good.hint
+            })
+
+        return jsonify({'related_goods': related_goods_list}), 200

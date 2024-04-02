@@ -45,3 +45,10 @@ export interface ToCart{
     id: number;
     uId: number;
 }
+
+export interface Card{
+    id: number;
+    url: string;
+    alt: string;//good name
+    brief: string;
+}

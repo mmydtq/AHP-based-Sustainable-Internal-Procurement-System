@@ -60,7 +60,7 @@ const items: MenuProps['items'] = [
   key: 'Value',
 },
 {
-  label: 'Support',
+  label: (<Link href={'/SupportPage'}>Support</Link>),
   key: 'Support',
 },
 {

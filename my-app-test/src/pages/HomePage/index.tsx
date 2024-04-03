@@ -1,3 +1,5 @@
+import BigCard from '@/component/BigCard';
+import Bottom from '@/component/Bottom';
 import Card from '@/component/Card';
 import Title from '@/component/title';
 import { Carousel } from '@arco-design/web-react';
@@ -18,6 +20,46 @@ const HomePage: React.FC = () => {
     return(
         <div>
             <Title select = 'HomePage'/>
+            <div>
+                <BigCard 
+                    id={0} 
+                    url={'//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/24e0dd27418d2291b65db1b21aa62254.png~tplv-uwbnlip3yd-webp.webp'} 
+                    alt={'1'} 
+                    brief={'1'}
+                />
+            </div>
+            <div>
+                <Space>
+                    <Card 
+                        id={0} 
+                        url={'//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/24e0dd27418d2291b65db1b21aa62254.png~tplv-uwbnlip3yd-webp.webp'} 
+                        alt={'1'} 
+                        brief={'1'}
+                    />
+                    <Card 
+                        id={0} 
+                        url={'//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/6480dbc69be1b5de95010289787d64f1.png~tplv-uwbnlip3yd-webp.webp'} 
+                        alt={'1'} 
+                        brief={'1'}
+                    />
+                </Space>
+            </div>
+            <div>
+                <Space>
+                    <Card 
+                        id={0} 
+                        url={'//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/24e0dd27418d2291b65db1b21aa62254.png~tplv-uwbnlip3yd-webp.webp'} 
+                        alt={'1'} 
+                        brief={'1'}
+                    />
+                    <Card 
+                        id={0} 
+                        url={'//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/6480dbc69be1b5de95010289787d64f1.png~tplv-uwbnlip3yd-webp.webp'} 
+                        alt={'1'} 
+                        brief={'1'}
+                    />
+                </Space>
+            </div>
             <div>
                 <Carousel
                     autoPlaySpeed={5000}
@@ -40,22 +82,7 @@ const HomePage: React.FC = () => {
                     ))}
                 </Carousel>
             </div>
-            <div>
-                <Space>
-                    <Card 
-                        id={0} 
-                        url={'//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/24e0dd27418d2291b65db1b21aa62254.png~tplv-uwbnlip3yd-webp.webp'} 
-                        alt={'1'} 
-                        brief={'1'}
-                    />
-                    <Card 
-                        id={0} 
-                        url={'//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/6480dbc69be1b5de95010289787d64f1.png~tplv-uwbnlip3yd-webp.webp'} 
-                        alt={'1'} 
-                        brief={'1'}
-                    />
-                </Space>
-            </div>
+            <Bottom/>
         </div>
     )
 }

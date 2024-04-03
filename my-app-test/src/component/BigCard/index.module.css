@@ -1,0 +1,52 @@
+.card {
+    position: relative;
+    overflow: hidden;
+    width: 100vw;
+    height: 45vh;
+}
+  
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5); /* 添加半透明背景以提高可读性 */
+    color: #fff;
+    opacity: 0; /* 隐藏元素 */
+    transition: opacity 0.3s ease;
+}
+  
+.card:hover .overlay {
+    opacity: 1; /* 鼠标悬停时显示元素 */
+}
+  
+.name{
+    font-size: large;
+}
+
+.brief{
+    font-size: large;
+}
+.link {
+    text-align: center;
+    padding: 10px;
+    color: #165DFF;
+    text-decoration: none;
+}
+.link:hover{
+    text-align: center;
+    padding: 10px;
+    color: #165DFF;
+    text-decoration: underline;
+}
+  
+.image {
+    width: 100vw;
+    height: 45vh;
+}
+  

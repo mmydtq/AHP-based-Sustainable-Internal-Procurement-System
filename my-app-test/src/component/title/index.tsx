@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import styled from "./index.module.css"
 import { TitleProps } from '@/util/appType';
 import router from 'next/router';
-import type { MenuProps } from 'antd';
-import { Menu, Input } from 'antd';
+import type { MenuProps, SelectProps } from 'antd';
+import { Menu, Input, Select, Button, Affix } from 'antd';
 import Link from 'next/link';
 import shop from "@/assert/shop.png"
 import Image from "next/image";
+import { SearchOutlined } from '@ant-design/icons';
 
 const { Search } = Input;
 
@@ -77,6 +78,14 @@ const items: MenuProps['items'] = [
 },
 ];
 
+const options: SelectProps['options'] = [];
+
+for (let i = 10; i < 36; i++) {
+  options.push({
+    value: i.toString(36) + i,
+    label: i.toString(36) + i,
+  });
+}
 
 const Title: React.FC<TitleProps> = ({select}) => {
   const [current, setCurrent] = useState(select);
@@ -87,9 +96,19 @@ const Title: React.FC<TitleProps> = ({select}) => {
 
   return (
     <div>
-      <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} className={styled.title}/>
-      <Search placeholder='search' className={styled.search}/> 
-      <Image src={shop} alt='shopIcon' width={30} height={30} className={styled.im}/>
+      <Affix offsetTop={0}>
+        <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} className={styled.title} inlineCollapsed={false}/>
+        <Select
+          mode="tags"
+          style={{ width: '20%' }}
+          placeholder="Search"
+          options={options}
+          allowClear
+          className={styled.search}
+        />
+        <Button icon={<SearchOutlined /> } href="https://www.google.com" className={styled.button}/>
+        <Image src={shop} alt='shopIcon' width={30} height={30} className={styled.im}/>
+      </Affix>
     </div>
   );
 };

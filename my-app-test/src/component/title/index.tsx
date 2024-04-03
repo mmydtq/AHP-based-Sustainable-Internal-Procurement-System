@@ -93,19 +93,21 @@ const Title: React.FC<TitleProps> = ({select}) => {
   };
 
   return (
-    <div>
+    <div className={styled.container}>
       <Affix offsetTop={0}>
+      <Image src={shop} alt='shopIcon' width={30} height={30} className={styled.im}/>
         <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} className={styled.title} inlineCollapsed={false}/>
         <Select
-          mode="tags"
-          style={{ width: '20%' }}
+          mode="tags"x
+          style={{ width: '250px', margin: '0 10px' }}
           placeholder="Search"
           options={options}
           allowClear
           className={styled.search}
+
         />
         <Button icon={<SearchOutlined /> } className={styled.button}/>
-        <Image src={shop} alt='shopIcon' width={30} height={30} className={styled.im}/>
+        
       </Affix>
     </div>
   );

@@ -1,22 +1,23 @@
+
 .search{
     position: absolute;
-    left: 70vw;
+    left: calc(50% + 300px);
     top: 1.0vh;
-    width: 10vw;
+    
 }
 .title{
-    background-color: #F5F2F4;
+    /* background-color: #fcf5f9; */
     display: flex;
     justify-content: center;
     align-items: center;
 }
 .im{
     position: absolute;
-    left: 33vw;
+    left: calc(50% - 330px);
     top: 1.0vh;
 }
 .button{
-    position: absolute;
-    left: 90vw;
+    position:absolute;
+    left: calc(50% + 570px);
     top: 1.0vh;
 }

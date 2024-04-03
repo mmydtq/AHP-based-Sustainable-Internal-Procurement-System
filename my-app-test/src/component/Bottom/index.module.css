@@ -8,7 +8,9 @@
 }   
   
 .logo {
-  margin-top: 10px; /* 设置图片与分割线之间的间距 */
+  margin-top: 8px; /* 设置图片与分割线之间的间距 */
+  width: 70px; /* 设置图片宽度为100% */
+  height: 70px; /* 设置图片高度为100% */
 }
 .sentence {
   font-family: "QFMedium", sans-serif;

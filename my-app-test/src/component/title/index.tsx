@@ -9,8 +9,6 @@ import shop from "@/assert/shop.png"
 import Image from "next/image";
 import { SearchOutlined } from '@ant-design/icons';
 
-const { Search } = Input;
-
 const items: MenuProps['items'] = [
 {
   label: (
@@ -106,7 +104,7 @@ const Title: React.FC<TitleProps> = ({select}) => {
           allowClear
           className={styled.search}
         />
-        <Button icon={<SearchOutlined /> } href="https://www.google.com" className={styled.button}/>
+        <Button icon={<SearchOutlined /> } className={styled.button}/>
         <Image src={shop} alt='shopIcon' width={30} height={30} className={styled.im}/>
       </Affix>
     </div>

@@ -1,10 +1,10 @@
 .card {
     position: relative;
     overflow: hidden;
-    width: 49vw;
+    width: calc((98.5vw - 17px)/2);
     height: 45vh;
-    margin-left: 0.5vw;
     margin-top: 1vh;
+    margin-left: 0.5vw;
 }
   
 .overlay {
@@ -48,7 +48,7 @@
 }
   
 .image {
-    width: 49vw;
+    width: calc((98.5vw - 17px)/2);
     height: 45vh;
 }
   

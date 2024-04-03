@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Input, Button } from 'antd';
 import { Store } from 'antd/lib/form/interface';
-import Title from '@/component/title';
+import Title from '@/component/Title';
 import styled from './index.module.css';
 import Bottom from '@/component/Bottom';
 

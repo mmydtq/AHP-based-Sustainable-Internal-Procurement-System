@@ -1,5 +1,5 @@
 
-import Title from '@/component/title';
+import Title from '@/component/Title';
 import React, { useState } from 'react';
 import { Input, Form, Button,Space} from 'antd';
 import { LoginType } from '@/util/appType';

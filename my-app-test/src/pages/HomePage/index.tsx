@@ -1,7 +1,7 @@
 import BigCard from '@/component/BigCard';
 import Bottom from '@/component/Bottom';
 import Card from '@/component/Card';
-import Title from '@/component/title';
+import Title from '@/component/Title';
 import { Carousel } from '@arco-design/web-react';
 import { Space } from 'antd';
 import React from 'react';
@@ -29,7 +29,7 @@ const HomePage: React.FC = () => {
                 />
             </div>
             <div>
-                <Space>
+                <Space size={0}>
                     <Card 
                         id={0} 
                         url={'//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/24e0dd27418d2291b65db1b21aa62254.png~tplv-uwbnlip3yd-webp.webp'} 
@@ -45,7 +45,7 @@ const HomePage: React.FC = () => {
                 </Space>
             </div>
             <div>
-                <Space>
+                <Space size={0}>
                     <Card 
                         id={0} 
                         url={'//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/24e0dd27418d2291b65db1b21aa62254.png~tplv-uwbnlip3yd-webp.webp'} 

@@ -1,4 +1,4 @@
-import Title from '@/component/title';
+import Title from '@/component/Title';
 import React from 'react';
 
 

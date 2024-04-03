@@ -1,7 +1,7 @@
 .card {
     position: relative;
     overflow: hidden;
-    width: 100vw;
+    width: calc(100vw - 17px);
     height: 45vh;
 }
   
@@ -46,7 +46,7 @@
 }
   
 .image {
-    width: 100vw;
+    width: calc(100vw - 17px);
     height: 45vh;
 }
   

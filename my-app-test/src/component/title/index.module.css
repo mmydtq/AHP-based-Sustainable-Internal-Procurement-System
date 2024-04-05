@@ -1,23 +1,41 @@
 
-.search{
-    position: absolute;
-    left: calc(50% + 300px);
-    top: 1.0vh;
+.container {
+    position: fixed; /* Fix the position of the container */
+    top: 0; /* Position it at the top of the page */
+    width: 100%; /* Make it span the entire width of the page */
+    z-index: 1000; /* Set a high z-index to ensure it's above other elements */
+     background-color: #fff; 
+  }
+  
+  /* Style the menu */
+  .title {
+    display: absolute; /* Use flexbox layout */
+    /*Horizontally center the menu */
+    width: 80%; /* Set a fixed width for the menu */
+    left:1000px; /* Position the menu to the right of the page */
+    max-width: 800px; /* Set a maximum width for the menu */
+    /* align-items: center; */
     
-}
-.title{
-    /* background-color: #fcf5f9; */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.im{
-    position: absolute;
-    left: calc(50% - 330px);
-    top: 1.0vh;
-}
-.button{
-    position:absolute;
-    left: calc(50% + 570px);
-    top: 1.0vh;
-}
+  }
+  
+  /* Style the image */
+  .styled.im {
+    position: absolute; /* Position the image absolutely */
+     /* Position it relative to the left of the page (adjust '400px' according to your layout) */
+    /* margin-right: 5%; */
+  }
+  
+  .im{
+    left: 100%;
+  }
+  /* .search,
+  .button {
+    position: absolute; 
+    right: 10px; 
+  } */
+  
+  /* Adjust margin between search and button */
+  .styled.search {
+    margin-right: 10px; /* Add margin between search and button */
+  }
+  

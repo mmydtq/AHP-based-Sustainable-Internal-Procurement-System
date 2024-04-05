@@ -8,6 +8,7 @@ import Link from 'next/link';
 import shop from "@/assert/shop.png"
 import Image from "next/image";
 import { SearchOutlined } from '@ant-design/icons';
+import {Row, Col} from 'antd';
 
 const items: MenuProps['items'] = [
 {
@@ -93,23 +94,32 @@ const Title: React.FC<TitleProps> = ({select}) => {
   };
 
   return (
+
     <div className={styled.container}>
       <Affix offsetTop={0}>
-      <Image src={shop} alt='shopIcon' width={30} height={30} className={styled.im}/>
-        <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} className={styled.title} inlineCollapsed={false}/>
-        <Select
-          mode="tags"x
-          style={{ width: '250px', margin: '0 10px' }}
-          placeholder="Search"
-          options={options}
-          allowClear
-          className={styled.search}
-
-        />
-        <Button icon={<SearchOutlined /> } className={styled.button}/>
-        
+        <Row align="middle" justify="space-between"> {/* 使用 Row 组件创建一个水平排列的容器 */}
+          <Col flex="6"></Col>
+          <Col flex="2">
+            <Image src={shop} alt='shopIcon' width={30} height={30} className={styled.im} />
+          </Col>
+          <Col flex="11">
+            <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} className={styled.title} inlineCollapsed={false} />
+          </Col>
+          <Col flex="5">
+            <Select
+              mode="tags"
+              style={{ width: '200px', margin: '0 10px' }}
+              placeholder="Search"
+              options={options}
+              allowClear
+              className={styled.search}
+            />
+            <Button icon={<SearchOutlined />} className={styled.button} />
+          </Col>
+        </Row>
       </Affix>
     </div>
+
   );
 };
   

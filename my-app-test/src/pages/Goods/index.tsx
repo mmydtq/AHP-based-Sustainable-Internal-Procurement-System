@@ -36,6 +36,19 @@ const items: DescriptionsProps['items'] = [
 
 
 const Goods: React.FC = () => {
+    const buttonStyle: React.CSSProperties = {
+        borderRadius: '100px',
+        width: '120px',
+        height: '35px',
+        fontSize: '24px',
+        border: '1.5px solid #0a0a0a',
+        marginTop: '30px',
+        fontFamily: '"playball", sans-serif',
+        left: '-3vw',
+        alignItems: 'center',
+        display: 'flex',
+        justifyContent: 'center',
+      };
     return (
         <div>
             <Title select='Goods'/>
@@ -50,13 +63,14 @@ const Goods: React.FC = () => {
                 <Card title="Good Info" bordered={true} style={{ width: '30vw' }}>
                     <Descriptions layout="vertical" items={items} />  
                 </Card>
-                <Rate disabled defaultValue={2} style={{position:'relative', left:'12vw', top:'5vh'}}/>
+                <Rate disabled defaultValue={2} style={{position:'relative', left:'12vw', top:'3vh'}}/>
             </div>
             <Space className={styled.heart}>
-                <Button htmlType="submit" className={styled.button} >
-                    BUY
+                <Button htmlType="submit" className={styled.button} style={buttonStyle} >
+                    Buy
                 </Button>
-                <div style={{position:'relative', top:'1.6vh', left:'4vw'}}>
+                 
+                <div style={{position:'relative', top:'1.6vh', left:'3vw'}}>
                     {false?<HeartOutlined style={{fontSize: '40px'}}/>:<HeartTwoTone twoToneColor="red" style={{fontSize: '40px'}}/>}
                 </div>
             </Space>

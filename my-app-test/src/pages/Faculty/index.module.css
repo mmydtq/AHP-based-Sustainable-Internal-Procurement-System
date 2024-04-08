@@ -1,0 +1,23 @@
+@import '../../assert/font/font.module.css';
+.button{
+    position: absolute;
+    left: 90vw;
+    top: 1.3vh;
+    border-radius: 100px;
+    width: 100px;
+    border: 1.5px solid #0a0a0a;
+    font-family: "playball", sans-serif;
+}
+.intro{
+    position: relative;
+    left: 10vw;
+}
+.value{
+    position: relative;
+    left: 55vw;
+}
+.good{
+    position: absolute;
+    left: 10vw;
+    top: 20vh;
+}

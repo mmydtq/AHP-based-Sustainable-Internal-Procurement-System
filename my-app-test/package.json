@@ -14,7 +14,7 @@
     "@arco-design/web-react": "^2.61.2",
     "antd": "^5.15.3",
     "axios": "^1.6.8",
-    "babel-core": "^6.26.3",
+    "babel-core": "^4.7.16",
     "babel-preset-env": "^0.0.0",
     "json5": "^2.2.3",
     "lodash": "^4.17.21",
@@ -24,8 +24,8 @@
     "zustand": "^4.5.2"
   },
   "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^18",
+    "@types/node": "^20.12.5",
+    "@types/react": "^18.2.74",
     "@types/react-dom": "^18",
     "typescript": "^5"
   }

@@ -14,21 +14,23 @@ const port = '8080';
 
 
 export const postUserLogin = async (args: LoginType) => {
-  const { data } = await axios.post(
-    'http://' + host + ':' + port + '/shop/user/login',
-    {
-      ...args
-    });
-  return data;
+  // const { data } = await axios.post(
+  //   'http://' + host + ':' + port + '/shop/user/login',
+  //   {
+  //     ...args
+  //   });
+  // return data;
+  return {status: 1}
 };
 
 export const postUserRegister = async (args: UserRegister) => {
-  const { data } = await axios.post(
-    'http://' + host + ':' + port + '/shop/user/register',
-    {
-      ...args
-    });
-  return data;
+  // const { data } = await axios.post(
+  //   'http://' + host + ':' + port + '/shop/user/register',
+  //   {
+  //     ...args
+  //   });
+  // return data;
+  return {status: 1}
 };
 
 export const postUserChangePassword = async (args: LoginType) => {

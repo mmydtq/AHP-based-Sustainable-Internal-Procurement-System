@@ -1,21 +1,59 @@
-
 import Title from '@/component/Title';
-import React, { useState } from 'react';
-import { Input, Form, Button, Select, Tooltip } from 'antd';
+import React, { useMemo, useState } from 'react';
+import { Input, Form, Button, Select, Tooltip, NotificationArgsProps, notification } from 'antd';
 import { InfoCircleOutlined, PhoneOutlined, UserOutlined } from '@ant-design/icons';
 import { LoginType } from '@/util/appType';
 import styled from "./index.module.css"
-import Link from 'next/link';
 import Bottom from '@/component/Bottom';
+import { postUserRegister } from '@/api/hello';
+import router from 'next/router';
 
-const Login: React.FC = () => {
-   const [uName, setUName] = useState('')
-   const [password, setPassword] = useState('')
-   const [room, setRoom] = useState('')
-   const [email, setEmail] = useState('')
-   const [phome, setPhone] = useState('')
+type NotificationPlacement = NotificationArgsProps['placement'];
+
+const Register: React.FC = () => {
+    const [form] = Form.useForm();
+    const Context = React.createContext({ name: 'Default' });
+    const [api, contextHolder] = notification.useNotification();
+    const contextValue = useMemo(() => ({ name: 'Ant Design' }), []);
+
+    const openNotification = (placement: NotificationPlacement) => {
+        api.info({
+        message: `Error info`,
+        description: <Context.Consumer>{() => `Account already exists`}</Context.Consumer>,
+        placement,
+        });
+    };
+
+    const openNotification1 = (placement: NotificationPlacement) => {
+        api.info({
+        message: `Error info`,
+        description: <Context.Consumer>{() => `The two passwords are inconsistent. Please re-enter them`}</Context.Consumer>,
+        placement,
+        });
+    };
+
+    const handleClick = async () => {
+        if (form.getFieldValue('password') !== form.getFieldValue('rePassword')) {
+            openNotification1('topRight');
+            return;
+        }
+        const params = {
+            uName: form.getFieldValue('uName'),
+            password: form.getFieldValue('password'),
+            phone: form.getFieldValue('phone'),
+            room: form.getFieldValue('room'),
+            email: form.getFieldValue('email'),
+        }
+        const callback = await postUserRegister(params)
+        callback.status === 0 ? 
+        router.push('/Login')
+        :
+        openNotification('topRight')
+    }
 
     return(
+        <Context.Provider value={contextValue}>
+        {contextHolder}
         <div>
             <Title select = 'Login'/>
             <div className={styled.intro}><b>Register for faster browse.</b></div>
@@ -23,6 +61,7 @@ const Login: React.FC = () => {
             <div className={styled.subtitle}>One Apple ID is all you need to<br/>access all Apple services</div>
             <div className={styled.login}>
             <Form
+                form={form}
                 name="basic"
                 labelCol={{ span: 8 }}
                 wrapperCol={{ span: 64 }}
@@ -31,12 +70,14 @@ const Login: React.FC = () => {
                 autoComplete="off"
             >
                 <Form.Item<LoginType>
+                    name="uName"
                     rules={[{ required: true, message: 'Please enter' }]}
                 >
                     <Input placeholder="Please enter real name" prefix={<UserOutlined/>} className={styled.uname}/>
                 </Form.Item>
 
-                <Form.Item<LoginType>
+                <Form.Item
+                    name="room"
                     rules={[{ required: true }]}
                 >
                     <Tooltip title="Select room">
@@ -52,7 +93,8 @@ const Login: React.FC = () => {
                     </Tooltip>
                 </Form.Item>
 
-                <Form.Item<LoginType>
+                <Form.Item
+                    name="email"
                     rules={[{ required: true }]}
                 >
                     <Input
@@ -66,26 +108,29 @@ const Login: React.FC = () => {
                     />
                 </Form.Item>
 
-                <Form.Item<LoginType>
+                <Form.Item
+                    name="phone"
                     rules={[{ required: true }]}
                 >
                     <Input placeholder="Please enter your phone" prefix={<PhoneOutlined />} className={styled.uname}/>
                 </Form.Item>
 
-                <Form.Item<LoginType>
+                <Form.Item
+                    name="password"
                     rules={[{ required: true }]}
                 >
                     <Input.Password variant='filled' placeholder="Password" className={styled.password}/>
                 </Form.Item>
 
-                <Form.Item<LoginType>
+                <Form.Item
+                    name="rePassword" 
                     rules={[{ required: true }]}
                 >
                     <Input.Password variant='filled' placeholder="Password again" className={styled.password}/>
                 </Form.Item>
 
                 <Form.Item wrapperCol={{ offset: 9, span: 16 }}>
-                    <Button htmlType="submit" className={styled.button} >
+                    <Button htmlType="submit" onClick={handleClick} className={styled.button} >
                         Register
                     </Button>
                 </Form.Item>
@@ -96,7 +141,8 @@ const Login: React.FC = () => {
             </div>
             <Bottom />
         </div>
+        </Context.Provider>
     )
 }
 
-export default Login;
+export default Register;

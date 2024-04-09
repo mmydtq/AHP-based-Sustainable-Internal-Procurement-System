@@ -18,12 +18,14 @@ const Login: React.FC = () => {
     const Context = React.createContext({ name: 'Default' });
     const [api, contextHolder] = notification.useNotification();
     const contextValue = useMemo(() => ({ name: 'Ant Design' }), []);
+    const setUName = useBearStore((state) => state.setUName);
+    const setPassword = useBearStore((state) => state.setPassword);
 
     const openNotification = (placement: NotificationPlacement) => {
         api.info({
-        message: `Error info`,
-        description: <Context.Consumer>{() => `Username or password verification error`}</Context.Consumer>,
-        placement,
+            message: `Error info`,
+            description: <Context.Consumer>{() => `Username or password verification error`}</Context.Consumer>,
+            placement,
         });
     };
 
@@ -34,63 +36,64 @@ const Login: React.FC = () => {
         }
         console.log(params)
         const callback = await postUserLogin(params)
-        callback.status === 0 ? 
-        (useBearStore((state) => state.setUName(form.getFieldValue('uName'))), 
-        useBearStore((state) => state.setPassword(form.getFieldValue('password'))),
+        callback.status === 0 
+        ? 
+        (setUName(form.getFieldValue('uName')), 
+        setPassword(form.getFieldValue('password')),
         router.push('/HomePage'))
         :
         openNotification('topRight')
     }
-      
 
     return(
         <Context.Provider value={contextValue}>
-        {contextHolder}
-        <div>
-            <Title select = 'Login'/>
-            <div className={styled.title}><b>Login  for  faster  checkout.</b></div>
-            <div className={styled.subtitle}>Login in<br/>Your account</div>
-            <div className={styled.login}>
-            <Form
-                form={form}
-                name="basic"
-                labelCol={{ span: 8 }}
-                wrapperCol={{ span: 64 }}
-                style={{ maxWidth: 600 }}
-                initialValues={{ remember: true }}
-                autoComplete="off"
-            >
-                <Form.Item<LoginType>
-                    name="uName"
-                    rules={[{ required: true, message: 'Please enter' }]}
-                >
-                    <Input placeholder="Please enter" prefix={<UserOutlined/>} className={styled.uname}/>
-                </Form.Item>
+            {contextHolder}
+            <div>
+                <Title select='Login'/>
+                <div className={styled.title}><b>Login for faster checkout.</b></div>
+                <div className={styled.subtitle}>Login in<br/>Your account</div>
+                <div className={styled.login}>
+                    <Form
+                        form={form}
+                        name="basic"
+                        labelCol={{ span: 8 }}
+                        wrapperCol={{ span: 64 }}
+                        style={{ maxWidth: 600 }}
+                        initialValues={{ remember: true }}
+                        autoComplete="off"
+                    >
+                        <Form.Item<LoginType>
+                            name="uName"
+                            rules={[{ required: true, message: 'Please enter' }]}
+                        >
+                            <Input placeholder="Please enter" prefix={<UserOutlined/>} className={styled.uname}/>
+                        </Form.Item>
 
-                <Form.Item<LoginType>
-                    name="password"
-                    rules={[{ required: true }]}
-                >
-                    <Input.Password variant='filled' placeholder='Password' className={styled.password}/>
-                </Form.Item>
-                <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-                    <Button htmlType="submit" className={styled.button} onClick={handleClick}>
-                        Login
-                    </Button>
-                </Form.Item>
-                <Form.Item>
-                    <div className={styled.change}>
-                        <Link href={'/ChangePage'}>Change your password.</Link>
-                    </div>
-                    <div className={styled.register}><Link href={'/Register'}>Rigister for your ID. </Link></div>
-                    <div className={styled.admin}>Already have an administer ID? <Link href={'/AdminLogin'}>Click here</Link></div>
-                </Form.Item>
-            </Form>
+                        <Form.Item<LoginType>
+                            name="password"
+                            rules={[{ required: true }]}
+                        >
+                            <Input.Password variant='filled' placeholder='Password' className={styled.password}/>
+                        </Form.Item>
+                        <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+                            <Button htmlType="submit" className={styled.button} onClick={handleClick}>
+                                Login
+                            </Button>
+                        </Form.Item>
+                        <Form.Item>
+                            <div className={styled.change}>
+                                <Link href={'/ChangePage'}>Change your password.</Link>
+                            </div>
+                            <div className={styled.register}><Link href={'/Register'}>Register for your ID. </Link></div>
+                            <div className={styled.admin}>Already have an administer ID? <Link href={'/AdminLogin'}>Click here</Link></div>
+                        </Form.Item>
+                    </Form>
+                </div>
+                <Bottom/>
             </div>
-            <Bottom/>
-        </div>
         </Context.Provider>
     )
 }
+
 
 export default Login;

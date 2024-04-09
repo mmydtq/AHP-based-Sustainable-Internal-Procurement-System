@@ -2,7 +2,7 @@
     position: relative;
     overflow: hidden;
     width: calc(100vw - 17px);
-    height: 45vh;
+    height: 55vh;
 }
   
 .overlay {
@@ -37,6 +37,7 @@
     padding: 10px;
     color: #165DFF;
     text-decoration: none;
+    cursor: pointer; 
 }
 .link:hover{
     text-align: center;
@@ -47,6 +48,6 @@
   
 .image {
     width: calc(100vw - 17px);
-    height: 45vh;
+    height: 55vh;
 }
   

@@ -7,8 +7,9 @@ import { Menu, Select, Button, Affix } from 'antd';
 import Link from 'next/link';
 import shop from "@/assert/shop.png"
 import Image from "next/image";
-import { SearchOutlined } from '@ant-design/icons';
+import { LogoutOutlined, SearchOutlined } from '@ant-design/icons';
 import {Row, Col} from 'antd';
+import useBearStore from '@/Store/store';
 
 const items: MenuProps['items'] = [
 {
@@ -56,7 +57,7 @@ const items: MenuProps['items'] = [
   key: 'Faculty',
 },
 {
-  label: 'Value',
+  label: (<Link href={'/Value'}>Value</Link>),
   key: 'Value',
 },
 {
@@ -86,12 +87,22 @@ for (let i = 10; i < 36; i++) {
   });
 }
 
+
 const Title: React.FC<TitleProps> = ({select}) => {
   const [current, setCurrent] = useState(select);
+  const [tags, setTages] = useState<string[]>([]);
+  const setUName = useBearStore((state) => state.setUName);
+  const setPassword = useBearStore((state) => state.setPassword);
 
   const onClick: MenuProps['onClick'] = (e) => {
     setCurrent(e.key);
   };
+
+  const handleClick = () => {
+    setUName(''), 
+    setPassword(''),
+    router.push('/Login')
+  }
 
   return (
 
@@ -114,8 +125,12 @@ const Title: React.FC<TitleProps> = ({select}) => {
               allowClear
               maxTagCount={3}
               className={styled.search}
+              onChange={(value, option) => {setTages(value)}}
             />
-            <Button icon={<SearchOutlined />} onClick={() => {router.push('/Search')}} className={styled.button} />
+            <Button icon={<SearchOutlined />} onClick={() => {router.push({pathname: '/Search', query: { tagsArray: tags }}, undefined, { shallow: true })}} className={styled.button} />
+           <div style={{position:'absolute', top:'0.3vh', left:'18vw'}}>
+            <LogoutOutlined style={{fontSize:24, color:'red'}} onClick={handleClick}/>
+           </div>
           </Col>
         </Row>
       </Affix>

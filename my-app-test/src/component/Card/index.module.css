@@ -2,7 +2,7 @@
     position: relative;
     overflow: hidden;
     width: calc((98.5vw - 17px)/2);
-    height: 45vh;
+    height: 55vh;
     margin-top: 1vh;
     margin-left: 0.5vw;
 }
@@ -39,6 +39,7 @@
     padding: 10px;
     color: #165DFF;
     text-decoration: none;
+    cursor: pointer; 
 }
 .link:hover{
     text-align: center;
@@ -49,6 +50,6 @@
   
 .image {
     width: calc((98.5vw - 17px)/2);
-    height: 45vh;
+    height: 55vh;
 }
   

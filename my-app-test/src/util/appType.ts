@@ -12,8 +12,8 @@ export interface UserType {
     uName: string;
     password: string;
     phone: number;
-    room: String;
-    email: String;
+    room: string;
+    email: string;
 };
 
 export interface ChangePassword {
@@ -23,22 +23,26 @@ export interface ChangePassword {
 
 export interface Good {
     id: number;
-    url: String;
+    url: string;
     environmentalValue: number;
-    brief: String;
-    tag: String[];
-    name: String;
+    brief: string;
+    tag: string[];
+    name: string;
     value: number;
-    description: String;
+    description: string;
     hint: number;
+}
+
+export interface Goods {
+    goods: Good[]
 }
 
 export interface UserRegister {
     uName: string;
     password: string;
     phone: number;
-    room: String;
-    email: String;
+    room: string;
+    email: string;
 };
 
 export interface ToCart{

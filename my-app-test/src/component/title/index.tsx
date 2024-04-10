@@ -66,7 +66,7 @@ const items: MenuProps['items'] = [
 },
 {
   label: (
-    <Link href={'/AdminLogin'}>Administer</Link>
+    <Link href={'/Administer'}>Administer</Link>
   ),
   key: 'Administer',
 },
@@ -110,16 +110,16 @@ const Title: React.FC<TitleProps> = ({select}) => {
       <Affix offsetTop={0}>
         <Row align="middle" justify="space-between"> {/* 使用 Row 组件创建一个水平排列的容器 */}
           <Col flex="6"></Col>
-          <Col flex="2">
+          <Col flex="1">
             <Image src={shop} alt='shopIcon' width={30} height={30} className={styled.im} />
           </Col>
-          <Col flex="11">
-            <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} className={styled.title} inlineCollapsed={false} style={{backgroundColor:'#F5F2F4'}}/>
+          <Col flex="12">
+            <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} className={styled.title} inlineCollapsed={false} style={{backgroundColor:'#F5F2F4', padding: '0 10px',justifyContent: 'center', alignItems: 'center'}}/>
           </Col>
           <Col flex="5">
             <Select
               mode="tags"
-              style={{ width: '200px', margin: '0 10px' }}
+              style={{ width: '180px', margin: '0 10px' }}
               placeholder="Search"
               options={options}
               allowClear
@@ -127,11 +127,12 @@ const Title: React.FC<TitleProps> = ({select}) => {
               className={styled.search}
               onChange={(value, option) => {setTages(value)}}
             />
-            <Button icon={<SearchOutlined />} onClick={() => {router.push({pathname: '/Search', query: { tagsArray: tags }}, undefined, { shallow: true })}} className={styled.button} />
-           <div style={{position:'absolute', top:'0.3vh', left:'18vw'}}>
-            <LogoutOutlined style={{fontSize:24, color:'red'}} onClick={handleClick}/>
-           </div>
+            
+          <Button icon={<SearchOutlined />} onClick={() => { router.push({ pathname: '/Search', query: { tagsArray: tags } }, undefined, { shallow: true }) }} className={styled.button} />
+          <LogoutOutlined style={{ fontSize: 20, color: 'black',margin: '0 10px' }} onClick={handleClick} />
           </Col>
+          
+          
         </Row>
       </Affix>
     </div>

@@ -42,7 +42,7 @@ class AddToCart(Resource):
         except Exception as e:
             return {'error': str(e)}, 400
 class DeleteFromCart(Resource):
-    def post(self):
+    def delete(self):
         try:
             parser = reqparse.RequestParser()
             parser.add_argument('id', type=int, required=True, help='ID is required')

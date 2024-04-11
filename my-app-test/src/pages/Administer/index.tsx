@@ -1,97 +1,58 @@
-import React, { useState } from 'react';
-import { Layout, Menu, Breadcrumb, Table } from 'antd';
-import {
-  UserOutlined,
-  LaptopOutlined,
-  NotificationOutlined,
-} from '@ant-design/icons';
-
-const { SubMenu } = Menu;
-const { Header, Content, Sider } = Layout;
-
-interface UserData {
-  key: string;
-  name: string;
-  age: number;
-  address: string;
-}
-
-const columns = [
-  {
-    title: 'Name',
-    dataIndex: 'name',
-    key: 'name',
-  },
-  {
-    title: 'Age',
-    dataIndex: 'age',
-    key: 'age',
-  },
-  {
-    title: 'Address',
-    dataIndex: 'address',
-    key: 'address',
-  },
-];
-
-const data: UserData[] = [
-  {
-    key: '1',
-    name: 'John Brown',
-    age: 32,
-    address: 'New York No. 1 Lake Park',
-  },
-  {
-    key: '2',
-    name: 'Jim Green',
-    age: 42,
-    address: 'London No. 1 Lake Park',
-  },
-  {
-    key: '3',
-    name: 'Joe Black',
-    age: 32,
-    address: 'Sidney No. 1 Lake Park',
-  },
-];
+import React, { useEffect } from 'react';
+import { Chart } from '@antv/g2';
+import Title from '@/component/Title';
+import styled from './index.module.css';
 
 const Administer: React.FC = () => {
-  const [collapsed, setCollapsed] = useState<boolean>(false);
-
-  const onCollapse = (collapsed: boolean) => {
-    setCollapsed(collapsed);
-  };
+  useEffect(() => {
+    const data = [
+      { year: '1991', value: 3 },
+      { year: '1992', value: 4 },
+      { year: '1993', value: 3.5 },
+      { year: '1994', value: 5 },
+      { year: '1995', value: 4.9 },
+      { year: '1996', value: 6 },
+      { year: '1997', value: 7 },
+      { year: '1998', value: 9 },
+      { year: '1999', value: 13 },
+    ];
+    
+    const chart = new Chart({
+      container: 'chart-container',
+      autoFit: true,
+    });
+    
+    chart
+      .data(data)
+      .encode('x', 'year')
+      .encode('y', 'value')
+      .scale('x', {
+        range: [0, 1],
+      })
+      .scale('y', {
+        domainMin: 0,
+        nice: true,
+      });
+    
+    chart.line().label({
+      text: 'value',
+      style: {
+        dx: -10,
+        dy: -12,
+      },
+    });
+    
+    chart.point().style('fill', 'white').tooltip(false);
+    
+    chart.render();
+  }, []);
 
   return (
-    <Layout style={{ minHeight: '100vh' }}>
-      <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
-        <div className="logo" />
-        <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-          <Menu.Item key="1" icon={<UserOutlined />}>
-            Option 1
-          </Menu.Item>
-          <Menu.Item key="2" icon={<LaptopOutlined />}>
-            Option 2
-          </Menu.Item>
-          <SubMenu key="sub1" icon={<NotificationOutlined />} title="Navigation One">
-            <Menu.Item key="3">Option 3</Menu.Item>
-            <Menu.Item key="4">Option 4</Menu.Item>
-          </SubMenu>
-        </Menu>
-      </Sider>
-      <Layout className="site-layout">
-        <Header className="site-layout-background" style={{ padding: 0 }} />
-        <Content style={{ margin: '0 16px' }}>
-          <Breadcrumb style={{ margin: '16px 0' }}>
-            <Breadcrumb.Item>User</Breadcrumb.Item>
-            <Breadcrumb.Item>Bill</Breadcrumb.Item>
-          </Breadcrumb>
-          <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
-            <Table columns={columns} dataSource={data} />
-          </div>
-        </Content>
-      </Layout>
-    </Layout>
+    <div>
+      <Title select ='Administer'/>
+      <div id="chart-container" className='chart-container'></div>
+
+    </div>
   );
 };
 

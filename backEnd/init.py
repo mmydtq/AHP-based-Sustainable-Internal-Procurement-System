@@ -5,7 +5,7 @@ from database import db
 from router import HelloWorld
 from flask_restful import Api
 from register import Register, Login, RePassword
-from present import Slide, Present
+from present import MainDisplay, Display, SingleDisplay
 from shopping import AddToCart, DeleteFromCart, GetCartGoods
 
 def create_app():
@@ -21,8 +21,9 @@ def create_app():
     api.add_resource(Register,'/register')
     api.add_resource(Login, '/login')
     api.add_resource(RePassword, '/rePassword')
-    api.add_resource(Slide, '/Slide')
-    api.add_resource(Present, '/Present')
+    api.add_resource(MainDisplay, '/Slide')
+    api.add_resource(Display, '/Present')
+    api.add_resource(SingleDisplay, '/SingleDisplay')
     api.add_resource(AddToCart, '/Fancy/addToCart')
     api.add_resource(DeleteFromCart, '/Fancy/deleteGood')
     api.add_resource(GetCartGoods, '/Fancy/showGoods')

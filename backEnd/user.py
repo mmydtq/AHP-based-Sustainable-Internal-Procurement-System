@@ -32,6 +32,20 @@ class User(db.Model):
         db.session.commit()
 
     @staticmethod
+    def getUser(username):
+        user = User.query.filter_by(uName=username).first()
+        if not user:
+            return None
+        return {
+            'uId': user.uId,
+            'uName': user.uName,
+            'password': user.password,
+            'phone': user.phone,
+            'room': user.room,
+            'email': user.email
+        }
+
+    @staticmethod
     def checkLogin(name, password):
         user = User.query.filter_by(name=name).first()
         if not user:

@@ -20,7 +20,7 @@ export const postUserLogin = async (args: LoginType) => {
   //     ...args
   //   });
   // return data;
-  return {status: 0}
+  return {status: 0, user : {id: 133}}
 };
 
 export const postUserRegister = async (args: UserRegister) => {

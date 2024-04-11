@@ -93,6 +93,7 @@ const Title: React.FC<TitleProps> = ({select}) => {
   const [tags, setTages] = useState<string[]>([]);
   const setUName = useBearStore((state) => state.setUName);
   const setPassword = useBearStore((state) => state.setPassword);
+  const setUId = useBearStore((state) => state.setUId);
 
   const onClick: MenuProps['onClick'] = (e) => {
     setCurrent(e.key);
@@ -101,6 +102,7 @@ const Title: React.FC<TitleProps> = ({select}) => {
   const handleClick = () => {
     setUName(''), 
     setPassword(''),
+    setUId(0),
     router.push('/Login')
   }
 

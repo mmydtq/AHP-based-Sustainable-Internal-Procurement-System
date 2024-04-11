@@ -19,6 +19,7 @@ const AdminLogin: React.FC = () => {
     const contextValue = useMemo(() => ({ name: 'Ant Design' }), []);
     const setUName = useBearStore((state) => state.setUName);
     const setPassword = useBearStore((state) => state.setPassword);
+    const setUId = useBearStore((state) => state.setUId);
 
     const openNotification = (placement: NotificationPlacement) => {
         api.info({
@@ -37,6 +38,7 @@ const AdminLogin: React.FC = () => {
         callback.status === 0 ? 
         (setUName(form.getFieldValue('uName')), 
         setPassword(form.getFieldValue('password')),
+        setUId(callback.user.id),
         router.push('/HomePage'))
         :
         openNotification('topRight')

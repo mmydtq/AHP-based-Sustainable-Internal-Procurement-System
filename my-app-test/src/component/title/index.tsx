@@ -114,7 +114,20 @@ const Title: React.FC<TitleProps> = ({select}) => {
             <Image src={shop} alt='shopIcon' width={30} height={30} className={styled.im} />
           </Col>
           <Col flex="12">
-            <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} className={styled.title} inlineCollapsed={false} style={{backgroundColor:'#F5F2F4', padding: '0 10px',justifyContent: 'center', alignItems: 'center'}}/>
+          <Menu
+  onClick={onClick}
+  selectedKeys={[current]}
+  mode="horizontal"
+  items={items}
+  className={styled.title}
+  inlineCollapsed={false}
+  style={{
+    backgroundColor: 'rgba(245, 242, 244, 0.5)',
+    padding: '0 10px',
+    justifyContent: 'center',
+    alignItems: 'center'
+  }}
+/>
           </Col>
           <Col flex="5">
             <Select

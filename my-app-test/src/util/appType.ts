@@ -56,3 +56,12 @@ export interface Card{
     alt: string;//good name
     brief: string;
 }
+
+export interface Card1{
+    id: number;
+    url: string;
+    alt: string;//good name
+    brief: string;
+    value: number;
+    env: number;
+}

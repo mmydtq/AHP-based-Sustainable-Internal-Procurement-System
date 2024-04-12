@@ -39,7 +39,7 @@ const HomePage: React.FC = () => {
                     brief={goods[0].brief}
                 />
             )}
-            <div>
+            <div style={{marginTop:10}}>
                 {goods?.[1] && (
                     <BigCard 
                         id={goods[1].id} 

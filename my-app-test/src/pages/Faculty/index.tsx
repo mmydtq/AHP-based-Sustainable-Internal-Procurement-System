@@ -44,7 +44,7 @@ const Faculty: React.FC = () => {
                 </Space>
                 <div className={styled.good}>
                     {currentGoods.map((good) => (
-                        <GoodCard id={good.id} url={good.url} alt={good.name} brief={good.brief}/>
+                        <GoodCard id={good.id} url={good.url} alt={good.name} brief={good.brief} value={good.value} env={good.environmentalValue}/>
                     ))}   
                 </div>
                 <Pagination 

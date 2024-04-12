@@ -7,6 +7,7 @@ from flask_restful import Api
 from register import Register, Login, RePassword
 from present import MainDisplay, Display, SingleDisplay
 from shopping import AddToCart, DeleteFromCart, GetCartGoods
+from good import FindGood, Recommend
 
 def create_app():
     app = Flask(__name__)
@@ -18,7 +19,7 @@ def create_app():
     api = Api(app)
     # 路由路径待定
     api.add_resource(HelloWorld, '/') #for testing
-    api.add_resource(Register,'/register')
+    api.add_resource(Register, '/register')
     api.add_resource(Login, '/login')
     api.add_resource(RePassword, '/rePassword')
     api.add_resource(MainDisplay, '/Slide')
@@ -27,6 +28,8 @@ def create_app():
     api.add_resource(AddToCart, '/Fancy/addToCart')
     api.add_resource(DeleteFromCart, '/Fancy/deleteGood')
     api.add_resource(GetCartGoods, '/Fancy/showGoods')
+    api.add_resource(FindGood, '/Good/FindGood') 
+    api.add_resource(Recommend, '/Good/recommend') 
     return app
 
 def create_database(app):

@@ -75,7 +75,8 @@ class Good(db.Model):
                 'hint': good.hint
             }
         }
-    
+
+class FindGood():
     @staticmethod
     def search(keyword):
         matched_goods = Good.query.filter(Good.name.ilike(f'%{keyword}%')).all()
@@ -93,17 +94,18 @@ class Good(db.Model):
                 'hint': good.hint
             })
         return goods_list
-    
+
+class Recommend():    
     @staticmethod
-    def recommend_related_goods(good_id):
-        target_good = Good.query.get(good_id)
+    def recommend_related_goods(target_good_id):
+        target_good = Good.query.get(target_good_id)
         if not target_good:
             return jsonify({'error': 'Invalid good ID'}), 400
 
         target_tags = json.loads(target_good.tag)
 
         related_goods = Good.query.filter(Good.tag.op('@>')([json.dumps(target_tags)])).\
-            filter(Good.id != good_id).order_by(Good.environmental_value.desc()).all()
+            filter(Good.id != target_good_id).order_by(Good.environmental_value.desc()).all()
 
         related_goods_list = []
         for good in related_goods:

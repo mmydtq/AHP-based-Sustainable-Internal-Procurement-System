@@ -58,6 +58,25 @@ class Good(db.Model):
         return {'goods': goods_list}
     
     @staticmethod
+    def findById(given_id):
+        good = Good.query.filter_by(id=given_id).first()
+        if not good:
+            return None
+        return {
+            'good': {
+                'id': good.id,
+                'url': good.url,
+                'environmentalValue': good.environmental_value,
+                'brief': good.brief,
+                'tag': json.loads(good.tag),
+                'name': good.name,
+                'value': good.value,
+                'description': good.description,
+                'hint': good.hint
+            }
+        }
+    
+    @staticmethod
     def search(keyword):
         matched_goods = Good.query.filter(Good.name.ilike(f'%{keyword}%')).all()
         goods_list = []

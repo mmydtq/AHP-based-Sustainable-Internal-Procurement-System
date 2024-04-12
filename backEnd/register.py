@@ -26,8 +26,10 @@ class Login(Resource):
         args = parser.parse_args()
 
         status = User.checkLogin(args['uName'], args['password'])
+        userinfo = User.getUser(args['uName'])
 
-        return jsonify({"status": status}), 200
+        return jsonify({"status": status,
+                        "user": userinfo}), 200
     
 class RePassword(Resource):
     def post(self):

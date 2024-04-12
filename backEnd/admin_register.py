@@ -26,5 +26,7 @@ class AdminLogin(Resource):
         data = parser.parse_args()
 
         status = Admin.checkLogin(data['username'], data['password'])
-        return jsonify({"status": status}), 200
+        a = Admin.getAdmin(data['username'])
+        return jsonify({"status": status,
+                        "user": a}), 200
 

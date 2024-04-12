@@ -1,3 +1,5 @@
+import json
+
 from flask import jsonify
 from flask_restful import Resource, reqparse
 
@@ -37,6 +39,18 @@ class Admin(db.Model):
         db.session.commit()
 
     @staticmethod
+    def getAdmin(name):
+        a = Admin.query.filter_by(name = name).first()
+        if not a:
+            return None
+        return {"uId": a.id,
+                "uName": a.name,
+                "password": a.password,
+                "phone": a.phone,
+                "room": a.room,
+                "email": a.email}
+
+    @staticmethod
     def checkLogin(name, password):
         a = Admin.query.filter_by(name=name).first()
         if not a:
@@ -47,6 +61,7 @@ class Admin(db.Model):
 
     @staticmethod
     def add_good(good_id, url, environmentalValue, brief, tag, name, value, description, hint):
+        tag = json.dumps(tag)
         g = Good.query.filter_by(url=url).first()
         if not g:
             new_good = Good(id=good_id, url=url, environmental_value=environmentalValue, brief=brief, tag=tag,

@@ -290,39 +290,121 @@ export const postSearchInfo = async (args: String[]) => {
 };
 
 export const postRecommendInfo = async (args: number) => {
-  const { data } = await axios.post(
-    'http://' + host + ':' + port + '/shop/goods/recommendInfo',
-    {
-      args
-    });
-  return data;
+  // const { data } = await axios.post(
+  //   'http://' + host + ':' + port + '/shop/goods/recommendInfo',
+  //   {
+  //     args
+  //   });
+  // return data;
+  return {goods : [{
+    id: 0,
+    url: '//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/cd7a1aaea8e1c5e3d26fe2591e561798.png~tplv-uwbnlip3yd-webp.webp',
+    environmentalValue: 2,
+    brief: '111',
+    tag: [],
+    name: '111',
+    value: 3,
+    description: 'awdwadwa',
+    hint: 111,
+  },{
+    id: 1,
+    url: '//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/6480dbc69be1b5de95010289787d64f1.png~tplv-uwbnlip3yd-webp.webp',
+    environmentalValue: 2,
+    brief: '111',
+    tag: [],
+    name: '111',
+    value: 2,
+    description: 'awdwadwa',
+    hint: 111,
+  },{
+    id: 2,
+    url: '//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/0265a04fddbd77a19602a15d9d55d797.png~tplv-uwbnlip3yd-webp.webp',
+    environmentalValue: 2,
+    brief: '111',
+    tag: [],
+    name: '111',
+    value: 2,
+    description: 'awdwadwa',
+    hint: 111,
+  },{
+    id: 3,
+    url: '//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/24e0dd27418d2291b65db1b21aa62254.png~tplv-uwbnlip3yd-webp.webp',
+    environmentalValue: 2,
+    brief: '111',
+    tag: [],
+    name: '111',
+    value: 1,
+    description: 'awdwadwa',
+    hint: 111,
+  }
+]}
 };
 
 export const postAddToCart = async (args: ToCart) => {
-  const { data } = await axios.post(
-    'http://' + host + ':' + port + '/shop/fancy/addToCart',
-    {
-      ...args
-    });
-  return data;
+  // const { data } = await axios.post(
+  //   'http://' + host + ':' + port + '/shop/fancy/addToCart',
+  //   {
+  //     ...args
+  //   });
 };
 
 export const postDeleteToCart = async (args: ToCart) => {
-  const { data } = await axios.post(
-    'http://' + host + ':' + port + '/shop/fancy/deleteToCart',
-    {
-      ...args
-    });
-  return data;
+  // const { data } = await axios.post(
+  //   'http://' + host + ':' + port + '/shop/fancy/deleteToCart',
+  //   {
+  //     ...args
+  //   });
 };
 
-export const postShowGoods = async (args: String) => {
-  const { data } = await axios.post(
-    'http://' + host + ':' + port + '/shop/fancy/showGoods',
-    {
-      ...args
-    });
-  return data;
+export const postShowGoods = async (args: number) => {
+  // const { data } = await axios.post(
+  //   'http://' + host + ':' + port + '/shop/fancy/showGoods',
+  //   {
+  //     args
+  //   });
+  // return data;
+  return {goods : [{
+    id: 0,
+    url: '//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/cd7a1aaea8e1c5e3d26fe2591e561798.png~tplv-uwbnlip3yd-webp.webp',
+    environmentalValue: 2,
+    brief: '111',
+    tag: [],
+    name: '111',
+    value: 3,
+    description: 'awdwadwa',
+    hint: 111,
+  },{
+    id: 1,
+    url: '//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/6480dbc69be1b5de95010289787d64f1.png~tplv-uwbnlip3yd-webp.webp',
+    environmentalValue: 2,
+    brief: '111',
+    tag: [],
+    name: '111',
+    value: 2,
+    description: 'awdwadwa',
+    hint: 111,
+  },{
+    id: 2,
+    url: '//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/0265a04fddbd77a19602a15d9d55d797.png~tplv-uwbnlip3yd-webp.webp',
+    environmentalValue: 2,
+    brief: '111',
+    tag: [],
+    name: '111',
+    value: 2,
+    description: 'awdwadwa',
+    hint: 111,
+  },{
+    id: 3,
+    url: '//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/24e0dd27418d2291b65db1b21aa62254.png~tplv-uwbnlip3yd-webp.webp',
+    environmentalValue: 2,
+    brief: '111',
+    tag: [],
+    name: '111',
+    value: 1,
+    description: 'awdwadwa',
+    hint: 111,
+  }
+]}
 };
 
 export const postAdminLogin = async (args: LoginType) => {
@@ -341,4 +423,24 @@ export const postAdminRegister = async (args: UserRegister) => {
       ...args
     });
   return data;
+};
+
+export const postGoodInfo = async (args: number) => {
+  // const { data } = await axios.post(
+  //   'http://' + host + ':' + port + '/shop/admin/register',
+  //   {
+  //     args
+  //   });
+  // return data;
+  return {good :{
+    id: 0,
+    url: '//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/cd7a1aaea8e1c5e3d26fe2591e561798.png~tplv-uwbnlip3yd-webp.webp',
+    environmentalValue: 2,
+    brief: '111',
+    tag: [],
+    name: '111',
+    value: 2,
+    description: 'awdwadwa',
+    hint: 111,
+  }}
 };

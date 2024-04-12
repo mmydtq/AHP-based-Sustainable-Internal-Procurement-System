@@ -1,6 +1,11 @@
 .tags{
     position: relative;
-    top: 10vh;
+    top: 8vh;
     right: 10vw;
     font-size: 20px;
+}
+.card{
+    position: absolute;
+    top: 18vh;
+    left: 3.5vw;
 }

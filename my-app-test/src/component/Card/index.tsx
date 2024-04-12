@@ -3,7 +3,7 @@ import router from 'next/router';
 import React from 'react';
 import styled from "./index.module.css"
 
-function Card(props: Card) {
+function Cards(props: Card) {
   return (
     <div className={styled.card}>
       <div className={styled.overlay}>
@@ -23,4 +23,4 @@ function Card(props: Card) {
   );
 }
 
-export default Card;
+export default Cards;

@@ -27,7 +27,7 @@ const items: MenuProps['items'] = [
       label: 'Item 1',
       children: [
         {
-          label: (<Link href={'/Goods'}>Goods</Link>),
+          label: 'Option 2',
           key: 'setting:1',
         },
         {

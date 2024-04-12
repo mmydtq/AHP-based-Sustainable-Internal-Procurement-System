@@ -46,8 +46,8 @@ export interface UserRegister {
 };
 
 export interface ToCart{
-    id: number;
-    uId: number;
+    id?: number;
+    uId?: number;
 }
 
 export interface Card{

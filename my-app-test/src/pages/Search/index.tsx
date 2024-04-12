@@ -15,6 +15,12 @@ const Search: React.FC = () => {
     const router = useRouter();
     const tagsArray: string[] = router.query.tagsArray as string[];
     const [Goods, setGoods] = useState<Goods>({ goods: [] })
+    const goods = Goods.goods
+    const [currentPage, setCurrentPage] = useState(1);
+    const pageSize = 3;
+    const startIndex = (currentPage - 1) * pageSize;
+    const endIndex = currentPage * pageSize;
+    const currentGoods = goods.slice(startIndex, endIndex);
 
     const getInfo = async () => {
         const res = await postSearchInfo(tagsArray);
@@ -25,46 +31,58 @@ const Search: React.FC = () => {
         getInfo();
     },[])
 
+
     return (
         <div>
             <Title select='Goods'/>
             <div className={styled.tags}>
                 <Flex gap="middle" vertical>
                     <Flex justify="flex-end" align="center">
-                        <div style={{marginRight:'1vw'}}><b>TAG:</b></div>
+                        <div style={{marginRight:'1vw', fontSize:24}}><b>TAG:</b></div>
                         {tagsArray && tagsArray.length === 1 ? (
-                            <Tag color="geekblue">{tagsArray[0]}</Tag>
+                            <Tag color="geekblue" style={{fontSize:24}}>{tagsArray[0]}</Tag>
                         ) : (
                             Array.isArray(tagsArray) && tagsArray.map((array: string) => (
-                                <Tag color="geekblue">{array}</Tag>
+                                <Tag color="geekblue" style={{fontSize:24}}>{array}</Tag>
                             ))
                         )}
                     </Flex>
                 </Flex>
             </div>
-            <div>
-                <Space size={0}>
-                    <Card
-                        style={{ width: 300 }}
+            <div className={styled.card}>
+                <Space size={50}>
+                    {currentGoods.map((good) => (
+                        <Card
+                        style={{ width: 550 }}
                         cover={
                         <img
                             alt="example"
-                            src='//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/cd7a1aaea8e1c5e3d26fe2591e561798.png~tplv-uwbnlip3yd-webp.webp'
+                            src={good.url}
+                            style={{ width: 550, height: 350 }}
                         />
                         }
                         actions={[
-                            <InfoCircleOutlined/>
+                            <InfoCircleOutlined style={{fontSize:24}} onClick={() => {router.push({pathname:'/Goods', query: {id: good.id}})}}/>
                         ]}
-                    >
+                        >
                         <Meta
-                        title="name"
-                        description="This is the description"
+                        title={good.name}
+                        description={good.description}
                         />
                     </Card> 
+                    ))}
                 </Space>
             </div>
-            <Pagination defaultCurrent={1} total={50} defaultPageSize={3}/>
-            <Bottom/>
+            <Pagination 
+                defaultCurrent={1} 
+                total={goods.length} 
+                defaultPageSize={pageSize}
+                onChange={(page) => setCurrentPage(page)}
+                style={{position:'absolute', top:'75vh', left:'45vw'}}
+            />
+            <div style={{position:'relative', top:'75vh'}}>
+                <Bottom/>
+            </div>
         </div>
     )
 }

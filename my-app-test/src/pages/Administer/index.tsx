@@ -30,8 +30,7 @@ const Administer: React.FC = () => {
       { year: '1995', value: 4.9 },
       { year: '1996', value: 6 },
       { year: '1997', value: 7 },
-      { year: '1998', value: 9 },
-      { year: '1999', value: 13 },
+
     ];
 
     const chart = new Chart({
@@ -47,7 +46,7 @@ const Administer: React.FC = () => {
         range: [0, 1],
       })
       .scale('y', {
-        domainMin: 0,
+        domainMin: 2,
         nice: true,
       });
 
@@ -70,11 +69,11 @@ const Administer: React.FC = () => {
     }
 
     const data1: DataItem[] = [
-      { item: '事例一', count: 80, percent: 0.8 },
-      { item: '事例二', count: 21, percent: 0.21 },
-      { item: '事例三', count: 17, percent: 0.17 },
-      { item: '事例四', count: 13, percent: 0.13 },
-      { item: '事例五', count: 9, percent: 0.09 },
+      { item: 'Good1', count: 80, percent: 0.8 },
+      { item: 'Good2', count: 21, percent: 0.21 },
+      { item: 'Good3', count: 17, percent: 0.17 },
+      { item: 'Good4', count: 13, percent: 0.13 },
+      { item: 'Good5', count: 9, percent: 0.09 },
     ];
 
     const chart1 = new Chart({
@@ -102,12 +101,12 @@ const Administer: React.FC = () => {
 
     chart1
       .text()
-      .style('text', '主机')
+      .style('text', 'Goods')
       // Relative position
       .style('x', '50%')
       .style('y', '50%')
       .style('dy', -25)
-      .style('fontSize', 34)
+      .style('fontSize', 28)
       .style('fill', '#8c8c8c')
       .style('textAlign', 'center');
 
@@ -119,39 +118,107 @@ const Administer: React.FC = () => {
       .style('y', '50%')
       .style('dx', -25)
       .style('dy', 25)
-      .style('fontSize', 44)
+      .style('fontSize', 30)
       .style('fill', '#8c8c8c')
       .style('textAlign', 'center');
 
     chart1
       .text()
-      .style('text', '台')
+      .style('text', 'types')
       // Relative position
       .style('x', '50%')
       .style('y', '50%')
       .style('dx', 35)
       .style('dy', 25)
-      .style('fontSize', 34)
+      .style('fontSize', 28)
       .style('fill', '#8c8c8c')
       .style('textAlign', 'center');
 
     chart1.render();
 
 
+    //柱状图
+    const data2 = [
+      { date: '2019-03', count: 80 },
+      { date: '2019-04', count: 60 },
+      { date: '2019-05', count: 110 },
+      { date: '2019-06', count: 100 },
+      { date: '2019-07', count: 90 },
+      { date: '2019-08', count: 50 },
+      { date: '2019-09', count: 70 },
+      { date: '2019-10', count: 120 },
+      { date: '2019-11', count: 150 },
+      { date: '2019-12', count: 130 },
+      { date: '2020-01', count: 140 },
+      { date: '2020-02', count: 160 },
+      { date: '2020-03', count: 180 },
+    ];
+
+    const chart2 = new Chart({
+      container: 'chart-container1',
+      autoFit: true,
+    });
+
+    chart2.interval().data(data2).encode('x', 'date').encode('y', 'count');
+    chart2.render();
+
+    const data3 = [
+      { year: '1991', value: 3 },
+      { year: '1992', value: 4 },
+      { year: '1993', value: 3.5 },
+      { year: '1994', value: 5 },
+      { year: '1995', value: 4.9 },
+      { year: '1996', value: 6 },
+      { year: '1997', value: 7 },
+
+    ];
+
+    const chart3 = new Chart({
+      container: 'chart-container2',
+      autoFit: true,
+    });
+
+    chart3
+      .data(data3)
+      .encode('x', 'year')
+      .encode('y', 'value')
+      .scale('x', {
+        range: [0, 1],
+      })
+      .scale('y', {
+        domainMin: 2,
+        nice: true,
+      });
+
+    chart3.line().label({
+      text: 'value',
+      style: {
+        dx: -10,
+        dy: -12,
+        color: '52C41A',
+      },
+    });
+
+    chart3.point().style('fill', 'green').tooltip(false);
+
+    chart3.render();
+
+
 
   }, []
   );
 
-
+  //折线图是chart-container，柱状图是chart-container1
+  //饼图是container
 
   return (
 
     <div>
       <Title select='Administer' />
-      <div>
+      <div style={{ backgroundColor: '#F6F8FB' }}>
         <div>
           <Row>
-            <Col span={24}>
+            <Col span={24} >
               <p className={styled.title}>This is the Administer page.</p>
             </Col>
 
@@ -159,31 +226,40 @@ const Administer: React.FC = () => {
 
           <Row>
             <Col span={2}></Col>
-            <Col span={12}>
-              <div id="chart-container" className={styled.chart} ></div>
+            <Col span={11} style={{ backgroundColor: '#FFFFFF' }}>
+              <p className={styled.title1}>Monthly trading volume</p>
+              <div id="chart-container" className={styled.charter} ></div>
             </Col>
-            <Col span={8}>
-              <div id="container" className={styled.chart1} ></div>
+            <Col span={1}></Col>
+            <Col span={8} style={{ backgroundColor: '#FFFFFF' }}>
+              <p className={styled.title1}>The total of the goods type</p>
+              <div id="container" className={styled.chart} ></div>
             </Col>
 
             <Col span={2}></Col>
 
-
+          </Row>
+          <Row>
+            <Col span={24} style={{ height: '20px' }}></Col>
+          </Row>
+          <Row>
+            <Col span={2}></Col>
+            <Col span={12} style={{ backgroundColor: '#FFFFFF' }}>
+              <p className={styled.title1}>Monthly sales Goods number</p>
+              <div id="chart-container1" className={styled.chart2} ></div>
+            </Col>
+            <Col span={1}></Col>
+            <Col span={7} style={{ backgroundColor: '#FFFFFF' }}>
+              <p className={styled.title1}>Monthly sales Enviromental number</p>
+              <div id="chart-container2" className={styled.chart3} ></div>
+            </Col>
           </Row>
 
           <div style={containerStyle}>
-            <Card bordered={false}>
-              <Statistic
-                title="Active"
-                value={11.28}
-                precision={2}
-                valueStyle={{ color: '#3f8600' }}
-                prefix={<ArrowUpOutlined />}
-                suffix="%"
-              />
-            </Card>
+
+
           </div>
-          {/* <div id="chart-container" className={styled.chart} ></div> */}
+
 
         </div>
         <Bottom />

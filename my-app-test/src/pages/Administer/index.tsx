@@ -2,16 +2,148 @@ import React, { useEffect } from 'react';
 import { Chart } from '@antv/g2';
 import Title from '@/component/Title';
 import styled from "./index.module.css"
-import { Form, Button } from 'antd';
+import { Form, Button, Drawer } from 'antd';
 import { Statistic, Card } from 'antd';
-import { ArrowUpOutlined } from '@ant-design/icons';
+import { ArrowUpOutlined, PlusCircleOutlined } from '@ant-design/icons';
 import Bottom from '@/component/Bottom';
 import { Col, Row, Slider } from 'antd';
 import { useState } from 'react';
+import { Space, Table, Tag } from 'antd';
+import type { TableProps } from 'antd';
+import { Modal, FloatButton } from 'antd';
 
+
+
+
+interface DataType {
+  key: string;
+  name: string;
+  value: number;
+  address: string;
+  tags: string[];
+}
+const data: DataType[] = [
+  {
+    key: '1',
+    name: 'John Brown',
+    value: 32,
+    address: 'LAPD Vice',
+    tags: ['Pen', 'Chair'],
+  },
+  {
+    key: '2',
+    name: 'Jim Green',
+    value: 42,
+    address: 'LAPD METRO',
+    tags: ['Table'],
+  },
+  {
+    key: '3',
+    name: 'Joe Black',
+    value: 32,
+    address: 'LAPD SWAT',
+    tags: ['Chair', 'Cup'],
+  },
+  {
+    key: '4',
+    name: 'Mary White',
+    value: 22,
+    address: 'LAPD TLI',
+    tags: ['Pen', 'Table'],
+  }
+];
 
 
 const Administer: React.FC = () => {
+  //弹窗代码
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+  //抽屉代码
+  const [open, setOpen] = useState(false);
+
+  const showDrawer = () => {
+    setOpen(true);
+  };
+
+  const onClose = () => {
+    setOpen(false);
+  };
+
+  const columns: TableProps<DataType>['columns'] = [
+    {
+      title: 'Name',
+      dataIndex: 'name',
+      key: 'name',
+      render: (text) => <a>{text}</a>,
+    },
+    {
+      title: 'Value',
+      dataIndex: 'value',
+      key: 'value',
+    },
+    {
+      title: 'Address',
+      dataIndex: 'address',
+      key: 'address',
+    },
+    {
+      title: 'Tags',
+      key: 'tags',
+      dataIndex: 'tags',
+      render: (_, { tags }) => (
+        <>
+          {tags.map((tag) => {
+            let color = tag.length > 5 ? 'geekblue' : 'green';
+            if (tag === 'loser') {
+              color = 'volcano';
+            }
+            return (
+              <Tag color={color} key={tag}>
+                {tag.toUpperCase()}
+              </Tag>
+            );
+          })}
+        </>
+      ),
+    },
+    {
+      title: 'Action',
+      key: 'action',
+      render: (_, record) => (
+        <Space size="middle">
+
+          <Button type="primary" onClick={showModal}>
+            Detail
+          </Button>
+          <Modal title="Order Details" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+            <p>Good 1</p>
+            <p>Good 2</p>
+            <p>Good 3</p>
+          </Modal>
+
+          <Button type="primary" danger>
+            Delete
+          </Button>
+          <Button type='primary' color='orange'>
+            Conform
+          </Button>
+
+        </Space>
+      ),
+    },
+  ];
+
 
   const containerStyle: React.CSSProperties = {
     display: 'flex',
@@ -254,11 +386,31 @@ const Administer: React.FC = () => {
               <div id="chart-container2" className={styled.chart3} ></div>
             </Col>
           </Row>
+          <Row>
+            <Col span={24} style={{ height: '20px' }}></Col>
+          </Row>
+          <Row>
+            <Col span={2}></Col>
+            <Col span={20}>
+              <Table columns={columns} dataSource={data} />
+            </Col>
+            <Col span={2}></Col>
 
-          <div style={containerStyle}>
-
-
+          </Row>
+          <div >
+            <FloatButton
+              shape="circle"
+              type="primary"
+              style={{ right: 94 }}
+              icon={<PlusCircleOutlined />}
+              onClick={showDrawer}
+            />
           </div>
+          <Drawer title="Basic Drawer" onClose={onClose} open={open}>
+            <p>Some contents...</p>
+            <p>Some contents...</p>
+            <p>Some contents...</p>
+          </Drawer>
 
 
         </div>
@@ -272,5 +424,6 @@ const Administer: React.FC = () => {
 };
 
 export default Administer;
+
 
 

@@ -1,7 +1,19 @@
+@import '../../assert/font/font.module.css';
+
 .chart {
     width: 100%;
+    height: 40vh;
+    max-width: 60vw;
 }
 
 .chart1 {
-    width: 50%;
+    width: 100%;
+    height: 40vh;
+    max-width: 40vw;
+}
+
+.title {
+    margin-top: 60px;
+    font-family: "QFRegular", sans-serif;
+    font-size: 30px;
 }

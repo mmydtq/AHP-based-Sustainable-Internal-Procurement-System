@@ -10,6 +10,7 @@ import { Col, Row, Slider } from 'antd';
 import { useState } from 'react';
 
 
+
 const Administer: React.FC = () => {
 
   const containerStyle: React.CSSProperties = {
@@ -20,6 +21,7 @@ const Administer: React.FC = () => {
   };
 
   useEffect(() => {
+    //折线图
     const data = [
       { year: '1991', value: 3 },
       { year: '1992', value: 4 },
@@ -60,7 +62,87 @@ const Administer: React.FC = () => {
     chart.point().style('fill', 'white').tooltip(false);
 
     chart.render();
-  }, []);
+
+    interface DataItem {
+      item: string;
+      count: number;
+      percent: number;
+    }
+
+    const data1: DataItem[] = [
+      { item: '事例一', count: 80, percent: 0.8 },
+      { item: '事例二', count: 21, percent: 0.21 },
+      { item: '事例三', count: 17, percent: 0.17 },
+      { item: '事例四', count: 13, percent: 0.13 },
+      { item: '事例五', count: 9, percent: 0.09 },
+    ];
+
+    const chart1 = new Chart({
+      container: 'container',
+      autoFit: true,
+    });
+
+    chart1.coordinate({ type: 'theta', outerRadius: 0.8, innerRadius: 0.5 });
+
+    chart1
+      .interval()
+      .data(data1)
+      .transform({ type: 'stackY' })
+      .encode('y', 'percent')
+      .encode('color', 'item')
+      .legend('color', { position: 'bottom', layout: { justifyContent: 'center' } })
+      .label({
+        position: 'outside',
+        text: (data: { item: any; percent: number; }) => `${data.item}: ${data.percent * 100}%`,
+      })
+      .tooltip((data) => ({
+        name: data.item,
+        value: `${data.percent * 100}%`,
+      }));
+
+    chart1
+      .text()
+      .style('text', '主机')
+      // Relative position
+      .style('x', '50%')
+      .style('y', '50%')
+      .style('dy', -25)
+      .style('fontSize', 34)
+      .style('fill', '#8c8c8c')
+      .style('textAlign', 'center');
+
+    chart1
+      .text()
+      .style('text', '200')
+      // Relative position
+      .style('x', '50%')
+      .style('y', '50%')
+      .style('dx', -25)
+      .style('dy', 25)
+      .style('fontSize', 44)
+      .style('fill', '#8c8c8c')
+      .style('textAlign', 'center');
+
+    chart1
+      .text()
+      .style('text', '台')
+      // Relative position
+      .style('x', '50%')
+      .style('y', '50%')
+      .style('dx', 35)
+      .style('dy', 25)
+      .style('fontSize', 34)
+      .style('fill', '#8c8c8c')
+      .style('textAlign', 'center');
+
+    chart1.render();
+
+
+
+  }, []
+  );
+
+
 
   return (
 
@@ -68,47 +150,25 @@ const Administer: React.FC = () => {
       <Title select='Administer' />
       <div>
         <div>
+          <Row>
+            <Col span={24}>
+              <p className={styled.title}>This is the Administer page.</p>
+            </Col>
+
+          </Row>
 
           <Row>
+            <Col span={2}></Col>
             <Col span={12}>
               <div id="chart-container" className={styled.chart} ></div>
-              <div style={containerStyle}>
-
-              </div>
-
-
             </Col>
-            <Col span={6}>
-
-              <div style={containerStyle}>
-                <Card bordered={false}>
-                  <Statistic
-                    title="Active"
-                    value={11.28}
-                    precision={2}
-                    valueStyle={{ color: '#3f8600' }}
-                    prefix={<ArrowUpOutlined />}
-                    suffix="%"
-                  />
-                </Card>
-              </div>
+            <Col span={8}>
+              <div id="container" className={styled.chart1} ></div>
             </Col>
 
-            <Col span={
-              6}>
-              <div style={containerStyle}>
-                <Card bordered={false}>
-                  <Statistic
-                    title="Active"
-                    value={11.28}
-                    precision={2}
-                    valueStyle={{ color: '#3f8600' }}
-                    prefix={<ArrowUpOutlined />}
-                    suffix="%"
-                  />
-                </Card>
-              </div>
-            </Col>
+            <Col span={2}></Col>
+
+
           </Row>
 
           <div style={containerStyle}>

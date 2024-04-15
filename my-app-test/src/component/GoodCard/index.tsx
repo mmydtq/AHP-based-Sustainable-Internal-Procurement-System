@@ -25,7 +25,7 @@ function GoodCard(props: Card1) {
       <div style={{position:'relative', left:'10vw'}}>{props.brief}</div>
       <div style={{position:'relative', left:'15vw'}}>${props.value}</div>
       <Rate disabled defaultValue={2} style={{position:'relative', left:'20vw', color:'green'}}/>
-      <Button danger style={{position:'relative', left:'30vw'}} onClick={async () => await postDeleteToCart({id: props.id, uId: uid})}>Remove</Button>
+      <Button danger style={{position:'relative', left:'30vw'}} onClick={async () => {await postDeleteToCart({id: props.id, uId: uid}); props.setrerender(!props.rerender)}}>Remove</Button>
     </Space>
   );
 }

@@ -436,7 +436,6 @@ const Administer: React.FC = () => {
 
 
   return (
-
     <div>
       <Title select='Administer' />
       <div style={{ backgroundColor: '#F6F8FB' }}>

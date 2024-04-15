@@ -16,14 +16,14 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.5); /* 添加半透明背景以提高可读性 */
+    background-color: rgba(0, 0, 0, 0.5); 
     color: #fff;
-    opacity: 0; /* 隐藏元素 */
+    opacity: 0; 
     transition: opacity 0.3s ease;
 }
   
 .card:hover .overlay {
-    opacity: 1; /* 鼠标悬停时显示元素 */
+    opacity: 1; 
 }
   
 .name{
@@ -38,6 +38,7 @@
     padding: 10px;
     color: #165DFF;
     text-decoration: none;
+    cursor: pointer; 
 }
 .link:hover{
     text-align: center;

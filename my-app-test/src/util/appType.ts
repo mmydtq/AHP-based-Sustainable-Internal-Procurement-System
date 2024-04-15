@@ -64,4 +64,6 @@ export interface Card1{
     brief: string;
     value: number;
     env: number;
+    rerender: boolean;
+    setrerender: Function;
 }

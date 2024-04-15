@@ -341,19 +341,19 @@ export const postRecommendInfo = async (args: number) => {
 };
 
 export const postAddToCart = async (args: ToCart) => {
-  const { data } = await axios.post(
-    'http://' + host + ':' + port + '/Fancy/addToCart',
-    {
-      ...args
-    });
+  // const { data } = await axios.post(
+  //   'http://' + host + ':' + port + '/Fancy/addToCart',
+  //   {
+  //     ...args
+  //   });
 };
 
 export const postDeleteToCart = async (args: ToCart) => {
-  const { data } = await axios.post(
-    'http://' + host + ':' + port + '/Fancy/deleteGood',
-    {
-      ...args
-    });
+  // const { data } = await axios.post(
+  //   'http://' + host + ':' + port + '/Fancy/deleteGood',
+  //   {
+  //     ...args
+  //   });
 };
 
 export const postShowGoods = async (args: number) => {

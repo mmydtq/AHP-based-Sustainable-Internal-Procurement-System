@@ -3,7 +3,7 @@ import styled from "./index.module.css"
 import { TitleProps } from '@/util/appType';
 import router from 'next/router';
 import type { MenuProps, SelectProps } from 'antd';
-import { Menu, Select, Button, Affix } from 'antd';
+import { Menu, Select, Button, Affix, Modal } from 'antd';
 import Link from 'next/link';
 import shop from "@/assert/shop.png"
 import Image from "next/image";
@@ -99,59 +99,67 @@ const Title: React.FC<TitleProps> = ({ select }) => {
     setCurrent(e.key);
   };
 
-  const handleClick = () => {
-    setUName(''),
-      setPassword(''),
-      setUId(0),
-      router.push('/Login')
-  }
+  const info = () => {
+    Modal.success({
+      title: 'This is a notification message',
+      content: (
+        <div>
+          <p>Log out successfully</p>
+        </div>
+      ),
+      onOk() {
+        setUName(''),
+        setPassword(''),
+        setUId(0),
+        router.push('/Login')
+      },
+    });
+  };
+
 
   return (
-
-    <div className={styled.container}>
-      <Affix offsetTop={0}>
-        <Row align="middle" justify="space-between"> {/* 使用 Row 组件创建一个水平排列的容器 */}
-          <Col flex="6"></Col>
-          <Col flex="1">
-            <Image src={shop} alt='shopIcon' width={30} height={30} className={styled.im} />
-          </Col>
-          <Col flex="12">
-            <Menu
-              onClick={onClick}
-              selectedKeys={[current]}
-              mode="horizontal"
-              items={items}
-              className={styled.title}
-              inlineCollapsed={false}
-              style={{
-                backgroundColor: 'rgba(245, 242, 244, 0.5)',
-                padding: '0 10px',
-                justifyContent: 'center',
-                alignItems: 'center'
-              }}
-            />
-          </Col>
-          <Col flex="5">
-            <Select
-              mode="tags"
-              style={{ width: '180px', margin: '0 10px' }}
-              placeholder="Search"
-              options={options}
-              allowClear
-              maxTagCount={3}
-              className={styled.search}
-              onChange={(value, option) => { setTages(value) }}
-            />
-
-            <Button icon={<SearchOutlined />} onClick={() => { router.push({ pathname: '/Search', query: { tagsArray: tags } }, undefined, { shallow: true }) }} style={{ top: '-3px' }} />
-            <LogoutOutlined style={{ fontSize: 24, color: '#165DFF', margin: '0 40px' }} onClick={handleClick} />
-          </Col>
-
-
-        </Row>
-      </Affix>
-    </div>
-
+    <>
+      <div className={styled.container}>
+        <Affix offsetTop={0}>
+          <Row align="middle" justify="space-between">
+            <Col flex="6"></Col>
+            <Col flex="1">
+              <Image src={shop} alt='shopIcon' width={30} height={30} className={styled.im} />
+            </Col>
+            <Col flex="12">
+              <Menu
+                onClick={onClick}
+                selectedKeys={[current]}
+                mode="horizontal"
+                items={items}
+                className={styled.title}
+                inlineCollapsed={false}
+                style={{
+                  backgroundColor: 'rgba(245, 242, 244, 0.5)',
+                  padding: '0 10px',
+                  justifyContent: 'center',
+                  alignItems: 'center'
+                }}
+              />
+            </Col>
+            <Col flex="5">
+              <Select
+                mode="tags"
+                style={{ width: '180px', margin: '0 10px' }}
+                placeholder="Search"
+                options={options}
+                allowClear
+                maxTagCount={3}
+                className={styled.search}
+                onChange={(value, option) => { setTages(value) }}
+              />
+              <Button icon={<SearchOutlined />} onClick={() => { router.push({ pathname: '/Search', query: { tagsArray: tags } }, undefined, { shallow: true }) }} style={{ top: '-3px' }} />
+              <LogoutOutlined style={{ fontSize: 24, color: '#165DFF', margin: '0 40px' }} onClick={info} />
+            </Col>
+          </Row>
+        </Affix>
+      </div>
+    </>
   );
 };
 

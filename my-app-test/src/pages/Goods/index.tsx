@@ -1,7 +1,7 @@
 import Title from '@/component/Title';
 import React, { useEffect, useState } from 'react';
 import styled from './index.module.css'
-import { Button, Card, Descriptions, DescriptionsProps, Divider, Image, Rate, Space, Tabs, TabsProps } from 'antd';
+import { Button, Card, Descriptions, DescriptionsProps, Divider, Image, Rate, Space, Tabs, TabsProps, message } from 'antd';
 import {HeartOutlined, HeartTwoTone } from '@ant-design/icons';
 import SmallCard from '@/component/SmallCard';
 import Bottom from '@/component/Bottom';
@@ -61,6 +61,7 @@ const Goodss: React.FC = () => {
   const showGoods = goods.goods
   const [isfac, setIsfac] = useState<boolean>(false)
   const uid = useBearStore((state) => state.uId)
+  const [messageApi, contextHolder] = message.useMessage();
 
   const items: DescriptionsProps['items'] = [
     {
@@ -95,6 +96,16 @@ const Goodss: React.FC = () => {
     isfac ? await postAddToCart({id: good?.id, uId: uid}) : await postDeleteToCart({id: good?.id, uId: uid})
   }
 
+  const success = () => {
+    messageApi.open({
+      type: 'success',
+      content: 'The purchase request was successfully submitted to the administrator',
+      style: {
+        marginTop: '20vh',
+      },
+    });
+  };
+
   const getInfo = async () => {
     const res = await postGoodInfo(goodId);
     res !== null ? setGood(res.good) : Message.error('get majors error');
@@ -112,6 +123,7 @@ const Goodss: React.FC = () => {
 
   return (
       <div>
+        {contextHolder}
           <Title select='Goods'/>
           <div style={{position:'absolute', left:'15vw', top:'10vh'}}>
               <Image
@@ -127,7 +139,7 @@ const Goodss: React.FC = () => {
               <Rate disabled value={good?.environmentalValue} style={{position:'relative', left:'12vw', top:'3vh', color:'green'}}/>
           </div>
           <Space className={styled.heart}>
-              <Button htmlType="submit" className={styled.button} style={buttonStyle}>
+              <Button htmlType="submit" className={styled.button} style={buttonStyle} onClick={success}>
                   Buy
               </Button>
                 

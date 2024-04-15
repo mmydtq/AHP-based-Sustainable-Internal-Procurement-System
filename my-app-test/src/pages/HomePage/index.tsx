@@ -6,12 +6,15 @@ import Title from '@/component/Title';
 import { Good, Goods } from '@/util/appType';
 import { Carousel, Message } from '@arco-design/web-react';
 import { Space } from 'antd';
+import router from 'next/router';
+import styled from './index.module.css'
 import React, { useEffect, useState } from 'react';
 
 
 const HomePage: React.FC = () => {
     const [carouselGoods, setCarouselGoods] = useState<Goods>({ goods: [] })
     const [Goods, setGoods] = useState<Goods>({ goods: [] })
+    const [centerIndex, setCenterIndex] = useState(0);
     const goods = Goods.goods
    
     const getCarouselInfo = async () => {
@@ -116,12 +119,18 @@ const HomePage: React.FC = () => {
                     showArrow='never'
                     indicatorPosition='outer'
                     indicatorType='line'
+                    onChange={(index) => setCenterIndex(index)}
                     style={{ width: '100%', height: '55vh', marginTop: '1.5vh'}}
                 >
-                    {carouselGoods?.goods.map((good: Good) => (
+                    {carouselGoods?.goods.map((good: Good, index: number) => (
                         <div
                         key={good.id}
                         style={{ width: '60%' }}
+                        onClick={() => {
+                            if (index === centerIndex) {
+                              router.push({ pathname: '/Goods', query: { id: good.id } });
+                            }
+                        }}
                         >
                         <img
                             src={good.url}

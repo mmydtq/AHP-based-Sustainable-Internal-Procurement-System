@@ -1,0 +1,13 @@
+.link {
+    text-align: center;
+    padding: 10px;
+    color: #165DFF;
+    text-decoration: none;
+    cursor: pointer; 
+}
+.link:hover{
+    text-align: center;
+    padding: 10px;
+    color: #165DFF;
+    text-decoration: underline;
+}

@@ -34,6 +34,35 @@ const HomePage: React.FC = () => {
     return(
         <div>
             <Title select = 'HomePage'/>
+            <div>
+                <Carousel
+                    autoPlaySpeed={5000}
+                    animation='card'
+                    showArrow='never'
+                    indicatorPosition='outer'
+                    indicatorType='line'
+                    onChange={(index) => setCenterIndex(index)}
+                    style={{ width: '100%', height: '55vh', marginTop: '3.5vh'}}
+                >
+                    {carouselGoods?.goods.map((good: Good, index: number) => (
+                        <div
+                        key={good.id}
+                        style={{ width: '60%' }}
+                        onClick={() => {
+                            if (index === centerIndex) {
+                              router.push({ pathname: '/Goods', query: { id: good.id } });
+                            }
+                        }}
+                        >
+                        <img
+                            src={good.url}
+                            alt={good.name}
+                            style={{ width: '100%', height: '55vh' }}
+                        />
+                        </div>
+                    ))}
+                </Carousel>
+            </div>
             {goods?.[0] && (
                 <BigCard 
                     id={goods[0].id} 
@@ -111,34 +140,6 @@ const HomePage: React.FC = () => {
                         />
                     )}
                 </Space>
-            </div>
-            <div>
-                <Carousel
-                    autoPlaySpeed={5000}
-                    animation='card'
-                    showArrow='never'
-                    indicatorPosition='outer'
-                    indicatorType='line'
-                    onChange={(index) => setCenterIndex(index)}
-                    style={{ width: '100%', height: '55vh', marginTop: '1.5vh'}}
-                >
-                    {carouselGoods?.goods.map((good: Good, index: number) => (
-                        <div
-                        key={good.id}
-                        style={{ width: '60%' }}
-                        onClick={() => {
-                            if (index === centerIndex) {
-                              router.push({ pathname: '/Goods', query: { id: good.id } });
-                            }
-                        }}
-                        >
-                        <img
-                            src={good.url}
-                            style={{ width: '100%', height: '55vh' }}
-                        />
-                        </div>
-                    ))}
-                </Carousel>
             </div>
             <Bottom/>
         </div>

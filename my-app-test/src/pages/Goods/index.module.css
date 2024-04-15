@@ -1,16 +1,6 @@
 @import '../../assert/font/font.module.css';
-/* .button{
-    border-radius: 100px;
-    width: 150px;
-    height: 50px;
-    font-size: 24px;
-    border: 1.5px solid #0a0a0a;
-    margin-top: 30px;
-    font-family: "playball", sans-serif;
-    
-} */
 .heart{
     position: relative;
     top: 46vh;
-    left: 58vw;
+    left: 70.51vw;
 }

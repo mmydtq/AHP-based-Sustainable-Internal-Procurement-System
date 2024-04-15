@@ -133,10 +133,10 @@ const Goodss: React.FC = () => {
               />
           </div>
           <div style={{position:'absolute', left:'47vw', top:'10vh'}}>
-              <Card title="Good Info" bordered={true} style={{ width: '30vw' }}>
+              <Card title="Good Info" bordered={true} style={{ width: '50vw' }}>
                   <Descriptions layout="vertical" items={items} />  
               </Card>
-              <Rate disabled value={good?.environmentalValue} style={{position:'relative', left:'12vw', top:'3vh', color:'green'}}/>
+              <Rate disabled value={good?.environmentalValue} style={{position:'relative', left:'20vw', top:'3vh', color:'green'}}/>
           </div>
           <Space className={styled.heart}>
               <Button htmlType="submit" className={styled.button} style={buttonStyle} onClick={success}>

@@ -21,11 +21,11 @@ function GoodCard(props: Card1) {
           src={props.url}
         />
       </div>
-      <div style={{position:'relative', left:'5vw'}}>{props.alt}</div>
-      <div style={{position:'relative', left:'10vw'}}>{props.brief}</div>
-      <div style={{position:'relative', left:'15vw'}}>${props.value}</div>
-      <Rate disabled defaultValue={2} style={{position:'relative', left:'20vw', color:'green'}}/>
-      <Button danger style={{position:'relative', left:'30vw'}} onClick={async () => {await postDeleteToCart({id: props.id, uId: uid}); props.setrerender(!props.rerender)}}>Remove</Button>
+      <div style={{position:'relative', left:'1vw', width:'8vw'}}>{props.alt}</div>
+      <div style={{position:'relative', left:'6vw', width:'20vw'}}>{props.brief}</div>
+      <div style={{position:'relative', left:'11vw', width:'3vw'}}>${props.value}</div>
+      <Rate disabled defaultValue={props.env} style={{position:'relative', left:'16vw', color:'green'}}/>
+      <Button danger style={{position:'relative', left:'20vw'}} onClick={async () => {await postDeleteToCart({id: props.id, uId: uid}); props.setrerender(!props.rerender)}}>Remove</Button>
     </Space>
   );
 }

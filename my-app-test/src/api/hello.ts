@@ -2,9 +2,27 @@ import{
   LoginType,
   UserRegister,
   ToCart
-
 } from '@/util/appType';
 
+import chair from '@/assert/chair.png'
+import frame from '@/assert/frame.png'
+import lamp from '@/assert/lamp.png'
+import laptop from '@/assert/laptop.png'
+import laptop1 from '@/assert/laptop1.png'
+import laptop2 from '@/assert/laptop2.jpg'
+import note from '@/assert/note.png'
+import pc from '@/assert/pc.jpg'
+import pen from '@/assert/pen.png'
+import pen1 from '@/assert/pen1.jpg'
+import pen2 from '@/assert/pen2.png'
+import plug from '@/assert/plug.png'
+import printer from '@/assert/printer.jpg'
+import reckoner from '@/assert/Reckoner.png'
+import socket from '@/assert/socket.png'
+import stationery from '@/assert/stationery.png'
+import support from '@/assert/support.png'
+import table from '@/assert/table.png'
+import wall from '@/assert/wall.png'
 
 import axios from 'axios';
 
@@ -46,19 +64,20 @@ export const getMainDisplayInfo = async () => {
   // const { data } = await axios.get(
   //   'http://' + host + ':' + port + '/HomePage/mainDisplay');
   // return data;
+  console.log(chair)
   return {goods : [{
-    id: 0,
-    url: '//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/cd7a1aaea8e1c5e3d26fe2591e561798.png~tplv-uwbnlip3yd-webp.webp',
-    environmentalValue: 2,
-    brief: '111',
+    id: 42062,
+    url: chair.src,
+    environmentalValue: 3.5,
+    brief: 'High Back Desk Chair with Adjustable Lumbar Support and Headrest, Swivel Computer Task Chair with flip-up Armrests for Guitar, Gaming, Black',
     tag: [],
-    name: '111',
-    value: 3,
+    name: 'Ergonomic Mesh Office Chair',
+    value: 139.99,
     description: 'awdwadwa',
-    hint: 111,
+    hint: 137,
   },{
     id: 1,
-    url: '//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/6480dbc69be1b5de95010289787d64f1.png~tplv-uwbnlip3yd-webp.webp',
+    url: frame.src,
     environmentalValue: 2,
     brief: '111',
     tag: [],
@@ -68,7 +87,7 @@ export const getMainDisplayInfo = async () => {
     hint: 111,
   },{
     id: 2,
-    url: '//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/0265a04fddbd77a19602a15d9d55d797.png~tplv-uwbnlip3yd-webp.webp',
+    url: lamp.src,
     environmentalValue: 2,
     brief: '111',
     tag: [],
@@ -78,7 +97,7 @@ export const getMainDisplayInfo = async () => {
     hint: 111,
   },{
     id: 3,
-    url: '//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/24e0dd27418d2291b65db1b21aa62254.png~tplv-uwbnlip3yd-webp.webp',
+    url: laptop1.src,
     environmentalValue: 2,
     brief: '111',
     tag: [],
@@ -88,7 +107,7 @@ export const getMainDisplayInfo = async () => {
     hint: 111,
   },{
     id: 4,
-    url: '//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/cd7a1aaea8e1c5e3d26fe2591e561798.png~tplv-uwbnlip3yd-webp.webp',
+    url: note.src,
     environmentalValue: 2,
     brief: '111',
     tag: [],
@@ -98,7 +117,7 @@ export const getMainDisplayInfo = async () => {
     hint: 111,
   },{
     id: 5,
-    url: '//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/cd7a1aaea8e1c5e3d26fe2591e561798.png~tplv-uwbnlip3yd-webp.webp',
+    url: pc.src,
     environmentalValue: 2,
     brief: '111',
     tag: [],
@@ -116,81 +135,81 @@ export const getDisplayInfo = async () => {
   // return data;
   return {goods : [{
     id: 0,
-    url: '//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/cd7a1aaea8e1c5e3d26fe2591e561798.png~tplv-uwbnlip3yd-webp.webp',
+    url: laptop.src,
     environmentalValue: 2,
-    brief: '111',
+    brief: 'Experience a blend of premium design and high performance with our ultra-thin, lightweight all-metal device. Enjoy long-lasting battery life, USB-C™ fast charge, and up to an Intel® Core™ Ultra Processor[2], NVIDIA® GeForce RTX™ 40 Series graphics, and 2.8K 120Hz OLED[1] display. Ideal for all computing needs, including gaming.',
     tag: [],
-    name: '111',
+    name: 'OMEN Transcend Laptop 14-fb0097nr',
     value: 3,
     description: 'awdwadwa',
     hint: 111,
   },{
     id: 1,
-    url: '//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/6480dbc69be1b5de95010289787d64f1.png~tplv-uwbnlip3yd-webp.webp',
+    url: pen.src,
     environmentalValue: 2,
-    brief: '111',
+    brief: 'A combination of materials which unites robustness and elegance, this series offers plenty of surprises with special editions in modern, lifestyle-oriented colours – inspiring writers to show their contemporary individuality with this accessory.',
     tag: [],
-    name: '111',
+    name: 'The Lamy AL-star',
     value: 2,
     description: 'awdwadwa',
     hint: 111,
   },{
     id: 2,
-    url: '//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/0265a04fddbd77a19602a15d9d55d797.png~tplv-uwbnlip3yd-webp.webp',
+    url: plug.src,
     environmentalValue: 2,
-    brief: '111',
+    brief: 'Stable power supply over long distances, dust cover design, one-time injection molding, upgraded and reinforced connectors',
     tag: [],
-    name: '111',
+    name: 'LX4201(05) socket_1 set_4.9 meters_color box',
     value: 2,
     description: 'awdwadwa',
     hint: 111,
   },{
     id: 3,
-    url: '//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/24e0dd27418d2291b65db1b21aa62254.png~tplv-uwbnlip3yd-webp.webp',
+    url: printer.src,
     environmentalValue: 2,
-    brief: '111',
+    brief: 'Experience high-speed, automatic, two-sided color printing up to 26 pages per minute (Letter) /25 pages per minute (A4).[1] Bring your business to life with next-generation TerraJet Toner designed for more true-to-life, vibrant colors.',
     tag: [],
-    name: '111',
+    name: 'Color LaserJet Pro MFP 3301fdw Wireless Printer',
     value: 1,
     description: 'awdwadwa',
     hint: 111,
   },{
     id: 4,
-    url: '//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/cd7a1aaea8e1c5e3d26fe2591e561798.png~tplv-uwbnlip3yd-webp.webp',
+    url: reckoner.src,
     environmentalValue: 2,
-    brief: '111',
+    brief: '12 Digits, Large LCD Display, Pink Calculator Big Buttons, Mechanical Calculator, Calculators Desktop Calculator, Cute Calculator, Aesthetic Calculator Pink  ',
     tag: [],
-    name: '111',
+    name: 'Mechanical Switch Calculator',
     value: 1,
     description: 'awdwadwa',
     hint: 111,
   },{
     id: 5,
-    url: '//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/24e0dd27418d2291b65db1b21aa62254.png~tplv-uwbnlip3yd-webp.webp',
+    url: stationery.src,
     environmentalValue: 2,
-    brief: '111',
+    brief: 'Acrylic Stapler Set Staple Remover, Phone Holder, Tape Holder, Pen Holder, 2 Ballpoint Pen, Scissor, Binder Clips, Ruler, Transparent Glue and Staples.',
     tag: [],
-    name: '111',
+    name: 'EOOUT Gold Office Supplies Set Desk Accessories',
     value: 2,
     description: 'awdwadwa',
     hint: 111,
   },{
     id: 6,
-    url: '//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/0265a04fddbd77a19602a15d9d55d797.png~tplv-uwbnlip3yd-webp.webp',
+    url: socket.src,
     environmentalValue: 2,
-    brief: '111',
+    name: 'Surge Protector Power Strip ',
     tag: [],
-    name: '111',
+    brief: '8 Widely Outlets with 4 USB Charging Ports, Multi Plug Outlet Extender with 5Ft Braided Extension Cord, Flat Plug Wall Mount Desk USB Charging Station for Home Office ETL',
     value: 2,
     description: 'awdwadwa',
     hint: 111,
   },{
     id: 7,
-    url: '//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/6480dbc69be1b5de95010289787d64f1.png~tplv-uwbnlip3yd-webp.webp',
+    url: support.src,
     environmentalValue: 2,
-    brief: '111',
+    brief: 'Walnut Wood and Brass Desktop Stand with 5 Cards, showcasing WIFI password, place number, Reserved sign, Ideal for Weddings, Office, Restaurant, Reception',
     tag: [],
-    name: '111',
+    name: 'Table Sign Holder',
     value: 2,
     description: 'awdwadwa',
     hint: 111,
@@ -207,7 +226,7 @@ export const postSearchInfo = async (args: String[]) => {
   // return data;
   return {goods : [{
     id: 0,
-    url: '//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/cd7a1aaea8e1c5e3d26fe2591e561798.png~tplv-uwbnlip3yd-webp.webp',
+    url: table.src,
     environmentalValue: 2,
     brief: '111',
     tag: [],
@@ -217,7 +236,7 @@ export const postSearchInfo = async (args: String[]) => {
     hint: 111,
   },{
     id: 1,
-    url: '//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/6480dbc69be1b5de95010289787d64f1.png~tplv-uwbnlip3yd-webp.webp',
+    url: wall.src,
     environmentalValue: 2,
     brief: '111',
     tag: [],
@@ -227,7 +246,7 @@ export const postSearchInfo = async (args: String[]) => {
     hint: 111,
   },{
     id: 2,
-    url: '//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/0265a04fddbd77a19602a15d9d55d797.png~tplv-uwbnlip3yd-webp.webp',
+    url: pen2.src,
     environmentalValue: 2,
     brief: '111',
     tag: [],
@@ -237,7 +256,7 @@ export const postSearchInfo = async (args: String[]) => {
     hint: 111,
   },{
     id: 3,
-    url: '//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/24e0dd27418d2291b65db1b21aa62254.png~tplv-uwbnlip3yd-webp.webp',
+    url: socket.src,
     environmentalValue: 2,
     brief: '111',
     tag: [],
@@ -247,7 +266,7 @@ export const postSearchInfo = async (args: String[]) => {
     hint: 111,
   },{
     id: 4,
-    url: '//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/cd7a1aaea8e1c5e3d26fe2591e561798.png~tplv-uwbnlip3yd-webp.webp',
+    url: pen.src,
     environmentalValue: 2,
     brief: '111',
     tag: [],
@@ -257,7 +276,7 @@ export const postSearchInfo = async (args: String[]) => {
     hint: 111,
   },{
     id: 5,
-    url: '//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/24e0dd27418d2291b65db1b21aa62254.png~tplv-uwbnlip3yd-webp.webp',
+    url: laptop.src,
     environmentalValue: 2,
     brief: '111',
     tag: [],
@@ -267,7 +286,7 @@ export const postSearchInfo = async (args: String[]) => {
     hint: 111,
   },{
     id: 6,
-    url: '//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/0265a04fddbd77a19602a15d9d55d797.png~tplv-uwbnlip3yd-webp.webp',
+    url: reckoner.src,
     environmentalValue: 2,
     brief: '111',
     tag: [],
@@ -277,7 +296,7 @@ export const postSearchInfo = async (args: String[]) => {
     hint: 111,
   },{
     id: 7,
-    url: '//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/6480dbc69be1b5de95010289787d64f1.png~tplv-uwbnlip3yd-webp.webp',
+    url: note.src,
     environmentalValue: 2,
     brief: '111',
     tag: [],
@@ -298,41 +317,41 @@ export const postRecommendInfo = async (args: number) => {
   // return data;
   return {goods : [{
     id: 0,
-    url: '//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/cd7a1aaea8e1c5e3d26fe2591e561798.png~tplv-uwbnlip3yd-webp.webp',
+    url: table.src,
     environmentalValue: 2,
-    brief: '111',
+    brief: '61" W L-Shape, Wireless Charger, Mystic Oak',
     tag: [],
-    name: '111',
+    name: 'Computer Desk',
     value: 3,
     description: 'awdwadwa',
     hint: 111,
   },{
     id: 1,
-    url: '//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/6480dbc69be1b5de95010289787d64f1.png~tplv-uwbnlip3yd-webp.webp',
+    url: wall.src,
     environmentalValue: 2,
-    brief: '111',
+    brief: '12 Pack Felt Wall Tiles with Safe Removable Adhesive Tabs, Cork Boards for Walls Cork Board for Office Pin Board Tack Board Cork Board 48 x 36 - Black',
     tag: [],
-    name: '111',
+    name: 'Large Cork Board Alternative',
     value: 2,
     description: 'awdwadwa',
     hint: 111,
   },{
-    id: 2,
-    url: '//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/0265a04fddbd77a19602a15d9d55d797.png~tplv-uwbnlip3yd-webp.webp',
+    id: 242,
+    url: pen.src,
     environmentalValue: 2,
-    brief: '111',
+    brief: 'A combination of materials which unites robustness and elegance, this series offers plenty of surprises with special editions in modern, lifestyle-oriented colours – inspiring writers to show their contemporary individuality with this accessory.',
     tag: [],
-    name: '111',
+    name: 'The Lamy AL-star',
     value: 2,
     description: 'awdwadwa',
     hint: 111,
   },{
     id: 3,
-    url: '//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/24e0dd27418d2291b65db1b21aa62254.png~tplv-uwbnlip3yd-webp.webp',
+    url: pen2.src,
     environmentalValue: 2,
-    brief: '111',
+    brief: 'It is not only a high-quality gel pen with a retractable rollerball, but it is also an environmentally conscious choice. The smooth and effortless writing experience offered by the B2P Gel pen ignites a sense of inspiration and creativity.',
     tag: [],
-    name: '111',
+    name: 'B2P Retractable Gel Pen',
     value: 1,
     description: 'awdwadwa',
     hint: 111,
@@ -365,42 +384,42 @@ export const postShowGoods = async (args: number) => {
   // return data;
   return {goods : [{
     id: 0,
-    url: '//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/cd7a1aaea8e1c5e3d26fe2591e561798.png~tplv-uwbnlip3yd-webp.webp',
-    environmentalValue: 2,
-    brief: '111',
+    url: laptop.src,
+    environmentalValue: 4,
+    brief: 'Experience a blend of premium design and high performance with our ultra-thin, lightweight all-metal device. Enjoy long-lasting battery life, USB-C™ fast charge, and up to an Intel® Core™ Ultra Processor[2], NVIDIA® GeForce RTX™ 40 Series graphics, and 2.8K 120Hz OLED[1] display. Ideal for all computing needs, including gaming.',
     tag: [],
-    name: '111',
-    value: 3,
+    name: 'OMEN Transcend Laptop 14-fb0097nr',
+    value: 2249.99,
     description: 'awdwadwa',
     hint: 111,
   },{
     id: 1,
-    url: '//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/6480dbc69be1b5de95010289787d64f1.png~tplv-uwbnlip3yd-webp.webp',
-    environmentalValue: 2,
-    brief: '111',
+    url: pen.src,
+    environmentalValue: 3,
+    brief: 'A combination of materials which unites robustness and elegance, this series offers plenty of surprises with special editions in modern, lifestyle-oriented colours – inspiring writers to show their contemporary individuality with this accessory.',
     tag: [],
-    name: '111',
-    value: 2,
+    name: 'The Lamy AL-star',
+    value: 233,
     description: 'awdwadwa',
     hint: 111,
   },{
     id: 2,
-    url: '//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/0265a04fddbd77a19602a15d9d55d797.png~tplv-uwbnlip3yd-webp.webp',
-    environmentalValue: 2,
-    brief: '111',
+    url: plug.src,
+    environmentalValue: 5,
+    brief: 'Stable power supply over long distances, dust cover design, one-time injection molding, upgraded and reinforced connectors',
     tag: [],
-    name: '111',
-    value: 2,
+    name: 'LX4201(05) socket_1 set_4.9 meters_color box',
+    value: 18,
     description: 'awdwadwa',
     hint: 111,
   },{
     id: 3,
-    url: '//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/24e0dd27418d2291b65db1b21aa62254.png~tplv-uwbnlip3yd-webp.webp',
-    environmentalValue: 2,
-    brief: '111',
+    url: printer.src,
+    environmentalValue: 4,
+    brief: 'Experience high-speed, automatic, two-sided color printing up to 26 pages per minute (Letter) /25 pages per minute (A4).[1] Bring your business to life with next-generation TerraJet Toner designed for more true-to-life, vibrant colors.',
     tag: [],
-    name: '111',
-    value: 1,
+    name: 'Color LaserJet Pro MFP 3301fdw Wireless Printer',
+    value: 1799,
     description: 'awdwadwa',
     hint: 111,
   }
@@ -433,14 +452,14 @@ export const postGoodInfo = async (args: number) => {
   //   });
   // return data;
   return {good :{
-    id: 0,
-    url: '//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/cd7a1aaea8e1c5e3d26fe2591e561798.png~tplv-uwbnlip3yd-webp.webp',
-    environmentalValue: 2,
-    brief: '111',
-    tag: [],
-    name: '111',
-    value: 2,
-    description: 'awdwadwa',
+    id: 33989,
+    url: laptop.src,
+    environmentalValue: 4,
+    description: 'Enjoy long-lasting battery life, USB-C™ fast charge, and up to an Intel® Core™ Ultra Processor[2], NVIDIA® GeForce RTX™ 40 Series graphics, and 2.8K 120Hz OLED[1] display. Ideal for all computing needs, including gaming.',
+    tag: ['laptop'],
+    name: 'OMEN Transcend Laptop 14-fb0097nr',
+    value: 2249.99,
+    brief: 'awdwadwa',
     hint: 111,
   }}
 };

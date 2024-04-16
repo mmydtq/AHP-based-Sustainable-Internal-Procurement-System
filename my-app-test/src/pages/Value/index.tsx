@@ -45,7 +45,7 @@ const Value: React.FC = () => {
         <>
             <Title select='Value' />
             <div className={styled.styles}>
-                <h2>ESG: Environmental, Social, and Governance</h2>
+                <h2><a href="https://corporatefinanceinstitute.com/resources/esg/esg-environmental-social-governance/"> ESG: Environmental, Social, and Governance</a></h2>
                 <p>
                     ESG, short for Environmental, Social, and Governance, is a framework used by investors, corporations, and other stakeholders to evaluate a company's performance and sustainability practices beyond traditional financial metrics. This approach considers environmental, social, and governance factors to assess a company's impact on society and the environment, as well as its management practices and overall governance structure.
                 </p>
@@ -116,6 +116,7 @@ const Value: React.FC = () => {
                     ))}
                 </ul>
                 <h3>Label Weights:</h3>
+                <p>Each label is assigned a weight that reflects the importance of this environmental attribute to New Century's environmental policy</p>
                 <ul>
                     {Object.entries(labelWeights).map(([label, weight]) => (
                         <li key={label}>
@@ -124,13 +125,41 @@ const Value: React.FC = () => {
                     ))}
                 </ul>
                 <h3>Environmental Value Calculation Example:</h3>
+                <p>Environmental value =(label 1 weight × label presence 1)+(label 2 weight × label presence 2)+(label 3 weight × label presence 3)+(label 4 weight × label presence 4)</p>
                 <p>Assuming labels are present as follows:</p>
                 <ul>
                     {Object.keys(labels).map(label => (
                         <li key={label}><strong>{label}:</strong> Present</li>
                     ))}
                 </ul>
+                <p>Where "tag exists" is 1 if the tag is added to the product and 0 otherwise.</p>
                 <p>Total Environmental Value: {calculateEnvironmentalValue({ ...labels })}</p>
+                <h2>
+                    What is reference for our Enviorment Value?
+                </h2>
+                <ul>
+
+                    <strong>1. International environmental standards and certification</strong>
+                    <p>
+                        The environmental value is developed with reference to several international environmental standards and certifications, such as FSC, Energy Star and Green Seal. These certifications are based on international and national environmental standards and provide authoritative and quantifiable indicators of environmental performance. By adopting these recognized standards, the development of environmental values is not only in line with global environmental trends, but also helps companies remain competitive in international markets and enhance brand reputation. These standards provide a reliable reference for evaluating and verifying the environmental protection attributes of products and services, and ensure the scientificity and effectiveness of environmental protection measures.
+                    </p>
+
+
+                    <strong>2.  Life Cycle Assessment (LCA)</strong>
+                    <p>
+                        Our environmental value calculation method adopts the Life cycle assessment (LCA) method, which comprehensively considers the environmental impact of a product throughout its life cycle, from raw material acquisition, manufacturing, use to final disposal. Through LCA, we can systematically evaluate key environmental indicators such as carbon footprint and resource efficiency of products from a broader perspective, so as to ensure that our environmental protection measures are comprehensive and accurate, and effectively evaluate the overall environmental performance of products. This method greatly improves the scientificity and practicability of environmental protection value calculation.
+                    </p>
+
+
+
+                    <strong>3. Sustainability best practices</strong>
+                    <p>We also consider environmental indicators including resource efficiency and recyclability when developing environmental values, which are closely linked to best practices in the industry. These best practices are derived from the experience of leading companies in various industries, recommendations from international environmental organizations, and the latest research results from research institutes focused on sustainability. By combining these practices, we ensure that our eco-value calculation is both practical and forward-looking, and can truly reflect the performance of products and services in terms of environmental protection.</p>
+
+                </ul>
+
+
+
+
             </div >
 
 

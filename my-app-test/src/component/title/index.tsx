@@ -109,9 +109,9 @@ const Title: React.FC<TitleProps> = ({ select }) => {
       ),
       onOk() {
         setUName(''),
-        setPassword(''),
-        setUId(0),
-        router.push('/Login')
+          setPassword(''),
+          setUId(0),
+          router.push('/Login')
       },
     });
   };
@@ -122,7 +122,7 @@ const Title: React.FC<TitleProps> = ({ select }) => {
       <div className={styled.container}>
         <Affix offsetTop={0}>
           <Row align="middle" justify="space-between">
-            <Col flex="6"></Col>
+            <Col flex="5"></Col>
             <Col flex="1">
               <Image src={shop} alt='shopIcon' width={30} height={30} className={styled.im} />
             </Col>
@@ -142,7 +142,7 @@ const Title: React.FC<TitleProps> = ({ select }) => {
                 }}
               />
             </Col>
-            <Col flex="5">
+            <Col flex="6">
               <Select
                 mode="tags"
                 style={{ width: '180px', margin: '0 10px' }}
@@ -154,7 +154,7 @@ const Title: React.FC<TitleProps> = ({ select }) => {
                 onChange={(value, option) => { setTages(value) }}
               />
               <Button icon={<SearchOutlined />} onClick={() => { router.push({ pathname: '/Search', query: { tagsArray: tags } }, undefined, { shallow: true }) }} style={{ top: '-3px' }} />
-              <LogoutOutlined style={{ fontSize: 24, color: '#165DFF', margin: '0 40px' }} onClick={info} />
+              <LogoutOutlined style={{ fontSize: 24, color: '#165DFF', margin: '0 10px' }} onClick={info} />
             </Col>
           </Row>
         </Affix>

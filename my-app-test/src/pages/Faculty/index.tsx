@@ -4,7 +4,7 @@ import styled from './index.module.css'
 import { Button, Pagination, Space, message } from 'antd';
 import Bottom from '@/component/Bottom';
 import GoodCard from '@/component/GoodCard';
-import {Goods} from '@/util/appType';
+import {Goods} from '@/type/appType';
 import { Message } from '@arco-design/web-react';
 import useBearStore from '@/Store/store';
 import { postShowGoods } from '@/api/hello';

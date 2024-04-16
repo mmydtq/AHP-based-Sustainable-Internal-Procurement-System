@@ -3,7 +3,7 @@ import BigCard from '@/component/BigCard';
 import Bottom from '@/component/Bottom';
 import Card from '@/component/Card';
 import Title from '@/component/Title';
-import { Good, Goods } from '@/util/appType';
+import { Good, Goods } from '@/type/appType';
 import { Carousel, Message } from '@arco-design/web-react';
 import { Space } from 'antd';
 import router from 'next/router';

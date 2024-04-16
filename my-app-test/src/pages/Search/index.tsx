@@ -7,7 +7,7 @@ import { InfoCircleOutlined } from "@ant-design/icons";
 import { useRouter } from "next/router";
 import { postSearchInfo } from "@/api/hello";
 import { Message } from "@arco-design/web-react";
-import { Good, Goods } from '@/util/appType';
+import { Good, Goods } from '@/type/appType';
 
 const { Meta } = Card;
 

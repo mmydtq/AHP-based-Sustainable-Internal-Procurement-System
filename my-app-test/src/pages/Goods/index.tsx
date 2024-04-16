@@ -8,7 +8,7 @@ import Bottom from '@/component/Bottom';
 import { useRouter } from 'next/router';
 import { postAddToCart, postDeleteToCart, postGoodInfo, postRecommendInfo, postShowGoods } from '@/api/hello';
 import { Message } from '@arco-design/web-react';
-import { Good, Goods } from '@/util/appType';
+import { Good, Goods } from '@/type/appType';
 import useBearStore from '@/Store/store';
 
 const items: DescriptionsProps['items'] = [

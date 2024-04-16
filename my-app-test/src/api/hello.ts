@@ -1,8 +1,9 @@
 import{
   LoginType,
   UserRegister,
-  ToCart
-} from '@/util/appType';
+  ToCart,
+  Good
+} from '@/type/appType';
 
 import chair from '@/assert/chair.png'
 import frame from '@/assert/frame.png'
@@ -463,3 +464,48 @@ export const postGoodInfo = async (args: number) => {
     hint: 111,
   }}
 };
+
+export const getOrder = async () => {
+  // const { data } = await axios.get('http://' + host + ':' + port + '/Admin/getOrder');
+  // return data;
+return {data: [
+  {
+    key: '1',
+    name: 'John Brown',
+    value: 32,
+    address: 'LAPD Vice',
+    tags: ['Pen', 'Chair'],
+  },
+  {
+    key: '2',
+    name: 'Jim Green',
+    value: 42,
+    address: 'LAPD METRO',
+    tags: ['Table'],
+  },
+  {
+    key: '3',
+    name: 'Joe Black',
+    value: 32,
+    address: 'LAPD SWAT',
+    tags: ['Chair', 'Cup'],
+  },
+  {
+    key: '4',
+    name: 'Mary White',
+    value: 22,
+    address: 'LAPD TLI',
+    tags: ['Pen', 'Table'],
+  }
+]}
+}
+
+export const postAddGood = async (args: Good) => {
+  // const { data } = await axios.post(
+  //   'http://' + host + ':' + port + '/Admin/addGood',
+  //   {
+  //     args
+  //   });
+  // return data;
+  return {status: 0}
+}

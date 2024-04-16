@@ -1,4 +1,4 @@
-import { Card, Card1 } from '@/util/appType';
+import { Card, Card1 } from '@/type/appType';
 import router from 'next/router';
 import React from 'react';
 import styled from "./index.module.css"

@@ -2,7 +2,7 @@ import Title from '@/component/Title';
 import React, { useCallback, useMemo, useState } from 'react';
 import { Input, Form, Button, NotificationArgsProps, notification } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
-import { LoginType } from '@/util/appType';
+import { LoginType } from '@/type/appType';
 import styled from "./index.module.css"
 import Link from 'next/link';
 import Bottom from '@/component/Bottom';

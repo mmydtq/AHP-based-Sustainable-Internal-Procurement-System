@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from "./index.module.css"
-import { TitleProps } from '@/util/appType';
+import { TitleProps } from '@/type/appType';
 import router from 'next/router';
 import type { MenuProps, SelectProps } from 'antd';
 import { Menu, Select, Button, Affix, Modal } from 'antd';

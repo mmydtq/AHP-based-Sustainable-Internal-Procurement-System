@@ -67,3 +67,15 @@ export interface Card1{
     rerender: boolean;
     setrerender: Function;
 }
+
+export interface ChartDataType {
+    key: string;
+    name: string;
+    value: number;
+    address: string;
+    tags: string[];
+}
+
+export interface OrderInfo {
+    data: ChartDataType[]
+}

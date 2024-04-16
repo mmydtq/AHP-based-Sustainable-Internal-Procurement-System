@@ -17,6 +17,8 @@ import { Modal, FloatButton } from 'antd';
 import type { DrawerProps } from 'antd';
 import { notification } from 'antd';
 import { Cascader, DatePicker, Input, InputNumber, Mentions, Select, TreeSelect } from 'antd';
+import { ChartDataType, OrderInfo } from '@/type/appType';
+import { getOrder } from '@/api/hello';
 
 
 type NotificationType = 'success' | 'info' | 'warning' | 'error';
@@ -26,44 +28,6 @@ const formItemLayout = {
   labelCol: { xs: { span: 24 }, sm: { span: 6 } },
   wrapperCol: { xs: { span: 24 }, sm: { span: 14 } },
 };
-
-interface DataType {
-  key: string;
-  name: string;
-  value: number;
-  address: string;
-  tags: string[];
-}
-const data: DataType[] = [
-  {
-    key: '1',
-    name: 'John Brown',
-    value: 32,
-    address: 'LAPD Vice',
-    tags: ['Pen', 'Chair'],
-  },
-  {
-    key: '2',
-    name: 'Jim Green',
-    value: 42,
-    address: 'LAPD METRO',
-    tags: ['Table'],
-  },
-  {
-    key: '3',
-    name: 'Joe Black',
-    value: 32,
-    address: 'LAPD SWAT',
-    tags: ['Chair', 'Cup'],
-  },
-  {
-    key: '4',
-    name: 'Mary White',
-    value: 22,
-    address: 'LAPD TLI',
-    tags: ['Pen', 'Table'],
-  }
-];
 
 
 const Administer: React.FC = () => {
@@ -77,6 +41,17 @@ const Administer: React.FC = () => {
   };
   //弹窗代码
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [order, setOrder] = useState<OrderInfo>({ data: []})
+
+  
+  const getOrderInfo = async () => {
+    const res = await getOrder()
+    setOrder(res)
+  }
+
+  useEffect(() => {
+    getOrderInfo()
+  },[])
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -102,7 +77,7 @@ const Administer: React.FC = () => {
     setOpen(false);
   };
 
-  const columns: TableProps<DataType>['columns'] = [
+  const columns: TableProps<ChartDataType>['columns'] = [
     {
       title: 'Name',
       dataIndex: 'name',
@@ -197,26 +172,24 @@ const Administer: React.FC = () => {
   const form = (
     <Form {...formItemLayout} variant="filled" style={{ maxWidth: 600 }}>
       <Form.Item
-        label="Name"
-        name={['good', 'name']}
+        name="Name"
+        label={['good', 'name']}
         rules={[{ required: true, message: 'Please input the name!' }]}
       >
         <Input />
       </Form.Item>
 
-
-
       <Form.Item
-        label="Brief"
-        name={['good', 'brief']}
+        name="Brief"
+        label={['good', 'brief']}
         rules={[{ required: true, message: 'Please input the brief!' }]}
       >
         <Input />
       </Form.Item>
 
       <Form.Item
-        label="Tag"
-        name={['good', 'tag']}
+        name="Tag"
+        label={['good', 'tag']}
         rules={[{ required: true, message: 'Please select at least one tag!', type: 'array' }]}
       >
         <Select mode="multiple">
@@ -228,23 +201,23 @@ const Administer: React.FC = () => {
 
 
       <Form.Item
-        label="Value"
-        name={['good', 'value']}
+        name="Value"
+        label={['good', 'value']}
         rules={[{ required: true, message: 'Please input the value!' }]}
       >
         <InputNumber />
       </Form.Item>
 
       <Form.Item
-        label="Description"
-        name={['good', 'description']}
+        name="Description"
+        label={['good', 'description']}
         rules={[{ required: true, message: 'Please input the description!' }]}
       >
         <Input.TextArea />
       </Form.Item>
       <Form.Item
-        label="上传图片"
-        name={['good', 'upload']}
+        name="Upload"
+        label={['good', 'upload']}
         rules={[{ required: true, message: 'Please upload the image!' }]}
       >
         {/* 这里可以放置上传图片的组件 */}
@@ -318,7 +291,7 @@ const Administer: React.FC = () => {
             <Col span={2}></Col>
             <Col span={20} style={{ backgroundColor: '#FFFFFF', borderRadius: '10px', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' }}>
               <p className={styled.title1}>Order conform and delete</p>
-              <Table columns={columns} dataSource={data} />
+              <Table columns={columns} dataSource={order.data} />
             </Col>
             <Col span={2}></Col>
 
@@ -340,7 +313,7 @@ const Administer: React.FC = () => {
           <Col span={2}></Col>
           <Col span={20} style={{ backgroundColor: '#FFFFFF', borderRadius: '10px', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' }}>
             <p className={styled.title1}>Used Order conform</p>
-            <Table columns={columns} dataSource={data} />
+            <Table columns={columns} dataSource={order.data} />
           </Col>
           <Col span={2}></Col>
 

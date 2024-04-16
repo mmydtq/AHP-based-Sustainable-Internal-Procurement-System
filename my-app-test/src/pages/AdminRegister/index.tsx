@@ -2,7 +2,7 @@ import Title from '@/component/Title';
 import React, { useMemo, useState } from 'react';
 import { Input, Form, Button, Select, Tooltip, NotificationArgsProps, notification } from 'antd';
 import { InfoCircleOutlined, PhoneOutlined, UserOutlined } from '@ant-design/icons';
-import { LoginType } from '@/util/appType';
+import { LoginType } from '@/type/appType';
 import styled from "./index.module.css"
 import Bottom from '@/component/Bottom';
 import { postAdminRegister } from '@/api/hello';

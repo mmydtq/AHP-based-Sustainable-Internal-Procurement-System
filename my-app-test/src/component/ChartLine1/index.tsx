@@ -5,13 +5,13 @@ import styled from "./index.module.css"
 const LineChart = () => {
     useEffect(() => {
         const data = [
-            { year: '1991', value: 3 },
-            { year: '1992', value: 4 },
-            { year: '1993', value: 3.5 },
-            { year: '1994', value: 5 },
-            { year: '1995', value: 4.9 },
-            { year: '1996', value: 6 },
-            { year: '1997', value: 7 },
+            { month: '1991', value: 3 },
+            { month: '1992', value: 4 },
+            { month: '1993', value: 3.5 },
+            { month: '1994', value: 5 },
+            { month: '1995', value: 4.9 },
+            { month: '1996', value: 6 },
+            { month: '1997', value: 7 },
         ];
 
         const chart = new Chart({
@@ -21,7 +21,7 @@ const LineChart = () => {
 
         chart
             .data(data)
-            .encode('x', 'year')
+            .encode('x', 'month')
             .encode('y', 'value')
             .scale('x', {
                 range: [0, 1],

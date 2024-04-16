@@ -30,17 +30,6 @@ const Value: React.FC = () => {
         'Obtain environmental certification': 0.2
     };
 
-    // Function to calculate environmental value
-    const calculateEnvironmentalValue = (labelPresence: Record<string, boolean>): number => {
-        let totalValue = 0;
-        for (const label in labelPresence) {
-            if (labelPresence[label]) {
-                totalValue += labelWeights[labels[label]];
-            }
-        }
-        return totalValue;
-    };
-
     return (
         <>
             <Title select='Value' />
@@ -133,7 +122,7 @@ const Value: React.FC = () => {
                     ))}
                 </ul>
                 <p>Where "tag exists" is 1 if the tag is added to the product and 0 otherwise.</p>
-                <p>Total Environmental Value: {calculateEnvironmentalValue({ ...labels })}</p>
+
                 <h2>
                     What is reference for our Enviorment Value?
                 </h2>

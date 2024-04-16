@@ -122,11 +122,13 @@ const Title: React.FC<TitleProps> = ({ select }) => {
       <div className={styled.container}>
         <Affix offsetTop={0}>
           <Row align="middle" justify="space-between">
-            <Col flex="5"></Col>
+            <Col flex="6"></Col>
             <Col flex="1">
               <Image src={shop} alt='shopIcon' width={30} height={30} className={styled.im} />
             </Col>
-            <Col flex="12">
+            <Col flex="1"></Col>
+            <Col flex="11">
+
               <Menu
                 onClick={onClick}
                 selectedKeys={[current]}
@@ -139,10 +141,11 @@ const Title: React.FC<TitleProps> = ({ select }) => {
                   padding: '0 10px',
                   justifyContent: 'center',
                   alignItems: 'center'
+
                 }}
               />
             </Col>
-            <Col flex="6">
+            <Col flex="4">
               <Select
                 mode="tags"
                 style={{ width: '180px', margin: '0 10px' }}
@@ -154,6 +157,10 @@ const Title: React.FC<TitleProps> = ({ select }) => {
                 onChange={(value, option) => { setTages(value) }}
               />
               <Button icon={<SearchOutlined />} onClick={() => { router.push({ pathname: '/Search', query: { tagsArray: tags } }, undefined, { shallow: true }) }} style={{ top: '-3px' }} />
+
+
+            </Col>
+            <Col flex="1">
               <LogoutOutlined style={{ fontSize: 24, color: '#165DFF', margin: '0 10px' }} onClick={info} />
             </Col>
           </Row>

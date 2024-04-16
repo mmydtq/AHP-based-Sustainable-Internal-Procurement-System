@@ -101,7 +101,7 @@ const Goodss: React.FC = () => {
       type: 'success',
       content: 'The purchase request was successfully submitted to the administrator',
       style: {
-        marginTop: '20vh',
+        marginTop: '10vh',
       },
     });
   };

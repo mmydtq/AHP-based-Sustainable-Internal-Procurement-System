@@ -500,7 +500,7 @@ return {data: [
 ]}
 }
 
-export const postAddGood = async (args: Good) => {
+export const postAddGood = async (args: any) => {
   // const { data } = await axios.post(
   //   'http://' + host + ':' + port + '/Admin/addGood',
   //   {

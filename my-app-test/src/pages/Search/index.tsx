@@ -1,4 +1,4 @@
-import Title from "@/component/Title";
+import Title from "@/component/Title1";
 import Bottom from '@/component/Bottom';
 import { Card, Flex, Pagination, Space, Tag } from "antd";
 import styled from './index.module.css'
@@ -29,21 +29,21 @@ const Search: React.FC = () => {
 
     useEffect(() => {
         getInfo();
-    },[])
+    }, [])
 
 
     return (
         <div>
-            <Title select='Goods'/>
+            <Title select='Goods' />
             <div className={styled.tags}>
                 <Flex gap="middle" vertical>
                     <Flex justify="flex-end" align="center">
-                        <div style={{marginRight:'1vw', fontSize:24}}><b>TAG:</b></div>
+                        <div style={{ marginRight: '1vw', fontSize: 24 }}><b>TAG:</b></div>
                         {tagsArray && tagsArray.length === 1 ? (
-                            <Tag color="geekblue" style={{fontSize:24}}>{tagsArray[0]}</Tag>
+                            <Tag color="geekblue" style={{ fontSize: 24 }}>{tagsArray[0]}</Tag>
                         ) : (
                             Array.isArray(tagsArray) && tagsArray.map((array: string) => (
-                                <Tag color="geekblue" style={{fontSize:24}}>{array}</Tag>
+                                <Tag color="geekblue" style={{ fontSize: 24 }}>{array}</Tag>
                             ))
                         )}
                     </Flex>
@@ -53,35 +53,35 @@ const Search: React.FC = () => {
                 <Space size={50}>
                     {currentGoods.map((good) => (
                         <Card
-                        style={{ width: 550 }}
-                        cover={
-                        <img
-                            alt="example"
-                            src={good.url}
-                            style={{ width: 550, height: 350 }}
-                        />
-                        }
-                        actions={[
-                            <InfoCircleOutlined style={{fontSize:24}} onClick={() => {router.push({pathname:'/Goods', query: {id: good.id}})}}/>
-                        ]}
+                            style={{ width: 550 }}
+                            cover={
+                                <img
+                                    alt="example"
+                                    src={good.url}
+                                    style={{ width: 550, height: 350 }}
+                                />
+                            }
+                            actions={[
+                                <InfoCircleOutlined style={{ fontSize: 24 }} onClick={() => { router.push({ pathname: '/Goods', query: { id: good.id } }) }} />
+                            ]}
                         >
-                        <Meta
-                        title={good.name}
-                        description={good.description}
-                        />
-                    </Card> 
+                            <Meta
+                                title={good.name}
+                                description={good.description}
+                            />
+                        </Card>
                     ))}
                 </Space>
             </div>
-            <Pagination 
-                defaultCurrent={1} 
-                total={goods.length} 
+            <Pagination
+                defaultCurrent={1}
+                total={goods.length}
                 defaultPageSize={pageSize}
                 onChange={(page) => setCurrentPage(page)}
-                style={{position:'absolute', top:'75vh', left:'45vw'}}
+                style={{ position: 'absolute', top: '75vh', left: '45vw' }}
             />
-            <div style={{position:'relative', top:'75vh'}}>
-                <Bottom/>
+            <div style={{ position: 'relative', top: '75vh' }}>
+                <Bottom />
             </div>
         </div>
     )

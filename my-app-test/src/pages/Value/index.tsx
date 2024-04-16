@@ -1,4 +1,4 @@
-import Title from "@/component/Title"
+import Title from "@/component/Title1"
 import React from "react"
 import styled from './index.module.css'
 

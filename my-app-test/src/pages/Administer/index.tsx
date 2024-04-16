@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Chart } from '@antv/g2';
-import Title from '@/component/Title';
+import Title from '@/component/Title1';
 import Chart1 from '@/component/ChartLine1';
 import ChartPie from '@/component/ChartPie'
 import ChartColum from '@/component/ChartColum'
@@ -41,14 +41,14 @@ const Administer: React.FC = () => {
   };
   //弹窗代码
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [order, setOrder] = useState<OrderInfo>({ data: []}) 
+  const [order, setOrder] = useState<OrderInfo>({ data: [] })
   //抽屉代码
   const [open, setOpen] = useState(false);
   const [size, setSize] = useState<DrawerProps['size']>();
   const [form] = Form.useForm();
   const [messageApi, contextHolder] = message.useMessage();
 
-  
+
   const getOrderInfo = async () => {
     const res = await getOrder()
     setOrder(res)
@@ -62,14 +62,14 @@ const Administer: React.FC = () => {
       name: form.getFieldValue('Name'),
       value: form.getFieldValue('Value'),
       description: form.getFieldValue('Description'),
-  }
+    }
     const res = await postAddGood(params)
     res.status === 0 ? success() : error()
   }
 
   useEffect(() => {
     getOrderInfo()
-  },[])
+  }, [])
 
   const success = () => {
     messageApi.open({

@@ -1,15 +1,18 @@
 import React, { useEffect } from 'react';
 import { Chart } from '@antv/g2';
 import Title from '@/component/Title1';
+import ChartLine from '@/component/Chart11';
 import Chart1 from '@/component/ChartLine1';
 import ChartPie from '@/component/ChartPie'
 import ChartColum from '@/component/ChartColum'
+import LineChart2 from '@/component/Chart22';
 import ChartLine2 from '@/component/ChartLine2';
+import FormDataList from '@/component/FormDataList';
 import styled from "./index.module.css"
 import { Form, Button, Drawer, message } from 'antd';
-import { ArrowUpOutlined, PlusCircleOutlined } from '@ant-design/icons';
+import { ArrowUpOutlined, PlusCircleOutlined, ArrowDownOutlined } from '@ant-design/icons';
 import Bottom from '@/component/Bottom';
-import { Col, Row, Slider } from 'antd';
+import { Col, Row, Slider, Statistic, Card } from 'antd';
 import { useState } from 'react';
 import { Space, Table, Tag } from 'antd';
 import type { TableProps } from 'antd';
@@ -19,6 +22,8 @@ import { notification } from 'antd';
 import { Cascader, DatePicker, Input, InputNumber, Mentions, Select, TreeSelect } from 'antd';
 import { ChartDataType, OrderInfo } from '@/type/appType';
 import { getOrder, postAddGood } from '@/api/hello';
+import LineChartWithButtons from '@/component/CardChartLine';
+
 
 
 type NotificationType = 'success' | 'info' | 'warning' | 'error';
@@ -206,19 +211,11 @@ const Administer: React.FC = () => {
 
           <Row>
             <Col span={2}></Col>
-            <Col span={11} style={{ backgroundColor: '#FFFFFF', borderRadius: '10px', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' }}>
+            <Col span={20} style={{ backgroundColor: '#FFFFFF', borderRadius: '10px', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' }}>
               <p className={styled.title1}>Monthly trading volume</p>
-              //折线图1左一
-              <Chart1 />
+              {/* <Chart1 /> */}
+              <ChartLine />
             </Col>
-            <Col span={1}></Col>
-            <Col span={8} style={{ backgroundColor: '#FFFFFF', borderRadius: '10px', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' }}>
-              <p className={styled.title1}>The total of the goods type</p>
-              //饼图右一
-              <ChartPie />
-
-            </Col>
-
             <Col span={2}></Col>
 
           </Row>
@@ -228,18 +225,69 @@ const Administer: React.FC = () => {
           <Row>
             <Col span={2}></Col>
             <Col span={12} style={{ backgroundColor: '#FFFFFF', borderRadius: '10px', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' }}>
-              <p className={styled.title1}>Monthly sales Goods number</p>
-              <ChartColum />
+              <p className={styled.title1}>Predict Number</p>
+              <Row>
+                <Col span={24} style={{ height: '30px' }}>
+
+                </Col>
+              </Row>
+              <div className={styled.static}>
+                <Row gutter={16}>
+                  <Col span={12}>
+                    <Statistic title="Enviroemental number For next Month" value={112893} style={{ color: '#1890ff' }} />
+                  </Col>
+                  <Col span={12}>
+                    <Statistic title="Trading value For next Month" value={112893} precision={2} />
+                  </Col>
+                </Row>
+                <Row>
+                  <Col span={24} style={{ height: '40px' }}>
+
+                  </Col>
+                </Row>
+
+                <Row gutter={16}>
+                  <Col span={12}>
+                    <Card bordered={false}>
+                      <Statistic
+                        title="Active"
+                        value={11.28}
+                        precision={2}
+                        valueStyle={{ color: '#3f8600' }}
+                        prefix={<ArrowUpOutlined />}
+                        suffix="%"
+                      />
+                    </Card>
+                  </Col>
+                  <Col span={12}>
+                    <Card bordered={false}>
+                      <Statistic
+                        title="Idle"
+                        value={9.3}
+                        precision={2}
+                        valueStyle={{ color: '#cf1322' }}
+                        prefix={<ArrowDownOutlined />}
+                        suffix="%"
+                      />
+                    </Card>
+                  </Col>
+
+                </Row>
+                <p className={styled.realdata}>This data is derived from the data prediction system</p>
+                <p className={styled.realdata}>Attention:This data is for reference only and is not intended as real data </p>
+              </div>
+
             </Col>
             <Col span={1}></Col>
-            <Col span={7} style={{ backgroundColor: '#FFFFFF', borderRadius: '10px', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' }}>
-              <p className={styled.title1}>Monthly sales Enviromental number</p>
-              <ChartLine2 />
+            <Col span={7} className={styled.staticright} style={{ backgroundColor: '#FFFFFF', borderRadius: '10px', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' }}>
+
+              <FormDataList />
+              {/* <ChartLine2 /> */}
               {/* <div id="chart-container2" className={styled.chart3} ></div> */}
             </Col>
           </Row>
           <Row>
-            <Col span={24} style={{ height: '20px' }}></Col>
+            <Col span={24} style={{ height: '40px' }}></Col>
           </Row>
           <Row>
             <Col span={2}></Col>

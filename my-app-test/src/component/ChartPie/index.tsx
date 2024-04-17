@@ -1,9 +1,12 @@
+'use client'
 import React, { useEffect } from 'react';
 import { Chart } from '@antv/g2'; // 请替换为你的图表库
 import styled from "./index.module.css"
 
 const PieChart = () => {
+
     useEffect(() => {
+        // const Chart = require('@antv/g2')
         const data = [
             { item: 'Good1', count: 80, percent: 0.8 },
             { item: 'Good2', count: 21, percent: 0.21 },

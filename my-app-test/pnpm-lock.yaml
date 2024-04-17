@@ -29,6 +29,9 @@ dependencies:
   babel-preset-env:
     specifier: ^0.0.0
     version: 0.0.0
+  echarts:
+    specifier: ^5.5.0
+    version: 5.5.0
   json5:
     specifier: ^2.2.3
     version: 2.2.3
@@ -1201,6 +1204,13 @@ packages:
     hasBin: true
     dependencies:
       minimatch: 3.1.2
+    dev: false
+
+  /echarts@5.5.0:
+    resolution: {integrity: sha512-rNYnNCzqDAPCr4m/fqyUFv7fD9qIsd50S6GDFgO1DxZhncCsNsG7IfUlAlvZe5oSEQxtsjnHiUuppzccry93Xw==}
+    dependencies:
+      tslib: 2.3.0
+      zrender: 5.5.0
     dev: false
 
   /es-abstract@1.23.3:
@@ -2948,6 +2958,10 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: false
 
+  /tslib@2.3.0:
+    resolution: {integrity: sha512-N82ooyxVNm6h1riLCoyS9e3fuJ3AMG2zIZs2Gd1ATcSFjSA23Q0fzjjZeh0jbJvWVDZ0cJT8yaNNaaXHzueNjg==}
+    dev: false
+
   /tslib@2.6.2:
     resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==}
     dev: false
@@ -3113,6 +3127,12 @@ packages:
       cliui: 2.1.0
       decamelize: 1.2.0
       window-size: 0.1.0
+    dev: false
+
+  /zrender@5.5.0:
+    resolution: {integrity: sha512-O3MilSi/9mwoovx77m6ROZM7sXShR/O/JIanvzTwjN3FORfLSr81PsUGd7jlaYOeds9d8tw82oP44+3YucVo+w==}
+    dependencies:
+      tslib: 2.3.0
     dev: false
 
   /zustand@4.5.2(@types/react@18.2.74)(react@18.2.0):

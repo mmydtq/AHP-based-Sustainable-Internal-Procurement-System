@@ -4,6 +4,7 @@ import styled from "./index.module.css"
 
 const LineChart = () => {
     useEffect(() => {
+
         const data = [
             { month: '1991', value: 3 },
             { month: '1992', value: 4 },

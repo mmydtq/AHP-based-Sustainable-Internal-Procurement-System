@@ -5,6 +5,7 @@ import exp from 'constants';
 
 const ChartColum = () => {
     useEffect(() => {
+
         //柱状图
         const data2 = [
             { date: '2019-03', count: 80 },

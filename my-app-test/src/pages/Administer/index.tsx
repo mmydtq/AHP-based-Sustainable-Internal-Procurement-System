@@ -2,11 +2,7 @@ import React, { useEffect } from 'react';
 import { Chart } from '@antv/g2';
 import Title from '@/component/Title1';
 import ChartLine from '@/component/Chart11';
-import Chart1 from '@/component/ChartLine1';
-import ChartPie from '@/component/ChartPie'
-import ChartColum from '@/component/ChartColum'
-import LineChart2 from '@/component/Chart22';
-import ChartLine2 from '@/component/ChartLine2';
+import ChartTable from '@/component/Form';
 import FormDataList from '@/component/FormDataList';
 import styled from "./index.module.css"
 import { Form, Button, Drawer, message } from 'antd';

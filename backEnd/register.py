@@ -1,8 +1,10 @@
 from flask import jsonify
+from flask_cors import cross_origin
 from flask_restful import Resource, reqparse
 from user import User
 
 class Register(Resource):
+    @cross_origin()
     def post(self):
         parser = reqparse.RequestParser()
         parser.add_argument('password', type=str, required=True)
@@ -19,6 +21,7 @@ class Register(Resource):
         return jsonify({"status": status}), 200
     
 class Login(Resource):
+    @cross_origin()
     def post(self):
         parser = reqparse.RequestParser()
         parser.add_argument('uName', type=str, required=True)
@@ -32,6 +35,7 @@ class Login(Resource):
                         "user": userinfo}), 200
     
 class RePassword(Resource):
+    @cross_origin()
     def post(self):
         parser = reqparse.RequestParser()
         parser.add_argument('uName', type=str, required=True)

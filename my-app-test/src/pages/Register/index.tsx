@@ -44,6 +44,7 @@ const Register: React.FC = () => {
             room: form.getFieldValue('room'),
             email: form.getFieldValue('email'),
         }
+        console.log(params)
         const callback = await postUserRegister(params)
         callback.status === 0 ?
             router.push('/Login')
@@ -78,9 +79,10 @@ const Register: React.FC = () => {
 
                         <Form.Item
                             name="room"
-                            rules={[{ required: true }]}
+                            rules={[{ required: false }]}
                         >
-                            <Tooltip title="Select room">
+                            <Input  />
+                            {/* <Tooltip title="Select room">
                                 <Select
                                     style={{ width: 210, marginTop: 5 }}
                                     placeholder="Your room"
@@ -90,7 +92,7 @@ const Register: React.FC = () => {
                                         { value: 'lucy', label: 'Lucy' },
                                         { value: 'Yiminghe', label: 'yiminghe' },]}
                                 />
-                            </Tooltip>
+                            </Tooltip> */}
                         </Form.Item>
 
                         <Form.Item

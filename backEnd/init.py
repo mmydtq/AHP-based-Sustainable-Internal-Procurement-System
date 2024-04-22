@@ -8,9 +8,12 @@ from register import Register, Login, RePassword
 from present import MainDisplay, Display, SingleDisplay
 from shopping import AddToCart, DeleteFromCart, GetCartGoods
 from good import FindGood, Recommend
+from flask_cors import CORS, cross_origin
 
 def create_app():
     app = Flask(__name__)
+    CORS(app)
+    app.config['CORS_HEADERS'] = 'Content-Type'
     basedir = os.path.abspath(os.path.dirname(__file__))
     db_path = os.path.join(basedir, 'database.db')
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + db_path

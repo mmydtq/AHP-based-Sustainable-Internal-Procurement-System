@@ -43,6 +43,7 @@ export const postUserLogin = async (args: LoginType) => {
 };
 
 export const postUserRegister = async (args: UserRegister) => {
+  console.log(args)
   const { data } = await axios.post(
     'http://' + host + ':' + port + '/Register/register',
     {

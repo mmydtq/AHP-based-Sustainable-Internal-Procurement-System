@@ -78,19 +78,22 @@ const Register: React.FC = () => {
                         </Form.Item>
 
                         <Form.Item
-                            name="room"
+                            name="Address"
                             rules={[{ required: true }]}
                         >
                             <Tooltip title="Select room">
-                                <Select
-                                    style={{ width: 210, marginTop: 5 }}
-                                    placeholder="Your room"
-                                    allowClear
-                                    options={[
-                                        { value: 'jack', label: 'Jack' },
-                                        { value: 'lucy', label: 'Lucy' },
-                                        { value: 'Yiminghe', label: 'yiminghe' },]}
-                                />
+                                <Form.Item name={['address', 'room']}>
+                                    <Select
+                                        style={{ width: 210, marginTop: 5 }}
+                                        placeholder="Your room"
+                                        allowClear
+                                        options={[
+                                            { value: 'jack', label: 'Jack' },
+                                            { value: 'lucy', label: 'Lucy' },
+                                            { value: 'Yiminghe', label: 'yiminghe' },]}
+                                    />
+                                </Form.Item>
+                                
                             </Tooltip>
                         </Form.Item>
 

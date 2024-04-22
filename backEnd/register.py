@@ -30,7 +30,6 @@ class Login(Resource):
 
         status = User.checkLogin(args['uName'], args['password'])
         userinfo = User.getUser(args['uName'])
-
         return jsonify({"status": status,
                         "user": userinfo}), 200
     

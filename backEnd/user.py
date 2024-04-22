@@ -33,14 +33,14 @@ class User(db.Model):
 
     @staticmethod
     def getUser(username):
-        user = User.query.filter_by(uName=username).first()
+        user = User.query.filter_by(name=username).first()
         if not user:
-            return None
+            return {}
         return {
-            'uId': user.uId,
-            'uName': user.uName,
+            'uId': user.id,
+            'uName': user.name,
             'password': user.password,
-            'phone': user.phone,
+            'phone': user.phone_number,
             'room': user.room,
             'email': user.email
         }

@@ -44,7 +44,7 @@ const Register: React.FC = () => {
             room: form.getFieldValue(['address', 'room']),
             email: form.getFieldValue('email'),
         }
-        console.log(params)
+        // console.log(params)
         const callback = await postUserRegister(params)
         callback.status === 0 ?
             router.push('/Login')

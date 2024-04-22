@@ -41,7 +41,7 @@ const Register: React.FC = () => {
             uName: form.getFieldValue('uName'),
             password: form.getFieldValue('password'),
             phone: form.getFieldValue('phone'),
-            room: form.getFieldValue('room'),
+            room: form.getFieldValue(['address', 'room']),
             email: form.getFieldValue('email'),
         }
         console.log(params)
@@ -79,10 +79,9 @@ const Register: React.FC = () => {
 
                         <Form.Item
                             name="room"
-                            rules={[{ required: false }]}
+                            rules={[{ required: true }]}
                         >
-                            <Input  />
-                            {/* <Tooltip title="Select room">
+                            <Tooltip title="Select room">
                                 <Select
                                     style={{ width: 210, marginTop: 5 }}
                                     placeholder="Your room"
@@ -92,7 +91,7 @@ const Register: React.FC = () => {
                                         { value: 'lucy', label: 'Lucy' },
                                         { value: 'Yiminghe', label: 'yiminghe' },]}
                                 />
-                            </Tooltip> */}
+                            </Tooltip>
                         </Form.Item>
 
                         <Form.Item

@@ -1,6 +1,7 @@
 from database import db
 import json
-from flask import jsonify
+from flask import jsonify, request
+from flask_restful import Resource
 
 class Good(db.Model):
     __tablename__ = 'goods'
@@ -76,7 +77,7 @@ class Good(db.Model):
             }
         }
 
-class FindGood():
+class FindGood(Resource):  # Extend from Resource
     @staticmethod
     def search(keyword):
         matched_goods = Good.query.filter(Good.name.ilike(f'%{keyword}%')).all()
@@ -95,7 +96,14 @@ class FindGood():
             })
         return goods_list
 
-class Recommend():    
+    # Define a get method to use for RESTful endpoints
+    def get(self):
+        keyword = request.args.get("keyword", "")
+        result = self.search(keyword)
+        return {'goods': result}, 200
+
+
+class Recommend(Resource):  # Ensure it extends Resource
     @staticmethod
     def recommend_related_goods(target_good_id):
         target_good = Good.query.get(target_good_id)
@@ -121,4 +129,10 @@ class Recommend():
                 'hint': good.hint
             })
 
-        return jsonify({'related_goods': related_goods_list}), 200
+        return {'related_goods': related_goods_list}, 200
+
+    def get(self):
+        target_good_id = request.args.get("target_good_id", None)
+        if target_good_id is None:
+            return jsonify({'error': 'No good ID provided'}), 400
+        return self.recommend_related_goods(target_good_id)

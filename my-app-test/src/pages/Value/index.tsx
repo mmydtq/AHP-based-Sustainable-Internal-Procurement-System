@@ -11,7 +11,8 @@ const Value: React.FC = () => {
         { name: 'Carbon footprint', description: 'The total carbon dioxide emissions generated during the life of the product.' },
         { name: 'Resource efficiency', description: 'The efficiency of the natural resources (e.g. water, energy) used by the product.' },
         { name: 'Recyclability', description: 'The degree of recyclability and tractability of a product after it ends use.' },
-        { name: 'Environmental certification', description: 'Whether the product has received certification such as FSC (Forest Stewardship Council), Energy Star or Green Seal.' }
+        { name: 'Environmental certification', description: 'Whether the product has received certification such as FSC (Forest Stewardship Council), Energy Star or Green Seal.' },
+        { name: 'Alternative', description: 'Whether the product is an alternative to traditional products or not.' }
     ];
 
     // Define specific labels for each environmental metric
@@ -19,7 +20,8 @@ const Value: React.FC = () => {
         'Carbon footprint': 'Low carbon footprint',
         'Resource efficiency': 'Resources are high',
         'Recyclability': 'Fully recyclable',
-        'Environmental certification': 'Obtain environmental certification'
+        'Environmental certification': 'Obtain environmental certification',
+        'Alternative': 'Alternative'
     };
 
     // Label weights definition
@@ -27,7 +29,8 @@ const Value: React.FC = () => {
         'Low carbon footprint': 0.2,
         'Resources are high': 0.3,
         'Fully recyclable': 0.3,
-        'Obtain environmental certification': 0.2
+        'Obtain environmental certification': 0.2,
+        'Alternative': 0.3
     };
 
     return (
@@ -114,14 +117,14 @@ const Value: React.FC = () => {
                     ))}
                 </ul>
                 <h3>Environmental Value Calculation Example:</h3>
-                <p>Environmental value =(label 1 weight × label presence 1)+(label 2 weight × label presence 2)+(label 3 weight × label presence 3)+(label 4 weight × label presence 4)</p>
+                {/* <p>Environmental value =(label 1 weight × label presence 1)+(label 2 weight × label presence 2)+(label 3 weight × label presence 3)+(label 4 weight × label presence 4)</p> */}
                 <p>Assuming labels are present as follows:</p>
                 <ul>
                     {Object.keys(labels).map(label => (
                         <li key={label}><strong>{label}:</strong> Present</li>
                     ))}
                 </ul>
-                <p>Where "tag exists" is 1 if the tag is added to the product and 0 otherwise.</p>
+                {/* <p>Where "tag exists" is 1 if the tag is added to the product and 0 otherwise.</p> */}
 
                 <h2>
                     What is reference for our Enviorment Value?

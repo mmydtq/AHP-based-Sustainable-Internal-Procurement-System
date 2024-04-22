@@ -53,7 +53,7 @@ const items: MenuProps['items'] = [
     ],
   },
   {
-    label: (<Link href={'/Faculty'}>Faculty</Link>),
+    label: (<Link href={'/Faculty'}>Carts</Link>),
     key: 'Faculty',
   },
   {

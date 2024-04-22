@@ -4,6 +4,7 @@ import React, { use, useEffect } from "react";
 
 const ChartLine2 = () => {
     useEffect(() => {
+
         const data3 = [
             { year: '1991', value: 3 },
             { year: '1992', value: 4 },
@@ -55,3 +56,4 @@ const ChartLine2 = () => {
 };
 
 export default ChartLine2;
+

@@ -28,8 +28,8 @@ def create_app():
     api.add_resource(AddToCart, '/Fancy/addToCart')
     api.add_resource(DeleteFromCart, '/Fancy/deleteGood')
     api.add_resource(GetCartGoods, '/Fancy/showGoods')
-    # api.add_resource(FindGood, '/Good/FindGood') 
-    # api.add_resource(Recommend, '/Good/recommend') 
+    api.add_resource(FindGood, '/Good/FindGood') 
+    api.add_resource(Recommend, '/Good/recommend') 
     return app
 
 def create_database(app):

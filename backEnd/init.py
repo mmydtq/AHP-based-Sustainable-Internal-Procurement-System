@@ -19,17 +19,17 @@ def create_app():
     api = Api(app)
     # 路由路径待定
     api.add_resource(HelloWorld, '/') #for testing
-    api.add_resource(Register, '/register')
-    api.add_resource(Login, '/login')
-    api.add_resource(RePassword, '/rePassword')
-    api.add_resource(MainDisplay, '/Slide')
-    api.add_resource(Display, '/Present')
-    api.add_resource(SingleDisplay, '/SingleDisplay')
+    api.add_resource(Register, '/Register/register')
+    api.add_resource(Login, '/login/login')
+    api.add_resource(RePassword, '/login/changePassword')
+    api.add_resource(MainDisplay, '/HomePage/mainDisplay')
+    api.add_resource(Display, '/HomePage/display')
+    api.add_resource(SingleDisplay, '/Goods/getGoodInfo')
     api.add_resource(AddToCart, '/Fancy/addToCart')
     api.add_resource(DeleteFromCart, '/Fancy/deleteGood')
     api.add_resource(GetCartGoods, '/Fancy/showGoods')
-    api.add_resource(FindGood, '/Good/FindGood') 
-    api.add_resource(Recommend, '/Good/recommend') 
+    # api.add_resource(FindGood, '/Good/FindGood') 
+    # api.add_resource(Recommend, '/Good/recommend') 
     return app
 
 def create_database(app):

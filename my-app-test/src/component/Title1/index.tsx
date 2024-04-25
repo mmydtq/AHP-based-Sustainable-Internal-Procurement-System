@@ -122,7 +122,7 @@ const Title: React.FC<TitleProps> = ({ select }) => {
       <div className={styled.container}>
         <Affix offsetTop={0}>
           <Row align="middle" justify="space-between">
-            <Col flex="6"></Col>
+            <Col flex="5"></Col>
             <Col flex="1">
               <Image src={shop} alt='shopIcon' width={30} height={30} className={styled.im} />
             </Col>
@@ -156,9 +156,9 @@ const Title: React.FC<TitleProps> = ({ select }) => {
                 className={styled.search}
                 onChange={(value, option) => { setTages(value) }}
               />
-              <Button icon={<SearchOutlined />} onClick={() => { router.push({ pathname: '/Search', query: { tagsArray: tags } }, undefined, { shallow: true }) }} style={{ top: '-3px' }} />
-
-
+            </Col>
+            <Col flex="1">
+              <Button icon={<SearchOutlined />} onClick={() => { router.push({ pathname: '/Search', query: { tagsArray: tags } }, undefined, { shallow: true }) }} style={{ top: '0px' }} />
             </Col>
             <Col flex="1">
               <LogoutOutlined style={{ fontSize: 24, color: '#165DFF', margin: '0 10px' }} onClick={info} />

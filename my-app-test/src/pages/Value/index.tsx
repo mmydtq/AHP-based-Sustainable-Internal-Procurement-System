@@ -1,6 +1,7 @@
 import Title from "@/component/Title1"
 import React from "react"
 import styled from './index.module.css'
+import MouseFollower from "@/component/Mouse"
 
 
 const Value: React.FC = () => {
@@ -35,8 +36,11 @@ const Value: React.FC = () => {
 
     return (
         <>
+
             <Title select='Value' />
             <div className={styled.styles}>
+                <MouseFollower />
+
                 <h2><a href="https://corporatefinanceinstitute.com/resources/esg/esg-environmental-social-governance/"> ESG: Environmental, Social, and Governance</a></h2>
                 <p>
                     ESG, short for Environmental, Social, and Governance, is a framework used by investors, corporations, and other stakeholders to evaluate a company's performance and sustainability practices beyond traditional financial metrics. This approach considers environmental, social, and governance factors to assess a company's impact on society and the environment, as well as its management practices and overall governance structure.
@@ -149,10 +153,8 @@ const Value: React.FC = () => {
 
                 </ul>
 
-
-
-
             </div >
+
 
 
         </>

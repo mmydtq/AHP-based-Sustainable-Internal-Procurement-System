@@ -174,6 +174,65 @@ const Administer: React.FC = () => {
         </Space>
       ),
     },
+
+  ];
+  const columns1: TableProps<ChartDataType>['columns'] = [
+    {
+      title: 'Name',
+      dataIndex: 'name',
+      key: 'name',
+      render: (text) => <a>{text}</a>,
+    },
+    {
+      title: 'Value',
+      dataIndex: 'value',
+      key: 'value',
+    },
+    {
+      title: 'Address',
+      dataIndex: 'address',
+      key: 'address',
+    },
+    {
+      title: 'Tags',
+      key: 'tags',
+      dataIndex: 'tags',
+      render: (_, { tags }) => (
+        <>
+          {tags.map((tag) => {
+            let color = tag.length > 5 ? 'geekblue' : 'green';
+            if (tag === 'loser') {
+              color = 'volcano';
+            }
+            return (
+              <Tag color={color} key={tag}>
+                {tag.toUpperCase()}
+              </Tag>
+            );
+          })}
+        </>
+      ),
+    },
+    {
+      title: 'Action',
+      key: 'action',
+      render: (_, record) => (
+        <Space size="middle">
+
+          <Button type="primary" onClick={showModal}>
+            Detail
+          </Button>
+          <Modal title="Order Details" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+            <p>Good 1</p>
+            <p>Good 2</p>
+            <p>Good 3</p>
+          </Modal>
+
+
+        </Space>
+      ),
+    },
+
   ];
 
 
@@ -277,7 +336,7 @@ const Administer: React.FC = () => {
             <Col span={1}></Col>
             <Col span={7} className={styled.staticright} style={{ backgroundColor: '#FFFFFF', borderRadius: '10px', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' }}>
 
-              <FormDataList />
+              {/*<FormDataList />*/}
               {/* <ChartLine2 /> */}
               {/* <div id="chart-container2" className={styled.chart3} ></div> */}
             </Col>
@@ -370,7 +429,7 @@ const Administer: React.FC = () => {
           <Col span={2}></Col>
           <Col span={20} style={{ backgroundColor: '#FFFFFF', borderRadius: '10px', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' }}>
             <p className={styled.title1}>Used Order conform</p>
-            <Table columns={columns} dataSource={order.data} />
+            <Table columns={columns1} dataSource={order.data} />
           </Col>
           <Col span={2}></Col>
 

@@ -57,7 +57,7 @@ const items: MenuProps['items'] = [
     key: 'Faculty',
   },
   {
-    label: (<Link href={'/Value'}>Value</Link>),
+    label: (<Link href={'/Value1'}>Value</Link>),
     key: 'Value',
   },
   {

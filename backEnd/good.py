@@ -1,7 +1,7 @@
 from database import db
 import json
 from flask import jsonify, request
-from flask_restful import Resource
+from flask_restful import Resource, reqparse
 
 class Good(db.Model):
     __tablename__ = 'goods'
@@ -76,63 +76,68 @@ class Good(db.Model):
                 'hint': good.hint
             }
         }
-
-class FindGood(Resource):  # Extend from Resource
-    @staticmethod
-    def search(keyword):
-        matched_goods = Good.query.filter(Good.name.ilike(f'%{keyword}%')).all()
+    
+class RecommendGoods(Resource):
+    def post(self):
+        # Create a request parser to extract the product ID
+        parser = reqparse.RequestParser()
+        parser.add_argument('id', type=int, required=True, help='Product ID is required')
+        args = parser.parse_args()
+        
+        # Find the good based on the given ID
+        given_id = args['id']
+        good = Good.query.filter_by(id=given_id).first()
+        
+        if not good:
+            return {"error": "Good not found"}, 404
+        
+        # Find similar goods based on environmental value, or some other criteria
+        # Here we just select the top 5 goods with similar environmental value
+        recommended_goods = Good.query.order_by(Good.environmental_value.desc()).limit(5).all()
+        
         goods_list = []
-        for good in matched_goods:
+        for g in recommended_goods:
             goods_list.append({
-                'id': good.id,
-                'url': good.url,
-                'environmentalValue': good.environmental_value,
-                'brief': good.brief,
-                'tag': json.loads(good.tag),
-                'name': good.name,
-                'value': good.value,
-                'description': good.description,
-                'hint': good.hint
+                'id': g.id,
+                'url': g.url,
+                'environmentalValue': g.environmental_value,
+                'brief': g.brief,
+                'tag': json.loads(g.tag),
+                'name': g.name,
+                'value': g.value,
+                'description': g.description,
+                'hint': g.hint
             })
-        return goods_list
-
-    # Define a get method to use for RESTful endpoints
-    def get(self):
-        keyword = request.args.get("keyword", "")
-        result = self.search(keyword)
-        return {'goods': result}, 200
+        
+        return {"goods": goods_list}, 200
 
 
-class Recommend(Resource):  # Ensure it extends Resource
-    @staticmethod
-    def recommend_related_goods(target_good_id):
-        target_good = Good.query.get(target_good_id)
-        if not target_good:
-            return jsonify({'error': 'Invalid good ID'}), 400
+class FindGoodsByTags(Resource):
+    def post(self):
+        # Create a request parser to extract the tags array
+        parser = reqparse.RequestParser()
+        parser.add_argument('tags', type=list, location='json', required=True, help='Tags are required')
+        args = parser.parse_args()
 
-        target_tags = json.loads(target_good.tag)
+        tags = args['tags']
+        
+        # Find goods that match at least one of the given tags
+        matching_goods = []
+        all_goods = Good.query.all()
 
-        related_goods = Good.query.filter(Good.tag.op('@>')([json.dumps(target_tags)])).\
-            filter(Good.id != target_good_id).order_by(Good.environmental_value.desc()).all()
-
-        related_goods_list = []
-        for good in related_goods:
-            related_goods_list.append({
-                'id': good.id,
-                'url': good.url,
-                'environmentalValue': good.environmental_value,
-                'brief': good.brief,
-                'tag': json.loads(good.tag),
-                'name': good.name,
-                'value': good.value,
-                'description': good.description,
-                'hint': good.hint
-            })
-
-        return {'related_goods': related_goods_list}, 200
-
-    def get(self):
-        target_good_id = request.args.get("target_good_id", None)
-        if target_good_id is None:
-            return jsonify({'error': 'No good ID provided'}), 400
-        return self.recommend_related_goods(target_good_id)
+        for good in all_goods:
+            good_tags = json.loads(good.tag)
+            if any(tag in good_tags for tag in tags):
+                matching_goods.append({
+                    'id': good.id,
+                    'url': good.url,
+                    'environmentalValue': good.environmental_value,
+                    'brief': good.brief,
+                    'tag': good_tags,
+                    'name': good.name,
+                    'value': good.value,
+                    'description': good.description,
+                    'hint': good.hint
+                })
+        
+        return {"goods": matching_goods}, 200

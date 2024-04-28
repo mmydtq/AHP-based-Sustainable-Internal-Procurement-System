@@ -5,11 +5,14 @@ from database import db
 from router import HelloWorld
 from flask_restful import Api
 from register import Register, Login, RePassword
+from admin_register import AdminRegister, AdminLogin
+from admin import AddGoods
 from present import MainDisplay, Display, SingleDisplay
 from shopping import AddToCart, DeleteFromCart, GetCartGoods
 from good import FindGoodsByTags, RecommendGoods
 from flask_cors import CORS, cross_origin
 from getFormBig import GetFormBig
+from getLineChart import get_line_chart
 
 def create_app():
     app = Flask(__name__)
@@ -26,6 +29,9 @@ def create_app():
     api.add_resource(Register, '/Register/register')
     api.add_resource(Login, '/login/login')
     api.add_resource(RePassword, '/login/changePassword')
+    api.add_resource(AdminLogin, '/Administer/login')
+    api.add_resource(AdminRegister, '/Administer/register')
+    api.add_resource(AddGoods, '/Admin/addGood')
     api.add_resource(MainDisplay, '/HomePage/mainDisplay')
     api.add_resource(Display, '/HomePage/display')
     api.add_resource(SingleDisplay, '/Goods/getGoodInfo')
@@ -35,6 +41,7 @@ def create_app():
     api.add_resource(FindGoodsByTags, '/Good/FindGood') 
     api.add_resource(RecommendGoods, '/Good/recommend') 
     api.add_resource(GetFormBig, '/getFormBig')
+    api.add_resource(get_line_chart, 'component/chart11/getLineChart')
     return app
 
 def create_database(app):

@@ -1,3 +1,14 @@
+@import '../../assert/font4/font4.module.css';
+
+@import '../../assert/font5/font5.module.css';
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .sdgChild {
     position: absolute;
     top: 0;
@@ -455,6 +466,9 @@
     justify-content: center;
     width: 551px;
     height: 47px;
+    font-size: 40px;
+    font-family: Lexend Exa;
+    font-weight: 900;
 
 }
 
@@ -471,14 +485,15 @@
     position: absolute;
     top: 198px;
     left: 344px;
-    font-size: var(--font-size-5xl);
+    font-size: 24px;
     line-height: 22px;
-    font-family: var(--font-gloria-hallelujah);
+    font-family: Gloria Hallelujah;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 605px;
     height: 20px;
+
 }
 
 .rectangleParent {
@@ -540,10 +555,20 @@
 
 .leadingTheWay {
     margin: 0;
+    font-size: 40px;
+    font-family: Kodchasan;
+}
+
+.leadingTheWay1 {
+    margin: 0;
+    font-size: 16px;
+    font-family: Inder;
 }
 
 .leadingTheWayContainer1 {
     width: 100%;
+    font-family: LexendDeca;
+    font-size: 20px;
 }
 
 .leadingTheWayContainer {
@@ -553,7 +578,7 @@
     font-size: var(--font-size-21xl);
     line-height: 50px;
     display: flex;
-    font-family: var(--font-kodchasan);
+    font-family: LexendDeca;
     color: var(--color-white);
     align-items: center;
     width: 872px;
@@ -563,9 +588,9 @@
 .newCentury {
     top: 157px;
     left: 561px;
-    font-size: var(--font-size-5xl);
+    font-size: 24px;
     line-height: 22px;
-    font-family: var(--font-kodchasan);
+    font-family: kodchasan;
     justify-content: center;
     width: 318px;
     height: 37px;
@@ -595,7 +620,8 @@
 .whatAreThe {
     top: 2763px;
     left: 204px;
-    font-size: var(--font-size-21xl);
+    font-size: 40px;
+    font-family: LexendDeca;
     line-height: 50px;
     justify-content: center;
     width: 1030px;
@@ -686,10 +712,13 @@
 }
 
 .icon {
-    left: 7px;
+    left: 5px;
     width: 143px;
     height: 137px;
     object-fit: cover;
+    /* 缩小图片 */
+    transform: scale(0.9);
+
 }
 
 .ellipseParent,
@@ -707,6 +736,7 @@
     width: 132px;
     height: 145px;
     object-fit: cover;
+    transform: scale(0.9);
 }
 
 .ellipseGroup,
@@ -723,7 +753,8 @@
     left: 3px;
     width: 143px;
     height: 115px;
-    object-fit: cover;
+    /* object-fit: cover; */
+    transform: scale(0.9);
 }
 
 .ellipseContainer,
@@ -741,6 +772,7 @@
     width: 137px;
     height: 135px;
     object-fit: cover;
+    /* transform: scale(0.9); */
 }
 
 .groupDiv,
@@ -795,6 +827,8 @@
     display: flex;
     align-items: center;
     width: 554px;
+    font-family: LexendDeca;
+    font-size: 20px;
 }
 
 .cooperateWithA,
@@ -820,6 +854,8 @@
     display: flex;
     align-items: center;
     width: 559px;
+    font-family: LexendDeca;
+    font-size: 20px;
 }
 
 .businessInformationFlows,
@@ -839,7 +875,13 @@
 }
 
 .employeeEducationAndDevelop {
-    font-size: var(--font-size-13xl);
+    font-size: 32px;
+}
+
+.focusOn {
+    font-size: 24px;
+    font-family: LexendDeca;
+
 }
 
 .buildAHumanizedContainer,
@@ -879,7 +921,8 @@
     display: flex;
     align-items: center;
     width: 585px;
-    font-size: var(--font-size-13xl);
+    font-size: 32px;
+    font-family: LexendDeca;
 }
 
 .combinationOfInnovationContainer,
@@ -928,6 +971,8 @@
     top: 2994px;
     left: 340px;
     line-height: 50px;
+    font-family: LexendDeca;
+    font-size: 36px;
 }
 
 .productLabeling {
@@ -941,6 +986,11 @@
     top: 4881px;
     left: 480px;
     line-height: 50px;
+}
+
+.focusOn1 {
+    font-size: 36px;
+    font-family: LexendDeca;
 }
 
 .defineTheTagContainer {
@@ -964,12 +1014,16 @@
     display: flex;
     align-items: center;
     width: 293px;
+    font-family: LexendDeca;
+    font-size: 32px;
 }
 
 .resourceEfficiency {
     top: 3232px;
     left: 288px;
     width: 340px;
+    font-family: LexendDeca;
+    font-size: 32px;
 }
 
 .environmental,
@@ -985,8 +1039,8 @@
 .example {
     top: 3182px;
     left: 107px;
-    font-size: var(--font-size-xl);
-    color: var(--color-darkslategray-100);
+    font-size: 20px;
+    color: #00533A;
     justify-content: center;
     width: 136px;
 }
@@ -999,7 +1053,8 @@
 .recyclability {
     top: 3244px;
     left: 921px;
-    font-size: var(--font-size-13xl);
+    font-family: LexendDeca;
+    font-size: 32px;
     justify-content: center;
     width: 238px;
 }
@@ -1008,12 +1063,14 @@
     top: 3423px;
     left: 973px;
     width: 312px;
+    font-family: LexendDeca;
+    font-size: 32px;
 }
 
 .certification,
 .defineSpecificLabels,
 .environmental {
-    font-size: var(--font-size-13xl);
+    font-size: 32px;
     justify-content: center;
 }
 
@@ -1047,9 +1104,10 @@
 .addTheseLabels {
     top: 4730px;
     left: 73px;
-    font-size: var(--font-size-13xl);
+    font-size: 32px;
     justify-content: center;
     width: 1295px;
+    font-family: LexendDeca;
 }
 
 .carbonFootprint1 {
@@ -1058,6 +1116,8 @@
     color: var(--color-gray);
     text-align: left;
     width: 441px;
+    font-size: 36px;
+    font-family: LexendDeca;
 }
 
 .fullyRecyclable,
@@ -1074,12 +1134,16 @@
     text-align: left;
     display: flex;
     align-items: center;
+    font-size: 36px;
+    font-family: LexendDeca;
 }
 
 .fullyRecyclable {
     top: 4080px;
     left: 803px;
     justify-content: center;
+    font-size: 36px;
+    font-family: LexendDeca;
 }
 
 .fullyRecyclable,
@@ -1098,6 +1162,8 @@
     color: var(--color-gray);
     text-align: left;
     width: 314px;
+    font-size: 36px;
+    font-family: LexendDeca;
 }
 
 .resourceEfficiency1,
@@ -1109,6 +1175,8 @@
     top: 4293px;
     left: 839px;
     text-align: left;
+    font-size: 36px;
+    font-family: LexendDeca;
 }
 
 .resourcesAreHigh {
@@ -1116,6 +1184,8 @@
     left: 795px;
     justify-content: center;
     height: 44px;
+    font-size: 36px;
+    font-family: LexendDeca;
 }
 
 .sdgChild26,
@@ -1189,12 +1259,14 @@
     justify-content: center;
     width: 278px;
     height: 63px;
+    font-size: 36px;
+    font-family: LexendDeca;
 }
 
 .div {
     top: 1px;
     left: 154px;
-    font-size: var(--font-size-13xl);
+
     color: var(--color-black);
     width: 368.1px;
     height: 63.5px;
@@ -1253,11 +1325,13 @@
     justify-content: center;
     width: 303px;
     height: 63px;
+    font-size: 36px;
+    font-family: LexendDeca;
 }
 
 .div1 {
     left: 308px;
-    font-size: var(--font-size-13xl);
+    ;
     color: var(--color-black);
     width: 97px;
 }
@@ -1313,11 +1387,13 @@
     justify-content: center;
     width: 225px;
     height: 63px;
+    font-size: 36px;
+    font-family: LexendDeca;
 }
 
 .div2 {
     left: 236px;
-    font-size: var(--font-size-13xl);
+
     color: var(--color-black);
     width: 211px;
 }
@@ -1375,12 +1451,14 @@
     justify-content: center;
     width: 278px;
     height: 127px;
+    font-size: 36px;
+    font-family: LexendDeca;
 }
 
 .div3 {
     top: 32px;
     left: 296px;
-    font-size: var(--font-size-13xl);
+
     color: var(--color-black);
     width: 124px;
     height: 63px;
@@ -1442,8 +1520,9 @@
     position: absolute;
     top: 3061px;
     left: 72px;
-    font-size: var(--font-size-13xl);
+    font-size: 32px;
     line-height: 50px;
+    font-family: LexendDeca;
     display: flex;
     align-items: center;
     width: 1295px;
@@ -1467,6 +1546,8 @@
     left: 146px;
     color: var(--color-gray);
     width: 522px;
+    font-size: 36px;
+    font-family: LexendDeca;
 }
 
 .eachLabelIs,
@@ -1485,13 +1566,16 @@
     left: 220px;
     color: var(--color-gray);
     width: 522px;
+    font-size: 36px;
+    font-family: LexendDeca;
 }
 
 .eachLabelIs,
 .forEachProduct {
     top: 5047px;
     left: 108px;
-    font-size: var(--font-size-13xl);
+    font-size: 32px;
+    font-family: LexendDeca;
     width: 1232px;
 }
 
@@ -1510,10 +1594,11 @@
 .environmentalValueContainer,
 .whereTagExists {
     position: absolute;
-    font-size: var(--font-size-13xl);
+    font-size: 32px;
     line-height: 50px;
     display: flex;
     align-items: center;
+    font-family: LexendDeca;
 }
 
 .whereTagExists {
@@ -1626,6 +1711,8 @@
     top: 6914px;
     left: 61px;
     line-height: 50px;
+    font-size: 36px;
+    font-family: LexendDeca;
 }
 
 .lifeCycleAssessment,
@@ -1634,6 +1721,8 @@
     top: 7504px;
     left: 634px;
     line-height: 50px;
+    font-size: 36px;
+    font-family: LexendDeca;
 }
 
 .sustainabilityBestPractices {
@@ -1647,11 +1736,12 @@
     position: absolute;
     top: 6870px;
     left: 66px;
-    font-size: var(--font-size-xl);
+    font-size: 20px;
     line-height: 50px;
     text-align: left;
     display: flex;
     align-items: center;
+    font-family: LexendDeca;
     width: 860px;
     height: 634px;
 }
@@ -1674,14 +1764,20 @@
 .sdg {
     top: 0px;
     width: 100%;
-    max-width: 90vw;
+    /* max-width: 90vw; */
     position: relative;
-    margin-left: auto;
-    margin-right: auto;
-    left: 2%;
+    display: flex;
+    flex-direction: column;
+    /* justify-self: center;
+    align-self: center; */
+    justify-content: center;
+    align-items: center;
+    /* margin-left: auto;
+    margin-right: auto; */
+    left: 8vw;
     background-color: var(--color-white);
     height: 9000px;
-    overflow: hidden;
+    /* overflow: hidden; */
     text-align: center;
     font-size: var(--font-size-17xl);
     color: var(--color-black);

@@ -21,7 +21,12 @@ import logo45 from "@/assert/public/image-45@2x.png";
 import logo46 from "@/assert/public/image-46@2x.png";
 import logo47 from "@/assert/public/image-47@2x.png";
 import logo48 from "@/assert/public/image-48@2x.png";
-
+import logo1 from "@/assert/public/1.pic.jpg";
+import logo2 from "@/assert/public/2.pic.jpg";
+import logo3 from "@/assert/public/3.pic.jpg";
+import logo4 from "@/assert/public/4.pic.jpg";
+import logo5 from "@/assert/public/5.pic.jpg";
+import logo6 from "@/assert/public/6.pic.jpg";
 
 
 import styled from "./index.module.css"
@@ -29,7 +34,9 @@ import styled from "./index.module.css"
 const Value1: FunctionComponent = () => {
     return (
         <>
+
             <Title select='Value' />
+            {/* <div className={styles.container}> */}
             <div className={styles.sdg}>
                 <div className={styles.sdgItem} />
                 <div className={styles.sdgInner} />
@@ -93,7 +100,7 @@ const Value1: FunctionComponent = () => {
                 <b className={styles.newCentury}>New Century</b>
                 <div className={styles.weAreAContainer}>
                     <span className={styles.leadingTheWayContainer1}>
-                        <p className={styles.leadingTheWay}>
+                        <p className={styles.leadingTheWay1}>
                             We are a company dedicated to environmental protection and
                             sustainable development, integrating innovative technology,
                             transparency, and employee engagement to lead in the field of
@@ -118,32 +125,32 @@ const Value1: FunctionComponent = () => {
                     <div className={styles.ellipseParent}>
                         <div className={styles.ellipseDiv} />
                         {/* <img className={styles.icon} alt="" src="/-1@2x.png" /> */}
-                        <Image src={glass} className={styled.icon} alt='' />
+                        <Image src={logo1} className={styled.icon} alt='' />
                     </div>
                     <div className={styles.ellipseGroup}>
                         <div className={styles.ellipseDiv} />
                         {/* <img className={styles.icon1} alt="" src="/-1@2x.png" /> */}
-                        <Image src={glass} className={styled.icon1} alt='' />
+                        <Image src={logo2} className={styled.icon1} alt='' />
                     </div>
                     <div className={styles.ellipseContainer}>
                         <div className={styles.ellipseDiv} />
-                        <Image src={glass} className={styled.icon2} alt='' />
+                        <Image src={logo3} className={styled.icon2} alt='' />
                         {/* <img className={styles.icon2} alt="" src="/-1@2x.png" /> */}
                     </div>
                     <div className={styles.groupDiv}>
                         <div className={styles.ellipseDiv} />
                         {/* <img className={styles.icon3} alt="" src="/-1@2x.png" /> */}
-                        <Image src={glass} className={styled.icon3} alt='' />
+                        <Image src={logo4} className={styled.icon3} alt='' />
                     </div>
                     <div className={styles.ellipseParent1}>
                         <div className={styles.ellipseDiv} />
                         {/* <img className={styles.icon4} alt="" src="/-1@2x.png" /> */}
-                        <Image src={glass} className={styled.icon4} alt='' />
+                        <Image src={logo5} className={styled.icon4} alt='' />
                     </div>
                     <div className={styles.ellipseParent2}>
                         <div className={styles.ellipseDiv} />
                         {/* <img className={styles.icon5} alt="" src="/-1@2x.png" /> */}
-                        <Image src={glass} className={styled.icon5} alt='' />
+                        <Image src={logo6} className={styled.icon5} alt='' />
                     </div>
                     <div className={styles.ensuringThatAll}>
                         Ensuring that all purchased products and services meet the highest
@@ -172,7 +179,7 @@ const Value1: FunctionComponent = () => {
                     <div className={styles.focusOnEmployeeContainer}>
                         <span className={styles.leadingTheWayContainer1}>
                             <span>
-                                <span>Focus on</span>
+                                <span className={styles.focusOn}>Focus on</span>
                             </span>
                             <span className={styles.employeeEducationAndDevelop}>
                                 <span>{` `}</span>
@@ -184,31 +191,31 @@ const Value1: FunctionComponent = () => {
                     </div>
                     <div className={styles.buildAHumanizedContainer}>
                         <span className={styles.leadingTheWayContainer1}>
-                            <span>{`Build a `}</span>
+                            <span className={styled.focusOn}>{`Build a `}</span>
                             <b className={styles.employeeEducationAndDevelop}>humanized</b>
-                            <span> company</span>
+                            <span className={styled.focusOn}> company</span>
                         </span>
                     </div>
                     <div className={styles.transparencyAndAccountabilitContainer}>
-                        <span className={styles.leadingTheWayContainer1}>
-                            <b>{`Transparency `}</b>
-                            <span className={styles.and1}>and</span>
+                        <span className={styles.employeeEducationAndDevelop}>
+                            <b >{`Transparency `}</b>
+                            <span className={styled.focusOn}>and</span>
                             <b> accountability</b>
                         </span>
                     </div>
                     <b className={styles.winWinCooperation}>Win-win Cooperation</b>
                     <div className={styles.customizeSustainableBusinessContainer}>
                         <span className={styles.leadingTheWayContainer1}>
-                            <span>{`Customize `}</span>
+                            <span className={styled.focusOn}>{`Customize `}</span>
                             <b className={styles.employeeEducationAndDevelop}>sustainable</b>
-                            <span> business practice strategies for customers</span>
+                            <span className={styled.focusOn}> business practice strategies for customers</span>
                         </span>
                     </div>
                     <div className={styles.combinationOfInnovationContainer}>
                         <span className={styles.leadingTheWayContainer1}>
-                            <span>{`Combination of `}</span>
+                            <span className={styled.focusOn}>{`Combination of `}</span>
                             <b className={styles.employeeEducationAndDevelop}>innovation</b>
-                            <span>{` and `}</span>
+                            <span className={styled.focusOn}>{` and `}</span>
                             <b className={styles.employeeEducationAndDevelop}>technology</b>
                         </span>
                     </div>
@@ -221,14 +228,15 @@ const Value1: FunctionComponent = () => {
                 </div>
                 <div className={styles.productLabeling}>3 Product labeling</div>
                 <div className={styles.weightingAndIntegrationContainer}>
-                    <span>{`4 `}</span>
-                    <b>Weighting</b>
-                    <span>{` and `}</span>
-                    <b>integration</b>
+                    <span className={styled.focusOn1}>{`4 `}</span>
+                    <b className={styled.focusOn1}>'Weighting'</b>
+                    {/* <span className={styled.focusOn1}>{` `}</span> */}
+                    <span className={styled.focusOn1}>{` and `}</span>
+                    <b className={styled.focusOn1}> 'integration'</b>
                 </div>
                 <div className={styles.defineTheTagContainer}>
-                    <span>{`2 Define the `}</span>
-                    <b>tag</b>
+                    <span className={styled.focusOn1}>{`2 Define the `}</span>
+                    <b className={styled.focusOn1}>tag</b>
                 </div>
                 <b className={styles.carbonFootprint}>Carbon footprint</b>
                 <b className={styles.resourceEfficiency}>Resource efficiency</b>
@@ -420,6 +428,7 @@ const Value1: FunctionComponent = () => {
                 </div>
             </div>
             <Bottom />
+            {/* </div> */}
         </>
     );
 };

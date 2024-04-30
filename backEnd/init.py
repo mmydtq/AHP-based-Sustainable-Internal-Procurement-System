@@ -41,7 +41,7 @@ def create_app():
     api.add_resource(FindGoodsByTags, '/Good/FindGood') 
     api.add_resource(RecommendGoods, '/Good/recommend') 
     api.add_resource(GetFormBig, '/getFormBig')
-    api.add_resource(get_line_chart, 'component/chart11/getLineChart')
+    api.add_resource(get_line_chart, '/component/chart11/getLineChart')
     return app
 
 def create_database(app):

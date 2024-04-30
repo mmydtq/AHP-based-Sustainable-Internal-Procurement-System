@@ -1,11 +1,13 @@
 from flask import Flask, request, jsonify
 from flask_restful import Resource, Api, reqparse
 import json
+from flask_cors import cross_origin
 
 app = Flask(__name__)
 api = Api(app)
 
 class GetFormBig(Resource):
+    @cross_origin()
     def post(self):
         try:
             # Create a request parser to validate incoming data

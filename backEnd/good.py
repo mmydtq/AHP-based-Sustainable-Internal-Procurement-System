@@ -2,6 +2,7 @@ from database import db
 import json
 from flask import jsonify, request
 from flask_restful import Resource, reqparse
+from flask_cors import cross_origin
 
 class Good(db.Model):
     __tablename__ = 'goods'
@@ -78,6 +79,7 @@ class Good(db.Model):
         }
     
 class RecommendGoods(Resource):
+    @cross_origin()
     def post(self):
         # Create a request parser to extract the product ID
         parser = reqparse.RequestParser()
@@ -113,6 +115,7 @@ class RecommendGoods(Resource):
 
 
 class FindGoodsByTags(Resource):
+    @cross_origin()
     def post(self):
         # Create a request parser to extract the tags array
         parser = reqparse.RequestParser()

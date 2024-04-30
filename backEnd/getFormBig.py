@@ -1,7 +1,8 @@
-from flask import Flask, request, jsonify
+from flask import Flask
 from flask_restful import Resource, Api, reqparse
 import json
 from flask_cors import cross_origin
+from database import db
 
 app = Flask(__name__)
 api = Api(app)
@@ -55,3 +56,26 @@ class GetFormBig(Resource):
 
         except Exception as e:
             return {"error": str(e)}, 400
+        
+class DeleteFormItem(Resource):
+    @cross_origin()
+    def post(self):
+        parser = reqparse.RequestParser()
+        parser.add_argument('id', type=str, required=True, help='ID is required for deletion')
+
+        args = parser.parse_args()
+        item_id = args['id']
+
+        try:
+            item_to_delete = db.session.query(Item).filter_by(id=item_id).first()
+
+            if not item_to_delete:
+                return {"status": 1, "error": "Item not found"}, 200
+
+            db.session.delete(item_to_delete)
+            db.session.commit()
+
+            return {"status": 0}, 200
+
+        except Exception as e:
+            return {"status": 1, "error": str(e)}, 400

@@ -11,7 +11,7 @@ from present import MainDisplay, Display, SingleDisplay
 from shopping import AddToCart, DeleteFromCart, GetCartGoods
 from good import FindGoodsByTags, RecommendGoods
 from flask_cors import CORS, cross_origin
-from getFormBig import GetFormBig
+from getFormBig import GetFormBig, DeleteFormItem
 from getLineChart import get_line_chart
 
 def create_app():
@@ -42,6 +42,7 @@ def create_app():
     api.add_resource(RecommendGoods, '/Good/recommend') 
     api.add_resource(GetFormBig, '/getFormBig')
     api.add_resource(get_line_chart, '/component/chart11/getLineChart')
+    api.add_resource(DeleteFormItem, '/Admin/deleteFormItem')
     return app
 
 def create_database(app):

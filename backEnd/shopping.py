@@ -41,6 +41,7 @@ class AddToCart(Resource):
 
         except Exception as e:
             return {'error': str(e)}, 400
+        
 class DeleteFromCart(Resource):
     def delete(self):
         try:

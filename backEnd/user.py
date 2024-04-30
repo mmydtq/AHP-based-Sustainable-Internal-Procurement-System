@@ -14,9 +14,9 @@ class User(db.Model):
         existing_user = User.query.filter_by(name=name).first()
         if existing_user:
             return 1  # 用户id已经存在
-        existing_department = User.query.filter_by(room=room).first()
-        if existing_department:
-            return 3  # 部门已经存在
+        # existing_department = User.query.filter_by(room=room).first()
+        # if existing_department:
+        #     return 3  # 部门已经存在
         existing_email = User.query.filter_by(email=email).first()
         if existing_email:
             return 4  # 邮箱已经存在

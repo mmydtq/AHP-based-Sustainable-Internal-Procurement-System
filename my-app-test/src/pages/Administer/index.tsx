@@ -11,7 +11,7 @@ import Bottom from '@/component/Bottom';
 import { Col, Row, Slider, Statistic, Card } from 'antd';
 import { useState } from 'react';
 import { Space, Table, Tag } from 'antd';
-import type { TableProps, UploadFile, UploadProps } from 'antd';
+import type { SelectProps, TableProps, UploadFile, UploadProps } from 'antd';
 import { Modal, FloatButton } from 'antd';
 import type { DrawerProps } from 'antd';
 import { notification } from 'antd';
@@ -54,6 +54,16 @@ const Administer: React.FC = () => {
   const [formInfo, setFormInfo] = useState<string[]>([])
 
 
+const options: SelectProps['options'] = [];
+
+for (let i = 10; i < 36; i++) {
+  options.push({
+    value: i.toString(36) + i,
+    label: i.toString(36) + i,
+  });
+}
+
+
 
   const getOrderInfo = async () => {
     const res = await postOrder()
@@ -93,7 +103,7 @@ const Administer: React.FC = () => {
         base64Image = btoa(String.fromCharCode.apply(null, Array.from(binary)));
       }
       const params = {
-        image: base64Image,
+        url: base64Image,
         brief: form.getFieldValue('Brief'),
         tag: form.getFieldValue('Tag'),
         name: form.getFieldValue('Name'),
@@ -448,13 +458,15 @@ const Administer: React.FC = () => {
               <Form.Item
                 name="Tag"
                 label="Tag"
-                rules={[{ required: false, message: 'Please select at least one tag!', type: 'array' }]}
+                rules={[{ required: false, message: 'Please select at least one tag!' }]}
               >
-                <Select mode="multiple">
-                  {/* 这里可以根据具体的标签列表进行渲染 */}
-                  {/* 例如：<Option value="tag1">Tag 1</Option> */}
-                  {/* 如果您没有固定的标签列表，这里也可以不进行渲染，用户可以自行输入标签 */}
-                </Select>
+                  <Select
+                mode="tags"
+                style={{ width: '180px', margin: '0 10px' }}
+                placeholder="Search"
+                options={options}
+                allowClear
+              />
               </Form.Item>
 
               <Form.Item

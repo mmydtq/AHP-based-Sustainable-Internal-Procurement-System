@@ -11,34 +11,6 @@ import { Message } from '@arco-design/web-react';
 import { Good, Goods } from '@/type/appType';
 import useBearStore from '@/Store/store';
 
-const items: DescriptionsProps['items'] = [
-  {
-    key: '1',
-    label: 'Name',
-    children: 'Zhou Maomao',
-  },
-  {
-    key: '2',
-    label: 'Telephone',
-    children: '1810000000',
-  },
-  {
-    key: '3',
-    label: 'Live',
-    children: 'Hangzhou, Zhejiang',
-  },
-  {
-    key: '4',
-    label: 'Remark',
-    children: 'empty',
-  },
-  {
-    key: '5',
-    label: 'Address',
-    children: 'No. 18, Wantang Road, Xihu District, Hangzhou, Zhejiang, China',
-  },
-]
-
 const buttonStyle: React.CSSProperties = {
   borderRadius: '100px',
   width: '120px',
@@ -62,6 +34,15 @@ const Goodss: React.FC = () => {
   const [isfac, setIsfac] = useState<boolean>(false)
   const uid = useBearStore((state) => state.uId)
   const [messageApi, contextHolder] = message.useMessage();
+
+  let imageUrl = ''; 
+  if (good?.url.startsWith('data:image/jpeg;base64,')) {
+    imageUrl = good.url;
+  } else if (good?.url.startsWith('data:image/png;base64,')) {
+    imageUrl = good.url;
+  } else {
+    console.error('Unsupported image format');
+  }
 
   const items: DescriptionsProps['items'] = [
     {
@@ -129,7 +110,7 @@ const Goodss: React.FC = () => {
         <Image
           width='30vw'
           height='45vh'
-          src={good?.url}
+          src={imageUrl}
         />
       </div>
       <div style={{ position: 'absolute', left: '47vw', top: '10vh' }}>

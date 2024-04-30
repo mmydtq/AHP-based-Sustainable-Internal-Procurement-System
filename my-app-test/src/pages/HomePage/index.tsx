@@ -44,23 +44,34 @@ const HomePage: React.FC = () => {
                     onChange={(index) => setCenterIndex(index)}
                     style={{ width: '100%', height: '55vh', marginTop: '3.5vh' }}
                 >
-                    {carouselGoods?.goods.map((good: Good, index: number) => (
-                        <div
-                            key={good.id}
-                            style={{ width: '60%' }}
-                            onClick={() => {
-                                if (index === centerIndex) {
-                                    router.push({ pathname: '/Goods', query: { id: good.id } });
-                                }
-                            }}
-                        >
-                            <img
-                                src={good.url}
-                                alt={good.name}
-                                style={{ width: '100%', height: '55vh' }}
-                            />
-                        </div>
-                    ))}
+                    {carouselGoods?.goods.map((good: Good, index: number) => {
+                        let imageUrl = ''; 
+                        if (good?.url.startsWith('data:image/jpeg;base64,')) {
+                          imageUrl = good.url;
+                        } else if (good?.url.startsWith('data:image/png;base64,')) {
+                          imageUrl = good.url;
+                        } else {
+                          console.error('Unsupported image format');
+                        }
+                        return (
+                            <div
+                                key={good.id}
+                                style={{ width: '60%' }}
+                                onClick={() => {
+                                    if (index === centerIndex) {
+                                        router.push({ pathname: '/Goods', query: { id: good.id } });
+                                    }
+                                }}
+                            >
+                                <img
+                                    src={good.url}
+                                    alt={good.name}
+                                    style={{ width: '100%', height: '55vh' }}
+                                />
+                            </div>
+                        );
+                        
+})}
                 </Carousel>
             </div>
             {goods?.[0] && (

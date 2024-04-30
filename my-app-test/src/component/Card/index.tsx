@@ -4,6 +4,15 @@ import React from 'react';
 import styled from "./index.module.css"
 
 function Cards(props: Card) {
+  let imageUrl = ''; 
+  if (props.url.startsWith('data:image/jpeg;base64,')) {
+    imageUrl = props.url;
+  } else if (props.url.startsWith('data:image/png;base64,')) {
+    imageUrl = props.url;
+  } else {
+    console.error('Unsupported image format');
+  }
+
   return (
     <div className={styled.card}>
       <div className={styled.overlay}>
@@ -18,7 +27,7 @@ function Cards(props: Card) {
           className={styled.link}
           >{'Detail >'}</div>
       </div>
-      <img src={props.url} alt={props.alt} className={styled.image}/>
+      <img src={imageUrl} alt={props.alt} className={styled.image}/>
     </div>
   );
 }

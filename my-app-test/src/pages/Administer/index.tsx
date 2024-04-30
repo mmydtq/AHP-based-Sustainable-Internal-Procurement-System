@@ -5,20 +5,21 @@ import ChartLine from '@/component/Chart11';
 import ChartTable from '@/component/Form';
 import FormDataList from '@/component/FormDataList';
 import styled from "./index.module.css"
-import { Form, Button, Drawer, message } from 'antd';
-import { ArrowUpOutlined, PlusCircleOutlined, ArrowDownOutlined } from '@ant-design/icons';
+import { Form, Button, Drawer, message, Upload } from 'antd';
+import { ArrowUpOutlined, PlusCircleOutlined, ArrowDownOutlined, UploadOutlined } from '@ant-design/icons';
 import Bottom from '@/component/Bottom';
 import { Col, Row, Slider, Statistic, Card } from 'antd';
 import { useState } from 'react';
 import { Space, Table, Tag } from 'antd';
-import type { TableProps } from 'antd';
+import type { TableProps, UploadFile, UploadProps } from 'antd';
 import { Modal, FloatButton } from 'antd';
 import type { DrawerProps } from 'antd';
 import { notification } from 'antd';
 import { Cascader, DatePicker, Input, InputNumber, Mentions, Select, TreeSelect } from 'antd';
 import { ChartDataType, OrderInfo } from '@/type/appType';
-import { getOrder, postAddGood } from '@/api/hello';
+import { postOrder, postAddGood, postDeleteFormInfo, postPredictNum } from '@/api/hello';
 import LineChartWithButtons from '@/component/CardChartLine';
+import { stringify } from 'querystring';
 
 
 
@@ -43,33 +44,84 @@ const Administer: React.FC = () => {
   //弹窗代码
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [order, setOrder] = useState<OrderInfo>({ data: [] })
+  const [order1, setOrder1] = useState<OrderInfo>({ data: [] })
   //抽屉代码
   const [open, setOpen] = useState(false);
   const [size, setSize] = useState<DrawerProps['size']>();
   const [form] = Form.useForm();
   const [messageApi, contextHolder] = message.useMessage();
+  const [fileList, setFileList] = useState<UploadFile<any>[]>([]);
+  const [formInfo, setFormInfo] = useState<string[]>([])
+
 
 
   const getOrderInfo = async () => {
-    const res = await getOrder()
+    const res = await postOrder()
     setOrder(res)
   }
 
-  const AddGood = async () => {
-    const params = {
-      url: form.getFieldValue('Upload'),
-      brief: form.getFieldValue('Brief'),
-      tag: form.getFieldValue('Tag'),
-      name: form.getFieldValue('Name'),
-      value: form.getFieldValue('Value'),
-      description: form.getFieldValue('Description'),
-    }
-    const res = await postAddGood(params)
-    res.status === 0 ? success() : error()
+  const getFormInfo = async () => {
+    const res = await postPredictNum()
+    setFormInfo(res)
   }
+
+  const deletOrderInfo = async (key : string) => {
+    const res = await postDeleteFormInfo({key: key})
+  }
+
+  const AddGood = async () => {
+    if (fileList.length === 0) {
+      message.warning('Please select an image to upload');
+      return;
+    }
+    
+    const file = fileList[0].originFileObj;
+  
+    if (!file) {
+      message.error('Invalid file');
+      return;
+    }
+    
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = async () => {
+      let base64Image = '';
+      if (typeof reader.result === 'string') {
+        base64Image = reader.result.split(',')[1]; 
+      } else if (reader.result instanceof ArrayBuffer) {
+        const binary = new Uint8Array(reader.result);
+        base64Image = btoa(String.fromCharCode.apply(null, Array.from(binary)));
+      }
+      const params = {
+        image: base64Image,
+        brief: form.getFieldValue('Brief'),
+        tag: form.getFieldValue('Tag'),
+        name: form.getFieldValue('Name'),
+        value: form.getFieldValue('Value'),
+        description: form.getFieldValue('Description'),
+      }
+      const res = await postAddGood(params);
+      res.status === 0 ? success() : error();
+    };
+  }
+
+  const props: UploadProps = {
+    maxCount: 1,
+    beforeUpload: (file: UploadFile<any>) => {
+      const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
+      if (!isJpgOrPng) {
+        message.error('You can only upload JPG/PNG file!');
+      }
+      return isJpgOrPng;
+    },
+    onChange: ({ fileList: newFileList }) => {
+      setFileList(newFileList.slice(-1));
+    },
+  };
 
   useEffect(() => {
     getOrderInfo()
+    getFormInfo()
   }, [])
 
   const success = () => {
@@ -91,6 +143,17 @@ const Administer: React.FC = () => {
       },
     });
   };
+
+  const handleFormInfo = async (key: string) => {
+    openNotificationWithIcon('success');
+    const res = await postDeleteFormInfo({key: key})
+    order.data.forEach(item => {
+      if (item.key === key) {
+        setOrder1(prevState => ({
+          data: [...prevState.data, item]
+        }));
+      }})
+  }
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -160,15 +223,16 @@ const Administer: React.FC = () => {
             Detail
           </Button>
           <Modal title="Order Details" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-            <p>Good 1</p>
-            <p>Good 2</p>
-            <p>Good 3</p>
+            <Statistic title="Name" value={record.name}/>
+            <Statistic title="Brief" value={record.brief}/>
+            <Statistic title="Transaction" value={record.value}/>
+            <Statistic title="Volume" value={record.number}/>
           </Modal>
 
-          <Button type="primary" danger>
+          <Button type="primary" danger onClick={() => deletOrderInfo(record.key)}>
             Delete
           </Button>
-          <Button type="primary" onClick={() => openNotificationWithIcon('success')}>
+          <Button type="primary" onClick={() => handleFormInfo(record.key)}>
             Conform
           </Button>
         </Space>
@@ -223,9 +287,10 @@ const Administer: React.FC = () => {
             Detail
           </Button>
           <Modal title="Order Details" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-            <p>Good 1</p>
-            <p>Good 2</p>
-            <p>Good 3</p>
+            <Statistic title="Name" value={record.name}/>
+            <Statistic title="Brief" value={record.brief}/>
+            <Statistic title="Transaction" value={record.value}/>
+            <Statistic title="Volume" value={record.number}/>
           </Modal>
 
 
@@ -289,10 +354,10 @@ const Administer: React.FC = () => {
               <div className={styled.static}>
                 <Row gutter={16}>
                   <Col span={12}>
-                    <Statistic title="Enviroemental number For next Month" value={112893} style={{ color: '#1890ff' }} />
+                    <Statistic title="Enviroemental number For next Month" value={formInfo[0]} style={{ color: '#1890ff' }} />
                   </Col>
                   <Col span={12}>
-                    <Statistic title="Trading value For next Month" value={112893} precision={2} />
+                    <Statistic title="Trading value For next Month" value={formInfo[1]} precision={2} />
                   </Col>
                 </Row>
                 <Row>
@@ -306,7 +371,7 @@ const Administer: React.FC = () => {
                     <Card bordered={false}>
                       <Statistic
                         title="Active"
-                        value={11.28}
+                        value={formInfo[2]}
                         precision={2}
                         valueStyle={{ color: '#3f8600' }}
                         prefix={<ArrowUpOutlined />}
@@ -318,7 +383,7 @@ const Administer: React.FC = () => {
                     <Card bordered={false}>
                       <Statistic
                         title="Idle"
-                        value={9.3}
+                        value={formInfo[3]}
                         precision={2}
                         valueStyle={{ color: '#cf1322' }}
                         prefix={<ArrowDownOutlined />}
@@ -383,7 +448,7 @@ const Administer: React.FC = () => {
               <Form.Item
                 name="Tag"
                 label="Tag"
-                rules={[{ required: true, message: 'Please select at least one tag!', type: 'array' }]}
+                rules={[{ required: false, message: 'Please select at least one tag!', type: 'array' }]}
               >
                 <Select mode="multiple">
                   {/* 这里可以根据具体的标签列表进行渲染 */}
@@ -412,9 +477,9 @@ const Administer: React.FC = () => {
                 label="Upload"
                 rules={[{ required: true, message: 'Please upload the image!' }]}
               >
-                {/* 这里可以放置上传图片的组件 */}
-                {/* 例如：<Input type="file" /> */}
-                <Input type="file" />
+                <Upload {...props}>
+                  <Button icon={<UploadOutlined />}>Upload png only</Button>
+                </Upload>
               </Form.Item>
 
               <Form.Item wrapperCol={{ offset: 6, span: 16 }}>
@@ -429,7 +494,7 @@ const Administer: React.FC = () => {
           <Col span={2}></Col>
           <Col span={20} style={{ backgroundColor: '#FFFFFF', borderRadius: '10px', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' }}>
             <p className={styled.title1}>Used Order conform</p>
-            <Table columns={columns1} dataSource={order.data} />
+            <Table columns={columns1} dataSource={order1.data} />
           </Col>
           <Col span={2}></Col>
 

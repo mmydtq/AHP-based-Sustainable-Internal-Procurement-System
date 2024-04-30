@@ -1,8 +1,18 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as echarts from 'echarts'; // Import ECharts library
+import { postLineChart } from '@/api/hello';
+import { chart11 } from '@/type/appType';
 
 const LineChart: React.FC = () => {
+    const [chartValue, setChartValue] = useState<chart11>()
+
+    const getChartInfo = async () => {
+        const res = await postLineChart()
+        setChartValue(res)
+      }
+
     useEffect(() => {
+        getChartInfo();
         // Get the HTML element where the chart will be rendered
         const chartDom = document.getElementById('chart');
 
@@ -22,7 +32,7 @@ const LineChart: React.FC = () => {
             // X-axis configuration
             xAxis: {
                 type: 'category', // Category type for discrete data
-                data: xAxisData    // Data for X-axis
+                data: chartValue?.data    // Data for X-axis
             },
             // Y-axis configuration
             yAxis: {
@@ -32,7 +42,7 @@ const LineChart: React.FC = () => {
             series: [
                 {
                     name: 'Series 1',
-                    data: seriesData1,
+                    data: chartValue?.value1,
                     type: 'line',
                     label: { // Label configuration for series 1
                         show: true, // Show labels
@@ -41,7 +51,7 @@ const LineChart: React.FC = () => {
                 },
                 {
                     name: 'Series 2',
-                    data: seriesData2,
+                    data: chartValue?.value2,
                     type: 'line',
                     label: { // Label configuration for series 2
                         show: true,
@@ -50,7 +60,7 @@ const LineChart: React.FC = () => {
                 },
                 {
                     name: 'Series 3',
-                    data: seriesData3,
+                    data: chartValue?.value3,
                     type: 'line',
                     label: { // Label configuration for series 3
                         show: true,

@@ -466,8 +466,8 @@ export const postGoodInfo = async (args: number) => {
   //   }}
 };
 
-export const getOrder = async () => {
-  const { data } = await axios.get('http://' + host + ':' + port + '/Admin/getOrder');
+export const postOrder = async () => {
+  const { data } = await axios.post('http://' + host + ':' + port + 'getFormBig');
   return data;
   // return {data: [
   //   {
@@ -509,4 +509,40 @@ export const postAddGood = async (args: any) => {
     });
   return data;
   // return {status: 0}
+}
+
+export const postLineChart = async () => {
+  const { data } = await axios.post(
+    'http://' + host + ':' + port + 'component/chart11/getLineChart');
+  return data;
+}
+
+export const postPredictNum = async () => {
+  const { data } = await axios.post(
+    'http://' + host + ':' + port + '/pages/administer/getPredictNum');
+  return data;
+}
+
+export const postFormdDataList = async () => {
+  const { data } = await axios.post(
+    'http://' + host + ':' + port + 'compenont/FormdDataList');
+  return data;
+}
+
+export const postGoodDetail = async (args: any) => {
+  const { data } = await axios.post(
+    'http://' + host + ':' + port + 'Adiminister/getGoodDetail',
+    {
+      args
+    });
+  return data;
+}
+
+export const postDeleteFormInfo = async (args: any) => {
+  const { data } = await axios.post(
+    'http://' + host + ':' + port + '/Admin/deleteFormItem',
+    {
+      args
+    });
+  return data;
 }

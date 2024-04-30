@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Table } from 'antd';
 import type { TableColumnsType } from 'antd';
+import { postFormdDataList } from '@/api/hello';
 
 interface DataType {
     key: React.Key;
@@ -31,18 +32,37 @@ const columns: TableColumnsType<DataType> = [
     },
 ];
 
-const data: DataType[] = [];
-for (let i = 1; i <= 12; i++) { // 修改循环以匹配月份
-    data.push({
-        key: i,
-        month: `Month ${i}`, // 修改月份格式
-        transactionAmount: Math.floor(Math.random() * 1000), // 随机生成交易额
-        ecoFriendlyTransactionAmount: Math.floor(Math.random() * 500), // 随机生成环保值交易额
-    });
+
+
+const FormDataList: React.FC = () =>{
+    const [info, setInfo] = useState<DataType[]>([])
+    const data: DataType[] = [];
+
+    const getInfo = async () => {
+        const res = await postFormdDataList()
+        setInfo(res)
+      }
+
+    useEffect(() => {
+        getInfo()
+    }, [])
+
+    for (let i = 1; i <= 12; i++) { // 修改循环以匹配月份
+        data.push({
+            key: i,
+            month: `Month ${info[i].month}`, // 修改月份格式
+            transactionAmount: info[i].transactionAmount, // 随机生成交易额
+            ecoFriendlyTransactionAmount: info[i].ecoFriendlyTransactionAmount, // 随机生成环保值交易额
+        });
 }
 
-const FormDataList: React.FC = () => (
-    <Table columns={columns} dataSource={data} scroll={{ x: 450, y: 300 }} /> // 调整横向滚动范围
+    return (
+    <>
+        <Table columns={columns} dataSource={data} scroll={{ x: 450, y: 300 }} /> // 调整横向滚动范围
+    </>
 );
+}
+
+    
 
 export default FormDataList;

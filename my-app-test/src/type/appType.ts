@@ -74,8 +74,17 @@ export interface ChartDataType {
     value: number;
     address: string;
     tags: string[];
+    brief: string;
+    number: number;
 }
 
 export interface OrderInfo {
     data: ChartDataType[]
+}
+
+export interface chart11 {
+    data: string[];
+    value1: string[];
+    value2: string[];
+    value3: string[];
 }

@@ -51,26 +51,36 @@ const Search: React.FC = () => {
             </div>
             <div className={styled.card}>
                 <Space size={50}>
-                    {currentGoods.map((good) => (
-                        <Card
-                            style={{ width: 550 }}
-                            cover={
-                                <img
-                                    alt="example"
-                                    src={good.url}
-                                    style={{ width: 550, height: 350 }}
+                    {currentGoods.map((good) => {
+                        let imageUrl = ''; 
+                        if (good.url.startsWith('data:image/jpeg;base64,')) {
+                          imageUrl = good.url;
+                        } else if (good.url.startsWith('data:image/png;base64,')) {
+                          imageUrl = good.url;
+                        } else {
+                          console.error('Unsupported image format');
+                        }
+                        return(
+                            <Card
+                                style={{ width: 550 }}
+                                cover={
+                                    <img
+                                        alt="example"
+                                        src={imageUrl}
+                                        style={{ width: 550, height: 350 }}
+                                    />
+                                }
+                                actions={[
+                                    <InfoCircleOutlined style={{ fontSize: 24 }} onClick={() => { router.push({ pathname: '/Goods', query: { id: good.id } }) }} />
+                                ]}
+                            >
+                                <Meta
+                                    title={good.name}
+                                    description={good.description}
                                 />
-                            }
-                            actions={[
-                                <InfoCircleOutlined style={{ fontSize: 24 }} onClick={() => { router.push({ pathname: '/Goods', query: { id: good.id } }) }} />
-                            ]}
-                        >
-                            <Meta
-                                title={good.name}
-                                description={good.description}
-                            />
-                        </Card>
-                    ))}
+                            </Card>
+                        )
+                    })}
                 </Space>
             </div>
             <Pagination

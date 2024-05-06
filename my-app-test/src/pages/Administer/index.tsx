@@ -92,6 +92,12 @@ const Administer: React.FC = () => {
         const binary = new Uint8Array(reader.result);
         base64Image = btoa(String.fromCharCode.apply(null, Array.from(binary)));
       }
+      const fileType = file.type;
+      if (fileType.includes('image/png')) {
+        base64Image = 'data:image/png;base64,' + base64Image;
+      } else if (fileType.includes('image/jpeg')) {
+        base64Image = 'data:image/jpeg;base64,' + base64Image;
+      }
       const params = {
         image: base64Image,
         brief: form.getFieldValue('Brief'),

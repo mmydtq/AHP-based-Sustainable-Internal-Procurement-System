@@ -10,15 +10,6 @@ import useBearStore from '@/Store/store';
 function GoodCard(props: Card1) {
 
   const uid = useBearStore((state) => state.uId)
-  let imageUrl = ''; 
-  if (props.url.startsWith('data:image/jpeg;base64,')) {
-    imageUrl = props.url;
-  } else if (props.url.startsWith('data:image/png;base64,')) {
-    imageUrl = props.url;
-  } else {
-    console.error('Unsupported image format');
-  }
-
   return (
     <Space style={{marginBottom:'2vh'}}>
       <CheckCircleTwoTone style={{fontSize:48}} twoToneColor='#52c41a'/>
@@ -26,7 +17,8 @@ function GoodCard(props: Card1) {
         <Image
           width='30vw'
           height='30vh'
-          src={imageUrl}
+          src={props.url}
+          onError={(e) => console.error('Image loading error:', e)}
         />
       </div>
       <div style={{position:'relative', left:'1vw', width:'8vw'}}>{props.alt}</div>

@@ -27,7 +27,7 @@ const Faculty: React.FC = () => {
     }, 0);
 
     const getInfo = async () => {
-        const res = await postShowGoods(uid);
+        const res = await postShowGoods({uId : uid});
         res !== null ? setGoods(res) : Message.error('get Goods error');
     }
 

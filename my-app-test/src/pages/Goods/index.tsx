@@ -80,12 +80,12 @@ const Goodss: React.FC = () => {
   };
 
   const getInfo = async () => {
-    const res = await postGoodInfo(parseInt(goodId));
+    const res = await postGoodInfo({id: parseInt(goodId)});
     res !== null ? setGood(res.good) : Message.error('get majors error');
   }
 
   const getShowInfo = async () => {
-    const res = await postRecommendInfo(parseInt(goodId));
+    const res = await postRecommendInfo({id: parseInt(goodId)});
     res !== null ? setGoods(res) : Message.error('get majors error');
   }
 

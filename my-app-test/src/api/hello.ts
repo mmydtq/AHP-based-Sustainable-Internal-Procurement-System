@@ -310,7 +310,7 @@ export const postSearchInfo = async (args: String[]) => {
   // ]}
 };
 
-export const postRecommendInfo = async (args: number) => {
+export const postRecommendInfo = async (args: any) => {
   const { data } = await axios.post(
     'http://' + host + ':' + port + '/Good/recommend',
     {
@@ -377,7 +377,7 @@ export const postDeleteToCart = async (args: ToCart) => {
     });
 };
 
-export const postShowGoods = async (args: number) => {
+export const postShowGoods = async (args: any) => {
   const { data } = await axios.post(
     'http://' + host + ':' + port + '/Fancy/showGoods',
     {
@@ -446,7 +446,7 @@ export const postAdminRegister = async (args: UserRegister) => {
   return data;
 };
 
-export const postGoodInfo = async (args: number) => {
+export const postGoodInfo = async (args: any) => {
   const { data } = await axios.post(
     'http://' + host + ':' + port + '/Goods/getGoodInfo',
     {

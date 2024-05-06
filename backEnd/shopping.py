@@ -2,6 +2,7 @@ from flask import jsonify
 from flask_restful import Resource, reqparse
 from database import db
 from good import Good
+from flask_cors import cross_origin
 
 # 定义购物车模型
 class ShoppingCart(db.Model):
@@ -14,6 +15,7 @@ class ShoppingCart(db.Model):
 
 
 class AddToCart(Resource):
+    @cross_origin()
     def post(self):
         try:
             parser = reqparse.RequestParser()
@@ -43,6 +45,7 @@ class AddToCart(Resource):
             return {'error': str(e)}, 400
         
 class DeleteFromCart(Resource):
+    @cross_origin()
     def delete(self):
         try:
             parser = reqparse.RequestParser()
@@ -67,6 +70,7 @@ class DeleteFromCart(Resource):
         except Exception as e:
             return {'error': str(e)}, 400
 class GetCartGoods(Resource):
+    @cross_origin()
     def post(self):
         try:
             parser = reqparse.RequestParser()

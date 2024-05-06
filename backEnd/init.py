@@ -11,9 +11,10 @@ from present import MainDisplay, Display, SingleDisplay
 from shopping import AddToCart, DeleteFromCart, GetCartGoods
 from good import FindGoodsByTags, RecommendGoods
 from flask_cors import CORS, cross_origin
-from getFormBig import GetFormBig
+from getFormBig import GetFormBig, DeleteFormItem
 from getLineChart import get_line_chart
-
+from FromDataList import FormDataList
+from getPredictNum import getPredictNum
 def create_app():
     app = Flask(__name__)
     CORS(app)
@@ -41,7 +42,10 @@ def create_app():
     api.add_resource(FindGoodsByTags, '/Good/FindGood') 
     api.add_resource(RecommendGoods, '/Good/recommend') 
     api.add_resource(GetFormBig, '/getFormBig')
-    api.add_resource(get_line_chart, 'component/chart11/getLineChart')
+    api.add_resource(get_line_chart, '/component/chart11/getLineChart')
+    api.add_resource(DeleteFormItem, '/Admin/deleteFormItem')
+    api.add_resource(FormDataList, '/compenont/FormdDataList')
+    api.add_resource(getPredictNum, '/pages/administer/getPredictNum')
     return app
 
 def create_database(app):

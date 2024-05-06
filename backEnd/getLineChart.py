@@ -1,7 +1,8 @@
 from flask_restful import Resource, reqparse
-
+from flask_cors import cross_origin
 
 class get_line_chart(Resource):
+    @cross_origin()
     def post(self):
         try:
             parser = reqparse.RequestParser()

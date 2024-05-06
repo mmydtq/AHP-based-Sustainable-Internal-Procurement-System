@@ -1,9 +1,9 @@
 import json
-
+from flask_cors import cross_origin
 from flask import jsonify
 from flask_restful import Resource, reqparse
 
-from backEnd.good import Good
+from good import Good
 from database import db
 
 
@@ -73,10 +73,12 @@ class Admin(db.Model):
 
 
 class AddGoods(Resource):
+    @cross_origin()
     def post(self):
         parser = reqparse.RequestParser()
         parser.add_argument('good_id', type=int, required=True)
         parser.add_argument('url', type=str, required=True)
+        # 后端生成 
         parser.add_argument('environmentalValue', type=int, required=True)
         parser.add_argument('brief', type=str, required=True)
         parser.add_argument('tag', type=str, required=True)

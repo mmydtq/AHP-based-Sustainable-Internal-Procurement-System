@@ -21,7 +21,7 @@ for (let i = 10; i < 36; i++) {
 }
 
 
-const Title: React.FC<TitleProps> = ({ select }) => {
+const TitleAdmin: React.FC<TitleProps> = ({ select }) => {
   const [current, setCurrent] = useState(select);
   const [tags, setTages] = useState<string[]>([]);
   const setUName = useBearStore((state) => state.setUName);
@@ -53,67 +53,15 @@ const Title: React.FC<TitleProps> = ({ select }) => {
   const items: MenuProps['items'] = [
     {
       label: (
-        <Link href={'/HomePage'}>Home</Link>
-      ),
-      key: 'HomePage',
-    },
-    {
-      label: 'Goods',
-      key: 'Goods',
-      children: [
-        {
-          type: 'group',
-          label: 'Item 1',
-          children: [
-            {
-              label: 'Option 2',
-              key: 'setting:1',
-            },
-            {
-              label: 'Option 2',
-              key: 'setting:2',
-            },
-          ],
-        },
-        {
-          type: 'group',
-          label: 'Item 2',
-          children: [
-            {
-              label: 'Option 3',
-              key: 'setting:3',
-            },
-            {
-              label: 'Option 4',
-              key: 'setting:4',
-            },
-          ],
-        },
-      ],
-    },
-    {
-      label: uName !== '' ? <Link href={'/Faculty'}>Carts</Link> : <span onClick={() => {if (uName === '') alert('你还没有登录')}}>Carts</span>,
-      key: 'Faculty',
-    },
-    {
-      label: (<Link href={'/Value1'}>Value</Link>),
-      key: 'Value',
-    },
-    {
-      label: uName !== '' ? <Link href={'/Support'}>Carts</Link> : <span onClick={() => {if (uName === '') alert('你还没有登录')}}>Support</span>,
-      key: 'Support',
-    },
-    {
-      label: (
         <Link href={'/Administer'}>Administer</Link>
       ),
       key: 'Administer',
     },
     {
       label: (
-        <Link href={'/Login'}>Login</Link>
+        <Link href={'/AdminLogin'}>Administer Login</Link>
       ),
-      key: 'Login',
+      key: 'Administer Login',
     },
   ];
 
@@ -123,7 +71,7 @@ const Title: React.FC<TitleProps> = ({ select }) => {
       <div className={styled.container}>
         <Affix offsetTop={0}>
           <Row align="middle" justify="space-between">
-            <Col flex="5"></Col>
+            <Col flex="3"></Col>
             <Col flex="1">
               <Image src={shop} alt='shopIcon' width={30} height={30} className={styled.im} />
             </Col>
@@ -145,19 +93,6 @@ const Title: React.FC<TitleProps> = ({ select }) => {
                 }}
               />
             </Col>
-            <Col flex="4">
-              <Select
-                mode="tags"
-                style={{ width: '180px', margin: '0 10px' }}
-                placeholder="Search"
-                options={options}
-                allowClear
-                maxTagCount={3}
-                className={styled.search}
-                onChange={(value, option) => { setTages(value) }}
-              />
-              <Button icon={<SearchOutlined />} onClick={() => { router.push({ pathname: '/Search', query: { tagsArray: tags } }, undefined, { shallow: true }) }} style={{ top: '0px' }} />
-            </Col>
             <Col flex="1">
               <LogoutOutlined style={{ fontSize: 24, color: '#165DFF', margin: '0 10px' }} onClick={info} />
             </Col>
@@ -168,4 +103,4 @@ const Title: React.FC<TitleProps> = ({ select }) => {
   );
 };
 
-export default Title;
+export default TitleAdmin;

@@ -20,6 +20,7 @@ import { ChartDataType, OrderInfo } from '@/type/appType';
 import { postOrder, postAddGood, postDeleteFormInfo, postPredictNum } from '@/api/hello';
 import LineChartWithButtons from '@/component/CardChartLine';
 import { stringify } from 'querystring';
+import TitleAdmin from '@/component/TitleAdmin';
 
 
 
@@ -116,6 +117,7 @@ for (let i = 10; i < 36; i++) {
         value: form.getFieldValue('Value'),
         description: form.getFieldValue('Description'),
       }
+      console.log(base64Image)
       const res = await postAddGood(params);
       res.status === 0 ? success() : error();
     };
@@ -331,7 +333,7 @@ for (let i = 10; i < 36; i++) {
   return (
     <div>
       {contextHolder}
-      <Title select='Administer' />
+      <TitleAdmin select='Administer' />
       <div style={{ backgroundColor: '#F6F8FB' }}>
         <div>
           <Row>

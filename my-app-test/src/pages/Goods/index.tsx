@@ -10,6 +10,7 @@ import { postAddToCart, postDeleteToCart, postGoodInfo, postRecommendInfo, postS
 import { Message } from '@arco-design/web-react';
 import { Good, Goods } from '@/type/appType';
 import useBearStore from '@/Store/store';
+import { number } from 'echarts';
 
 const buttonStyle: React.CSSProperties = {
   borderRadius: '100px',
@@ -27,22 +28,13 @@ const buttonStyle: React.CSSProperties = {
 
 const Goodss: React.FC = () => {
   const router = useRouter();
-  const goodId = router.query.id as unknown as number;
+  const goodId = router.query.id as string;
   const [good, setGood] = useState<Good>()
   const [goods, setGoods] = useState<Goods>({ goods: [] })
   const showGoods = goods.goods
   const [isfac, setIsfac] = useState<boolean>(false)
   const uid = useBearStore((state) => state.uId)
   const [messageApi, contextHolder] = message.useMessage();
-
-  let imageUrl = ''; 
-  if (good?.url.startsWith('data:image/jpeg;base64,')) {
-    imageUrl = good.url;
-  } else if (good?.url.startsWith('data:image/png;base64,')) {
-    imageUrl = good.url;
-  } else {
-    console.error('Unsupported image format');
-  }
 
   const items: DescriptionsProps['items'] = [
     {
@@ -88,12 +80,12 @@ const Goodss: React.FC = () => {
   };
 
   const getInfo = async () => {
-    const res = await postGoodInfo(goodId);
+    const res = await postGoodInfo(parseInt(goodId));
     res !== null ? setGood(res.good) : Message.error('get majors error');
   }
 
   const getShowInfo = async () => {
-    const res = await postRecommendInfo(goodId);
+    const res = await postRecommendInfo(parseInt(goodId));
     res !== null ? setGoods(res) : Message.error('get majors error');
   }
 
@@ -110,7 +102,7 @@ const Goodss: React.FC = () => {
         <Image
           width='30vw'
           height='45vh'
-          src={imageUrl}
+          src={good?.url}
         />
       </div>
       <div style={{ position: 'absolute', left: '47vw', top: '10vh' }}>

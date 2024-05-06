@@ -32,8 +32,9 @@ const Goodss: React.FC = () => {
   const [good, setGood] = useState<Good>()
   const [goods, setGoods] = useState<Goods>({ goods: [] })
   const showGoods = goods.goods
-  const [isfac, setIsfac] = useState<boolean>(false)
+  const [isfac, setIsfac] = useState<boolean>(true)
   const uid = useBearStore((state) => state.uId)
+  const uname = useBearStore((state) => state.uName)
   const [messageApi, contextHolder] = message.useMessage();
 
   const items: DescriptionsProps['items'] = [
@@ -66,6 +67,7 @@ const Goodss: React.FC = () => {
 
   const handleHreatClick = async () => {
     setIsfac(!isfac)
+    console.log(uname)
     isfac ? await postAddToCart({ id: good?.id, uId: uid }) : await postDeleteToCart({ id: good?.id, uId: uid })
   }
 
@@ -117,7 +119,7 @@ const Goodss: React.FC = () => {
         </Button>
 
         <div style={{ position: 'relative', top: '1.6vh', left: '3vw' }} onClick={handleHreatClick}>
-          {isfac ? <HeartOutlined style={{ fontSize: '40px' }} /> : <HeartTwoTone twoToneColor="red" style={{ fontSize: '40px' }} />}
+          {isfac ? <HeartOutlined twoToneColor="black" style={{ fontSize: '40px' }} /> : <HeartTwoTone twoToneColor="red" style={{ fontSize: '40px' }} />}
         </div>
       </Space>
       <div style={{ position: 'relative', top: '50vh' }}>

@@ -100,7 +100,7 @@ const Title: React.FC<TitleProps> = ({ select }) => {
       key: 'Value',
     },
     {
-      label: uName !== '' ? <Link href={'/Support'}>Carts</Link> : <span onClick={() => {if (uName === '') alert('你还没有登录')}}>Support</span>,
+      label: uName !== '' ? <Link href={'/Support'}>Support</Link> : <span onClick={() => {if (uName === '') alert('你还没有登录')}}>Support</span>,
       key: 'Support',
     },
     {

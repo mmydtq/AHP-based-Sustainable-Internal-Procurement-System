@@ -1,5 +1,5 @@
 from flask_cors import cross_origin
-from flask_restful import Resource
+from flask_restful import Resource, reqparse
 from good import Good
 
 class MainDisplay(Resource):
@@ -14,5 +14,10 @@ class Display(Resource):
     
 class SingleDisplay(Resource):
     @cross_origin()
-    def get(self):
-        return Good.findById(), 200
+    def post(self):
+        parser = reqparse.RequestParser()
+        parser.add_argument('id', type=int, required=True)
+        args = parser.parse_args()
+        id = args['id']
+        print(Good.findById(id))
+        return Good.findById(id), 200

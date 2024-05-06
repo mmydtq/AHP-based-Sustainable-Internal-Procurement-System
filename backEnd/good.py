@@ -67,12 +67,13 @@ class Good(db.Model):
         if not good:
             return None
         return {
-            'good': {
+                'good': {
                 'id': good.id,
                 'url': good.url,
                 'environmentalValue': good.environmental_value,
                 'brief': good.brief,
-                'tag': json.loads(good.tag),
+                # 'tag': json.loads(good.tag),
+                'tag': '[aaa]',
                 'name': good.name,
                 'value': good.value,
                 'description': good.description,
@@ -106,7 +107,8 @@ class RecommendGoods(Resource):
                 'url': g.url,
                 'environmentalValue': g.environmental_value,
                 'brief': g.brief,
-                'tag': json.loads(g.tag),
+                # 'tag': json.loads(g.tag),
+                'tag': '[aaa]',
                 'name': g.name,
                 'value': g.value,
                 'description': g.description,

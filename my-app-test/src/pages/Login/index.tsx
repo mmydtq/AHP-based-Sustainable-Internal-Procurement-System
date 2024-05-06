@@ -41,7 +41,7 @@ const Login: React.FC = () => {
             ?
             (setUName(form.getFieldValue('uName')),
                 setPassword(form.getFieldValue('password')),
-                setUId(callback.user.id),
+                setUId(callback.user.uId),
                 router.push('/HomePage'))
             :
             openNotification('topRight')

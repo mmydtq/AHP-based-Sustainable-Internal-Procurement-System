@@ -83,7 +83,7 @@ const Value1: FunctionComponent = () => {
                         “Innovation for a Greener Tomorrow”
                     </div>
                 </div>
-                <img className={styles.groupIcon} alt="" src="/group-15@2x.png" />
+                {/* <img className={styles.groupIcon} alt="" src="/group-25@2x.png" /> */}
                 <Image src={group15} className={styled.groupIcon} alt='' />
 
                 <img className={styles.sdgChild22} alt="" src="/group-25@2x.png" />

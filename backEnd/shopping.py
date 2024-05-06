@@ -44,9 +44,9 @@ class AddToCart(Resource):
         except Exception as e:
             return {'error': str(e)}, 400
         
-class DeleteFromCart(Resource):
+class DeleteGood(Resource):
     @cross_origin()
-    def delete(self):
+    def post(self):
         try:
             parser = reqparse.RequestParser()
             parser.add_argument('id', type=int, required=True, help='ID is required')
@@ -69,7 +69,7 @@ class DeleteFromCart(Resource):
 
         except Exception as e:
             return {'error': str(e)}, 400
-class GetCartGoods(Resource):
+class ShowGoods(Resource):
     @cross_origin()
     def post(self):
         try:

@@ -8,7 +8,7 @@ from register import Register, Login, RePassword
 from admin_register import AdminRegister, AdminLogin
 from admin import AddGoods
 from present import MainDisplay, Display, SingleDisplay
-from shopping import AddToCart, DeleteFromCart, GetCartGoods
+from shopping import AddToCart, DeleteGood, ShowGoods
 from good import FindGoodsByTags, RecommendGoods
 from flask_cors import CORS, cross_origin
 from getFormBig import GetFormBig, DeleteFormItem
@@ -37,8 +37,8 @@ def create_app():
     api.add_resource(Display, '/HomePage/display')
     api.add_resource(SingleDisplay, '/Goods/getGoodInfo')
     api.add_resource(AddToCart, '/Fancy/addToCart')
-    api.add_resource(DeleteFromCart, '/Fancy/deleteGood')
-    api.add_resource(GetCartGoods, '/Fancy/showGoods')
+    api.add_resource(DeleteGood, '/Fancy/deleteGood')
+    api.add_resource(ShowGoods, '/Fancy/showGoods')
     api.add_resource(FindGoodsByTags, '/Good/FindGood') 
     api.add_resource(RecommendGoods, '/Good/recommend') 
     api.add_resource(GetFormBig, '/getFormBig')

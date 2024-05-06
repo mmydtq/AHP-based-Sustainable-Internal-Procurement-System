@@ -314,7 +314,7 @@ export const postRecommendInfo = async (args: any) => {
   const { data } = await axios.post(
     'http://' + host + ':' + port + '/Good/recommend',
     {
-      args
+      ...args
     });
   return data;
   //   return {goods : [{
@@ -381,7 +381,7 @@ export const postShowGoods = async (args: any) => {
   const { data } = await axios.post(
     'http://' + host + ':' + port + '/Fancy/showGoods',
     {
-      args
+      ...args
     });
   return data;
   //   return {goods : [{
@@ -450,7 +450,7 @@ export const postGoodInfo = async (args: any) => {
   const { data } = await axios.post(
     'http://' + host + ':' + port + '/Goods/getGoodInfo',
     {
-      args
+      ...args
     });
   return data;
   //   return {good :{
@@ -505,7 +505,7 @@ export const postAddGood = async (args: any) => {
   const { data } = await axios.post(
     'http://' + host + ':' + port + '/Admin/addGood',
     {
-      args
+      ...args
     });
   return data;
   // return {status: 0}
@@ -533,7 +533,7 @@ export const postGoodDetail = async (args: any) => {
   const { data } = await axios.post(
     'http://' + host + ':' + port + 'Adiminister/getGoodDetail',
     {
-      args
+      ...args
     });
   return data;
 }
@@ -542,7 +542,7 @@ export const postDeleteFormInfo = async (args: any) => {
   const { data } = await axios.post(
     'http://' + host + ':' + port + '/Admin/deleteFormItem',
     {
-      args
+      ...args
     });
   return data;
 }

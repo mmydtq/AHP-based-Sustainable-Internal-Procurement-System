@@ -32,7 +32,7 @@ const Goodss: React.FC = () => {
   const [good, setGood] = useState<Good>()
   const [goods, setGoods] = useState<Goods>({ goods: [] })
   const showGoods = goods.goods
-  const [isfac, setIsfac] = useState<boolean>(true)
+  const [isfac, setIsfac] = useState<boolean>(false)
   const uid = useBearStore((state) => state.uId)
   const uname = useBearStore((state) => state.uName)
   const [messageApi, contextHolder] = message.useMessage();
@@ -65,21 +65,31 @@ const Goodss: React.FC = () => {
     },
   ]
 
-  const handleHreatClick = async () => {
-    setIsfac(!isfac)
-    console.log(uname)
-    isfac ? await postAddToCart({ id: good?.id, uId: uid }) : await postDeleteToCart({ id: good?.id, uId: uid })
-  }
-
   const success = () => {
     messageApi.open({
-      type: 'success',
-      content: 'The purchase request was successfully submitted to the administrator',
-      style: {
-        marginTop: '10vh',
-      },
+        type: 'success',
+        content: 'The product has been added to the shopping cart',
+        style: {
+            marginTop: '5vh',
+        },
     });
+};
+
+  const handleHeartClick = async () => {
+    setIsfac(true); 
+    await postAddToCart({ id: good?.id, uId: uid });
   };
+
+  useEffect(() => {
+    if (isfac) {
+      success()
+      const timer = setTimeout(() => {
+        setIsfac(false);
+      }, 500);
+  
+      return () => clearTimeout(timer);
+    }
+  }, [isfac]);
 
   const getInfo = async () => {
     const res = await postGoodInfo({id: parseInt(goodId)});
@@ -111,17 +121,13 @@ const Goodss: React.FC = () => {
         <Card title="Good Info" bordered={true} style={{ width: '50vw' }}>
           <Descriptions layout="vertical" items={items} />
         </Card>
-        <Rate disabled value={good?.environmentalValue} style={{ position: 'relative', left: '20vw', top: '3vh', color: 'green' }} />
       </div>
-      <Space className={styled.heart}>
-        <Button htmlType="submit" className={styled.button} style={buttonStyle} onClick={success}>
-          Buy
-        </Button>
-
-        <div style={{ position: 'relative', top: '1.6vh', left: '3vw' }} onClick={handleHreatClick}>
-          {isfac ? <HeartOutlined twoToneColor="black" style={{ fontSize: '40px' }} /> : <HeartTwoTone twoToneColor="red" style={{ fontSize: '40px' }} />}
+      <div className={styled.heart}>
+        <div style={{ color: 'lightgreen', width:'10vw', padding: '5px', fontSize:'48px' }}>{100} <span role="img" aria-label="environmental icon">🌿</span></div>
+        <div style={{ position: 'relative',top: '-10vh', left: '30vw' }} onClick={handleHeartClick}>
+          <HeartOutlined twoToneColor="red" style={{ fontSize: '140px', color: isfac ? 'red' : 'black', transition: 'color 0.3s' }}/>
         </div>
-      </Space>
+      </div>
       <div style={{ position: 'relative', top: '50vh' }}>
         <Divider style={{ borderColor: 'black' }}>Recommend</Divider>
         <Space style={{ position: 'relative', top: '20vh', left: '4vw' }} size='large'>

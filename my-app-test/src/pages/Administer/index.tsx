@@ -55,16 +55,22 @@ const Administer: React.FC = () => {
   const [formInfo, setFormInfo] = useState<string[]>([])
 
 
-const options: SelectProps['options'] = [];
-
-for (let i = 10; i < 36; i++) {
-  options.push({
-    value: i.toString(36) + i,
-    label: i.toString(36) + i,
-  });
-}
-
-
+  const options: SelectProps['options'] = [
+    {value: 'Low Carbon Emissions', label: 'LCE'},
+    {value: 'Moderate Carbon Emissions', label: 'MCE'},
+    {value: 'High Carbon Emissions', label: 'HCE'},
+    {value: 'Low Resource Efficiency', label: 'LBE'},
+    {value: 'Moderate Resource Efficiency', label: 'MRE'},
+    {value: 'High Resource Efficiency', label: 'HRE'},
+    {value: 'Fully Recyclable', label: 'FR'},
+    {value: 'Partially Recyclable', label: 'PR'},
+    {value: 'Not Recyclable', label: 'NR'},
+    {value: 'Environmental Certification', label: 'EC'},
+    {value: 'No Environmental Certification', label: 'NEC'},
+    {value: 'Alternative Part Available', label: 'APA'},
+    {value: 'Alternative Part Available 50%', label: 'APA 50%'},
+    {value: 'No Alternative Part Availabl', label: 'NAPA'}
+  ]
 
   const getOrderInfo = async () => {
     const res = await postOrder()

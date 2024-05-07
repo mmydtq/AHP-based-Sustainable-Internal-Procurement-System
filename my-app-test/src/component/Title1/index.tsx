@@ -11,15 +11,22 @@ import { LogoutOutlined, SearchOutlined } from '@ant-design/icons';
 import { Row, Col } from 'antd';
 import useBearStore from '@/Store/store';
 
-const options: SelectProps['options'] = [];
-
-for (let i = 10; i < 36; i++) {
-  options.push({
-    value: i.toString(36) + i,
-    label: i.toString(36) + i,
-  });
-}
-
+const options: SelectProps['options'] = [
+  {value: 'Low Carbon Emissions', label: 'LCE'},
+  {value: 'Moderate Carbon Emissions', label: 'MCE'},
+  {value: 'High Carbon Emissions', label: 'HCE'},
+  {value: 'Low Resource Efficiency', label: 'LBE'},
+  {value: 'Moderate Resource Efficiency', label: 'MRE'},
+  {value: 'High Resource Efficiency', label: 'HRE'},
+  {value: 'Fully Recyclable', label: 'FR'},
+  {value: 'Partially Recyclable', label: 'PR'},
+  {value: 'Not Recyclable', label: 'NR'},
+  {value: 'Environmental Certification', label: 'EC'},
+  {value: 'No Environmental Certification', label: 'NEC'},
+  {value: 'Alternative Part Available', label: 'APA'},
+  {value: 'Alternative Part Available 50%', label: 'APA 50%'},
+  {value: 'No Alternative Part Availabl', label: 'NAPA'}
+]
 
 const Title: React.FC<TitleProps> = ({ select }) => {
   const [current, setCurrent] = useState(select);
@@ -59,37 +66,7 @@ const Title: React.FC<TitleProps> = ({ select }) => {
     },
     {
       label: 'Goods',
-      key: 'Goods',
-      children: [
-        {
-          type: 'group',
-          label: 'Item 1',
-          children: [
-            {
-              label: 'Option 2',
-              key: 'setting:1',
-            },
-            {
-              label: 'Option 2',
-              key: 'setting:2',
-            },
-          ],
-        },
-        {
-          type: 'group',
-          label: 'Item 2',
-          children: [
-            {
-              label: 'Option 3',
-              key: 'setting:3',
-            },
-            {
-              label: 'Option 4',
-              key: 'setting:4',
-            },
-          ],
-        },
-      ],
+      key: 'Goods'
     },
     {
       label: uName !== '' ? <Link href={'/Faculty'}>Carts</Link> : <span onClick={() => {if (uName === '') alert('你还没有登录')}}>Carts</span>,
@@ -128,7 +105,7 @@ const Title: React.FC<TitleProps> = ({ select }) => {
               <Image src={shop} alt='shopIcon' width={30} height={30} className={styled.im} />
             </Col>
             <Col flex="1"></Col>
-            <Col flex="11">
+            <Col flex="7">
 
               <Menu
                 onClick={onClick}
@@ -148,17 +125,17 @@ const Title: React.FC<TitleProps> = ({ select }) => {
             <Col flex="4">
               <Select
                 mode="tags"
-                style={{ width: '180px', margin: '0 10px' }}
+                style={{ width: '335px', margin: '0 10px' }}
                 placeholder="Search"
                 options={options}
                 allowClear
-                maxTagCount={3}
+                maxTagCount={5}
                 className={styled.search}
-                onChange={(value, option) => { setTages(value) }}
+                onChange={(value) => { setTages(value) }}
               />
               <Button icon={<SearchOutlined />} onClick={() => { router.push({ pathname: '/Search', query: { tagsArray: tags } }, undefined, { shallow: true }) }} style={{ top: '0px' }} />
             </Col>
-            <Col flex="1">
+            <Col flex="0">
               <LogoutOutlined style={{ fontSize: 24, color: '#165DFF', margin: '0 10px' }} onClick={info} />
             </Col>
           </Row>

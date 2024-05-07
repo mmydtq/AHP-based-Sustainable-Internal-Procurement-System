@@ -88,9 +88,15 @@ const Register: React.FC = () => {
                                         placeholder="Your room"
                                         allowClear
                                         options={[
-                                            { value: 'jack', label: 'Jack' },
-                                            { value: 'lucy', label: 'Lucy' },
-                                            { value: 'Yiminghe', label: 'yiminghe' },]}
+                                            { value: 'Technology Department', label: 'Technology Department' },
+                                            { value: 'Human Resources Department', label: 'Human Resources Department' },
+                                            { value: 'Design Department', label: 'Design Department' },
+                                            { value: 'Purchasing Department', label: 'Purchasing Department' },
+                                            { value: 'Technology Support Department', label: 'Technology Support Department' },
+                                            { value: 'Board of Directors', label: 'Board of Directors' },
+                                            { value: 'Secretary Department', label: 'Secretary Department' },
+                                            { value: 'Front Desk', label: 'Front Desk' },
+                                            { value: 'After-Sales Department', label: 'After-Sales Department' },]}
                                     />
                                 </Form.Item>
                                 

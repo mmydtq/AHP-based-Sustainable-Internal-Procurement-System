@@ -17,7 +17,7 @@ class Admin(db.Model):
     email = db.Column(db.String(255))
 
     @staticmethod
-    def findRepeat(name, phone, room, email):
+    def findRepeat(name, phone, email):
         existing_user = Admin.query.filter_by(name=name).first()
         if existing_user:
             return 1  # 用户名已经存在
@@ -30,8 +30,8 @@ class Admin(db.Model):
         return 0  # 账号注册成功
 
     @staticmethod
-    def addAdmin(name, room, email, phone, password):
-        new_admin = Admin(name=name, room=room, email=email, phone=phone, password=password)
+    def addAdmin(name, email, phone, password):
+        new_admin = Admin(name=name, email=email, phone=phone, password=password)
         db.session.add(new_admin)
         db.session.commit()
 
@@ -41,10 +41,9 @@ class Admin(db.Model):
         if not a:
             return None
         return {"uId": a.id,
-                "uName": a.name,
+                "name": a.name,
                 "password": a.password,
                 "phone": a.phone,
-                "room": a.room,
                 "email": a.email}
 
     @staticmethod

@@ -89,41 +89,41 @@ class AddGoods(Resource):
         alt_part = 0
 
         # assign scores to carbon footprint
-        if "Low Carbon Emissions" in tag_array:
+        if "LCE" in tag_array:
             carbon_footprint = 1
-        elif "Moderate Carbon Emissions" in tag_array:
+        elif "MCE" in tag_array:
             carbon_footprint = 0.6
-        elif "High Carbon Emissions" in tag_array:
+        elif "HCE" in tag_array:
             carbon_footprint = 0.3
 
         # assign scores to resource efficient
-        if "High Resource Efficiency" in tag_array:
+        if "HRE" in tag_array:
             resource_efficient = 1
-        elif "Moderate Resource Efficiency" in tag_array:
+        elif "MRE" in tag_array:
             resource_efficient = 0.7
-        elif "Low Resource Efficiency" in tag_array:
+        elif "LRE" in tag_array:
             resource_efficient = 0.3
 
         # assign scores to recyclable
-        if "Fully Recyclable" in tag_array:
+        if "FR" in tag_array:
             recyclable = 1
-        elif "Partially Recyclable" in tag_array:
+        elif "PR" in tag_array:
             recyclable = 0.5
-        elif "Not Recyclable" in tag_array:
+        elif "NR" in tag_array:
             recyclable = 0.2
 
         # assign scores to environmental certification
-        if "Environmental Certification" in tag_array:
+        if "EC" in tag_array:
             env_certification = 1
-        elif "No Environmental Certification" in tag_array:
+        elif "NEC" in tag_array:
             env_certification = 0
 
         # assign scores to alternative part
-        if "Alternative Part Available" in tag_array:
+        if "APA" in tag_array:
             alt_part = 1
-        elif "Alternative Part Available 50%" in tag_array:
+        elif "APA 50%" in tag_array:
             alt_part = 0.4
-        elif "No Alternative Part Available" in tag_array:
+        elif "NAPartA" in tag_array:
             alt_part = 0
 
         environmentalValue = (carbon_footprint * 0.293 + resource_efficient * 0.212 + recyclable * 0.143

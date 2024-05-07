@@ -1,8 +1,10 @@
 from flask import jsonify
 from flask_restful import Resource, reqparse
+from flask_cors import cross_origin
 from admin import Admin
 
 class AdminRegister(Resource):
+    @cross_origin()
     def post(self):
         parser = reqparse.RequestParser()
         parser.add_argument('uName', type = str, required = True)
@@ -19,8 +21,9 @@ class AdminRegister(Resource):
         return jsonify({"status": status}), 200
 
 class AdminLogin(Resource):
+    @cross_origin()
     def post(self):
-        parser = reqparse.RequestParser
+        parser = reqparse.RequestParser()
         parser.add_argument('uName', type=str, required=True)
         parser.add_argument('password', type=str, required=True)
         data = parser.parse_args()

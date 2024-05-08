@@ -46,7 +46,7 @@ const Register: React.FC = () => {
         }
         const callback = await postAdminRegister(params)
         callback.status === 0 ?
-            router.push('/Login')
+            router.push('/AdminLogin')
             :
             openNotification('topRight')
     }

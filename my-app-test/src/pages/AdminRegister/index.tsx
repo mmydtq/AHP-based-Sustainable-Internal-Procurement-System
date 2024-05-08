@@ -40,8 +40,7 @@ const Register: React.FC = () => {
         const params = {
             uName: form.getFieldValue('uName'),
             password: form.getFieldValue('password'),
-            phone: form.getFieldValue('phone'),
-            room: form.getFieldValue('room'),
+            phone: parseInt(form.getFieldValue('phone')) ,
             email: form.getFieldValue('email'),
         }
         const callback = await postAdminRegister(params)
@@ -74,23 +73,6 @@ const Register: React.FC = () => {
                             rules={[{ required: true, message: 'Please enter' }]}
                         >
                             <Input placeholder="Please enter real name" prefix={<UserOutlined />} className={styled.uname} />
-                        </Form.Item>
-
-                        <Form.Item
-                            name="room"
-                            rules={[{ required: true }]}
-                        >
-                            <Tooltip title="Select room">
-                                <Select
-                                    style={{ width: 210, marginTop: 5 }}
-                                    placeholder="Your room"
-                                    allowClear
-                                    options={[
-                                        { value: 'jack', label: 'Jack' },
-                                        { value: 'lucy', label: 'Lucy' },
-                                        { value: 'Yiminghe', label: 'yiminghe' },]}
-                                />
-                            </Tooltip>
                         </Form.Item>
 
                         <Form.Item

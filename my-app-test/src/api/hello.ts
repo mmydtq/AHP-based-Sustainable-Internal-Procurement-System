@@ -437,7 +437,7 @@ export const postAdminLogin = async (args: LoginType) => {
   return data;
 };
 
-export const postAdminRegister = async (args: UserRegister) => {
+export const postAdminRegister = async (args: any) => {
   const { data } = await axios.post(
     'http://' + host + ':' + port + '/Administer/register',
     {

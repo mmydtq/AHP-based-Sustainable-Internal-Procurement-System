@@ -9,6 +9,7 @@ import Bottom from '@/component/Bottom';
 import { postAdminLogin } from '@/api/hello';
 import useBearStore from '@/Store/store';
 import router from 'next/router';
+import TitleAdmin from '@/component/TitleAdmin';
 
 type NotificationPlacement = NotificationArgsProps['placement'];
 
@@ -39,7 +40,7 @@ const AdminLogin: React.FC = () => {
             (setUName(form.getFieldValue('uName')),
                 setPassword(form.getFieldValue('password')),
                 setUId(callback.user.id),
-                router.push('/HomePage'))
+                router.push('/Administer'))
             :
             openNotification('topRight')
     }
@@ -48,7 +49,7 @@ const AdminLogin: React.FC = () => {
         <Context.Provider value={contextValue}>
             {contextHolder}
             <div>
-                <Title select='Administer' />
+                <TitleAdmin select='AdministerLogin' />
                 <div className={styled.title}><b>Login  for  faster  checkout.</b></div>
                 <div className={styled.subtitle}>Login in<br />Your account</div>
                 <div className={styled.login}>

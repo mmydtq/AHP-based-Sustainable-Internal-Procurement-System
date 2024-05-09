@@ -61,7 +61,7 @@ const TitleAdmin: React.FC<TitleProps> = ({ select }) => {
       label: (
         <Link href={'/AdminLogin'}>Administer Login</Link>
       ),
-      key: 'Administer Login',
+      key: 'AdministerLogin',
     },
   ];
 

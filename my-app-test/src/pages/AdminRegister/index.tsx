@@ -7,6 +7,7 @@ import styled from "./index.module.css"
 import Bottom from '@/component/Bottom';
 import { postAdminRegister } from '@/api/hello';
 import router from 'next/router';
+import TitleAdmin from '@/component/TitleAdmin';
 
 type NotificationPlacement = NotificationArgsProps['placement'];
 
@@ -54,7 +55,7 @@ const Register: React.FC = () => {
         <Context.Provider value={contextValue}>
             {contextHolder}
             <div>
-                <Title select='Administer' />
+                <TitleAdmin select='AdministerLogin'/>
                 <div className={styled.intro}><b>Register for faster browse.</b></div>
                 <div className={styled.title}><b>Register your ID.</b></div>
                 <div className={styled.subtitle}>One Apple ID is all you need to<br />access all Apple services</div>

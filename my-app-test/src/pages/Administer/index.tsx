@@ -79,7 +79,7 @@ const Administer: React.FC = () => {
 
   const getFormInfo = async () => {
     const res = await postPredictNum()
-    setFormInfo(res)
+    setFormInfo(res.value)
   }
 
   const deletOrderInfo = async (key : string) => {

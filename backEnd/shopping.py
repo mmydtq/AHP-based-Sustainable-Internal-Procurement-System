@@ -12,6 +12,7 @@ class ShoppingCart(db.Model):
     user_id = db.Column(db.Integer, nullable=False)
     good_id = db.Column(db.Integer, nullable=False)
     quantity = db.Column(db.Integer, nullable=False, default=1)
+    is_submit = db.Column(db.Integer, nullable=False, default=0)
 
 
 class AddToCart(Resource):
@@ -80,7 +81,7 @@ class ShowGoods(Resource):
             user_id = args['uId']
 
             # 查询购物车中指定用户的商品信息
-            cart_goods = ShoppingCart.query.filter_by(user_id=user_id).all()
+            cart_goods= ShoppingCart.query.filter_by(user_id=user_id, is_submit=0).first()
 
             # 构建返回的商品信息列表
             goods_list = []

@@ -12,6 +12,7 @@ class Admin(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(255))
     password = db.Column(db.String(255))
+    #room = db.Column(db.String(255))
     phone = db.Column(db.Integer)
     email = db.Column(db.String(255))
 

@@ -11,7 +11,7 @@ class AdminRegister(Resource):
         parser.add_argument('phone', type = int, required = True)
         parser.add_argument('email', type = str, required = True)
         parser.add_argument('password', type=str, required=True)
-        parser.add_argument('room', type=str, required=True)
+        #parser.add_argument('room', type=str, required=True)
         data = parser.parse_args()
 
         status = Admin.findRepeat(data['uName'], data['phone'], data['email'])

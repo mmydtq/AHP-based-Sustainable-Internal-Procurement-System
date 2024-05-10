@@ -100,12 +100,12 @@ const Title: React.FC<TitleProps> = ({ select }) => {
       <div className={styled.container}>
         <Affix offsetTop={0}>
           <Row align="middle" justify="space-between">
-            <Col flex="5"></Col>
+            <Col flex="3"></Col>
             <Col flex="1">
               <Image src={shop} alt='shopIcon' width={30} height={30} className={styled.im} />
             </Col>
             <Col flex="1"></Col>
-            <Col flex="7">
+            <Col flex="9">
 
               <Menu
                 onClick={onClick}

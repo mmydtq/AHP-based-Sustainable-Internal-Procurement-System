@@ -18,22 +18,24 @@ const Faculty: React.FC = () => {
     const pageSize = 2;
     const startIndex = (currentPage - 1) * pageSize;
     const endIndex = currentPage * pageSize;
-    const currentGoods = goods.slice(startIndex, endIndex);
+    const currentGoods = goods?.slice(startIndex, endIndex);
     const [messageApi, contextHolder] = message.useMessage();
     const [reRender, setReRender] = useState(true);
     const uid = useBearStore((state) => state.uId)
     const setId = useBearStore((state) => state.setId)
-    const totalValue = goods.reduce((total, good) => {
+    const totalValue = goods?.reduce((total, good) => {
         return total + good.value;
     }, 0);
+    console.log(Goods)
 
     const getInfo = async () => {
         const res = await postShowGoods({uId : uid});
-        res !== null ? setGoods(res.goods) : Message.error('get Goods error');
+        res !== null ? setGoods(res) : Message.error('get Goods error');
+        console.log(res.goods)
     }
 
     const success = async () => {
-        const res = await postBuy();
+        const res = await postBuy({uId: uid});
         setId(res.id)
         setReRender(!reRender)
         messageApi.open({
@@ -60,13 +62,13 @@ const Faculty: React.FC = () => {
                     <Button className={styled.button} onClick={success}>SUMMIT</Button>
                 </Space>
                 <div className={styled.good}>
-                    {currentGoods.map((good) => (
+                    {currentGoods?.map((good) => (
                         <GoodCard id={good.id} url={good.url} alt={good.name} brief={good.brief} value={good.value} env={good.environmentalValue} rerender={reRender} setrerender={setReRender} />
                     ))}
                 </div>
                 <Pagination
                     defaultCurrent={1}
-                    total={goods.length}
+                    total={goods?.length}
                     defaultPageSize={pageSize}
                     onChange={(page) => setCurrentPage(page)}
                     style={{ position: 'absolute', top: '85vh', left: '45vw' }} />

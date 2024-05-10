@@ -8,7 +8,7 @@ import { postDeleteToCart } from '@/api/hello';
 import useBearStore from '@/Store/store';
 
 function GoodCard(props: Card1) {
-
+  console.log(props)
   const uid = useBearStore((state) => state.uId)
   return (
     <Space style={{marginBottom:'2vh'}}>

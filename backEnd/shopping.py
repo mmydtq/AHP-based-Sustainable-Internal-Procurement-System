@@ -81,7 +81,7 @@ class ShowGoods(Resource):
             user_id = args['uId']
 
             # 查询购物车中指定用户的商品信息
-            cart_goods= ShoppingCart.query.filter_by(user_id=user_id, is_submit=0).first()
+            cart_goods = ShoppingCart.query.filter_by(user_id=user_id, is_submit=0).all()
 
             # 构建返回的商品信息列表
             goods_list = []
@@ -95,7 +95,7 @@ class ShowGoods(Resource):
                         'url': good.url,
                         'environmentalValue': good.environmental_value,
                         'brief': good.brief,
-                        'tag': good.tag.split(','),  # 假设 tag 存储为以逗号分隔的字符串
+                        'tag': good.tag,  # 假设 tag 存储为以逗号分隔的字符串
                         'name': good.name,
                         'value': good.value,
                         'description': good.description,
@@ -112,23 +112,39 @@ class SubmitCart(Resource):
     @cross_origin()
     def post(self):
         parser = reqparse.RequestParser()
-        parser.add_argument('id', type=int, required=True, help="Cart ID is required")
+        parser.add_argument('cartId', type=int, required=True, help="Cart ID is required")
         args = parser.parse_args()
 
-        cart_id = args['id']
+        cart_id = args['cartId']
 
         try:
-            # 根据购物车ID查找购物车
+            # 查找指定的购物车
             cart = ShoppingCart.query.filter_by(id=cart_id).first()
             if cart:
-                # 标记购物车为已提交
-                cart.is_submit = 1
-                db.session.commit()
+                # 检查购物车是否已被提交
+                if cart.is_submit == 0:
+                    # 标记购物车为已提交
+                    cart.is_submit = 1
+                    db.session.commit()
 
-                return jsonify({'message': 'Cart submitted successfully'}), 200
+                    # 拉取购物车中的所有商品信息
+                    cart_goods = ShoppingCart.query.filter_by(id=cart_id).all()
+                    goods_list = []
+                    for item in cart_goods:
+                        good = Good.query.get(item.good_id)
+                        if good:
+                            good_info = {
+                                'id': good.id,
+                                'name': good.name,
+                                'quantity': item.quantity
+                            }
+                            goods_list.append(good_info)
+
+                    return jsonify({'message': 'Cart submitted successfully', 'goods': goods_list}), 200
+                else:
+                    return jsonify({'error': 'Cart already submitted'}), 400
             else:
                 return jsonify({'error': 'Cart not found'}), 404
-
         except Exception as e:
             return jsonify({'error': str(e)}), 400
 class AdminConfirm(Resource):

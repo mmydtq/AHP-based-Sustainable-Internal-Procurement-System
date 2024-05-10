@@ -17,11 +17,12 @@ import type { DrawerProps } from 'antd';
 import { notification } from 'antd';
 import { Cascader, DatePicker, Input, InputNumber, Mentions, Select, TreeSelect } from 'antd';
 import { ChartDataType, OrderInfo } from '@/type/appType';
-import { postOrder, postAddGood, postDeleteFormInfo, postPredictNum } from '@/api/hello';
+import { postOrder, postAddGood, postDeleteFormInfo, postPredictNum, postConsentToPurchase } from '@/api/hello';
 import LineChartWithButtons from '@/component/CardChartLine';
 import { stringify } from 'querystring';
 import TitleAdmin from '@/component/TitleAdmin';
-
+import useBearStore from '@/Store/store';
+import dayjs from 'dayjs';
 
 
 type NotificationType = 'success' | 'info' | 'warning' | 'error';
@@ -53,6 +54,8 @@ const Administer: React.FC = () => {
   const [messageApi, contextHolder] = message.useMessage();
   const [fileList, setFileList] = useState<UploadFile<any>[]>([]);
   const [formInfo, setFormInfo] = useState<string[]>([])
+  const id = useBearStore((state) => state.id)
+  const [reRender, setReRender] = useState(true);
 
 
   const options: SelectProps['options'] = [
@@ -84,6 +87,7 @@ const Administer: React.FC = () => {
 
   const deletOrderInfo = async (key : string) => {
     const res = await postDeleteFormInfo({key: key})
+    setReRender(!reRender)
   }
 
   const AddGood = async () => {
@@ -146,7 +150,7 @@ const Administer: React.FC = () => {
   useEffect(() => {
     getOrderInfo()
     getFormInfo()
-  }, [])
+  }, [reRender])
 
   const success = () => {
     messageApi.open({
@@ -170,7 +174,10 @@ const Administer: React.FC = () => {
 
   const handleFormInfo = async (key: string) => {
     openNotificationWithIcon('success');
+    const date = dayjs().format('YYYY-MM')
     const res = await postDeleteFormInfo({key: key})
+    const res1 = await postConsentToPurchase({id: id, date: date})
+    setReRender(!reRender)
     order.data.forEach(item => {
       if (item.key === key) {
         setOrder1(prevState => ({

@@ -546,3 +546,21 @@ export const postDeleteFormInfo = async (args: any) => {
     });
   return data;
 }
+
+export const postConsentToPurchase = async (args: any) => {
+  const { data } = await axios.post(
+    'http://' + host + ':' + port + '/Admin/conform',
+    {
+      ...args
+    });
+  return data;
+}
+
+export const postBuy = async (args: any) => {
+  const { data } = await axios.post(
+    'http://' + host + ':' + port + '/Cart/buy',
+    {
+      ...args
+    });
+  return data;
+}

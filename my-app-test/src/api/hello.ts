@@ -556,11 +556,8 @@ export const postConsentToPurchase = async (args: any) => {
   return data;
 }
 
-export const postBuy = async (args: any) => {
+export const postBuy = async () => {
   const { data } = await axios.post(
-    'http://' + host + ':' + port + '/Cart/buy',
-    {
-      ...args
-    });
+    'http://' + host + ':' + port + '/Cart/buy');
   return data;
 }

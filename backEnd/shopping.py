@@ -108,3 +108,50 @@ class ShowGoods(Resource):
 
         except Exception as e:
             return {'error': str(e)}, 400
+class SubmitCart(Resource):
+    @cross_origin()
+    def post(self):
+        parser = reqparse.RequestParser()
+        parser.add_argument('id', type=int, required=True, help="Cart ID is required")
+        args = parser.parse_args()
+
+        cart_id = args['id']
+
+        try:
+            # 根据购物车ID查找购物车
+            cart = ShoppingCart.query.filter_by(id=cart_id).first()
+            if cart:
+                # 标记购物车为已提交
+                cart.is_submit = 1
+                db.session.commit()
+
+                return jsonify({'message': 'Cart submitted successfully'}), 200
+            else:
+                return jsonify({'error': 'Cart not found'}), 404
+
+        except Exception as e:
+            return jsonify({'error': str(e)}), 400
+class AdminConfirm(Resource):
+    @cross_origin()
+    def post(self):
+        parser = reqparse.RequestParser()
+        parser.add_argument('id', type=int, required=True, help="Cart ID is required")
+        parser.add_argument('date', type=str, required=True, help="Date is required")
+        args = parser.parse_args()
+
+        cart_id = args['id']
+        date = args['date']
+
+        try:
+            cart = ShoppingCart.query.filter_by(id=cart_id, is_submit=1).first()
+            if cart:
+                # 更改购物车状态为管理员确认
+                cart.is_submit = 2
+                db.session.commit()
+
+                # 这里可以记录确认的日期，或进行其他的业务逻辑处理
+                return jsonify({'message': 'Admin has confirmed the purchase'}), 200
+            else:
+                return jsonify({'error': 'Cart not found or not ready for confirmation'}), 404
+        except Exception as e:
+            return jsonify({'error': str(e)}), 400

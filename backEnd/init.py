@@ -8,7 +8,7 @@ from register import Register, Login, RePassword
 from admin_register import AdminRegister, AdminLogin
 from admin import AddGoods
 from present import MainDisplay, Display, SingleDisplay
-from shopping import AddToCart, DeleteGood, ShowGoods
+from shopping import AddToCart, DeleteGood, ShowGoods,SubmitCart,AdminConfirm
 from good import FindGoodsByTags, RecommendGoods
 from flask_cors import CORS, cross_origin
 from getFormBig import GetFormBig, DeleteFormItem
@@ -46,6 +46,8 @@ def create_app():
     api.add_resource(DeleteFormItem, '/Admin/deleteFormItem')
     api.add_resource(FormDataList, '/compenont/FormdDataList')
     api.add_resource(getPredictNum, '/pages/administer/getPredictNum')
+    api.add_resource(AdminConfirm, '/admin/confirm')
+    api.add_resource(SubmitCart, '/Cart/buy')
     return app
 
 def create_database(app):

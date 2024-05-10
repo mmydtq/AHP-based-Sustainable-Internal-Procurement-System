@@ -10,7 +10,6 @@ import { postAddToCart, postDeleteToCart, postGoodInfo, postRecommendInfo, postS
 import { Message } from '@arco-design/web-react';
 import { Good, Goods } from '@/type/appType';
 import useBearStore from '@/Store/store';
-import { number } from 'echarts';
 
 const buttonStyle: React.CSSProperties = {
   borderRadius: '100px',
@@ -76,6 +75,10 @@ const Goodss: React.FC = () => {
 };
 
   const handleHeartClick = async () => {
+    if (uname === '') {
+      alert('You haven\'t logged in yet')
+      return
+    }
     setIsfac(true); 
     await postAddToCart({ id: good?.id, uId: uid });
   };

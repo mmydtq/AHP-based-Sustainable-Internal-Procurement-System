@@ -126,7 +126,7 @@ const Goodss: React.FC = () => {
         </Card>
       </div>
       <div className={styled.heart}>
-        <div style={{ color: 'lightgreen', width:'15vw', padding: '5px', fontSize:'48px' }}>{83.74} <span role="img" aria-label="environmental icon">🌿</span></div>
+        <div style={{ color: 'lightgreen', width:'15vw', padding: '5px', fontSize:'48px' }}>{good?.environmentalValue} <span role="img" aria-label="environmental icon">🌿</span></div>
         <div style={{ position: 'relative',top: '-10vh', left: '30vw' }} onClick={handleHeartClick}>
           <HeartOutlined twoToneColor="red" style={{ fontSize: '140px', color: isfac ? 'red' : 'black', transition: 'color 0.3s' }}/>
         </div>

@@ -82,7 +82,7 @@ const Title: React.FC<TitleProps> = ({ select }) => {
     },
     {
       label: (
-        <Link href={'/Administer'}>Administer</Link>
+        <Link href={'/AdminLogin'}>Administer</Link>
       ),
       key: 'Administer',
     },
@@ -133,6 +133,9 @@ const Title: React.FC<TitleProps> = ({ select }) => {
                 className={styled.search}
                 onChange={(value) => { setTages(value) }}
               />
+              
+              </Col>
+              <Col flex="1">
               <Button icon={<SearchOutlined />} onClick={() => { router.push({ pathname: '/Search', query: { tagsArray: tags } }, undefined, { shallow: true }) }} style={{ top: '0px' }} />
             </Col>
             <Col flex="0">

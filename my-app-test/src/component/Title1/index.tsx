@@ -12,20 +12,20 @@ import { Row, Col } from 'antd';
 import useBearStore from '@/Store/store';
 
 const options: SelectProps['options'] = [
-  {value: 'Low Carbon Emissions', label: 'LCE'},
-  {value: 'Moderate Carbon Emissions', label: 'MCE'},
-  {value: 'High Carbon Emissions', label: 'HCE'},
-  {value: 'Low Resource Efficiency', label: 'LBE'},
-  {value: 'Moderate Resource Efficiency', label: 'MRE'},
-  {value: 'High Resource Efficiency', label: 'HRE'},
-  {value: 'Fully Recyclable', label: 'FR'},
-  {value: 'Partially Recyclable', label: 'PR'},
-  {value: 'Not Recyclable', label: 'NR'},
-  {value: 'Environmental Certification', label: 'EC'},
-  {value: 'No Environmental Certification', label: 'NEC'},
-  {value: 'Alternative Part Available', label: 'APA'},
-  {value: 'Alternative Part Available 50%', label: 'APA 50%'},
-  {value: 'No Alternative Part Availabl', label: 'NAPA'}
+  { value: 'Low Carbon Emissions', label: 'LCE' },
+  { value: 'Moderate Carbon Emissions', label: 'MCE' },
+  { value: 'High Carbon Emissions', label: 'HCE' },
+  { value: 'Low Resource Efficiency', label: 'LBE' },
+  { value: 'Moderate Resource Efficiency', label: 'MRE' },
+  { value: 'High Resource Efficiency', label: 'HRE' },
+  { value: 'Fully Recyclable', label: 'FR' },
+  { value: 'Partially Recyclable', label: 'PR' },
+  { value: 'Not Recyclable', label: 'NR' },
+  { value: 'Environmental Certification', label: 'EC' },
+  { value: 'No Environmental Certification', label: 'NEC' },
+  { value: 'Alternative Part Available', label: 'APA' },
+  { value: 'Alternative Part Available 50%', label: 'APA 50%' },
+  { value: 'No Alternative Part Availabl', label: 'NAPA' }
 ]
 
 const Title: React.FC<TitleProps> = ({ select }) => {
@@ -69,7 +69,7 @@ const Title: React.FC<TitleProps> = ({ select }) => {
       key: 'Goods'
     },
     {
-      label: uName !== '' ? <Link href={'/Faculty'}>Carts</Link> : <span onClick={() => {if (uName === '') alert('You haven\'t logged in yet')}}>Carts</span>,
+      label: uName !== '' ? <Link href={'/Faculty'}>Carts</Link> : <span onClick={() => { if (uName === '') alert('You haven\'t logged in yet') }}>Carts</span>,
       key: 'Faculty',
     },
     {
@@ -77,7 +77,7 @@ const Title: React.FC<TitleProps> = ({ select }) => {
       key: 'Value',
     },
     {
-      label: uName !== '' ? <Link href={'/Support'}>Support</Link> : <span onClick={() => {if (uName === '') alert('You haven\'t logged in yet')}}>Support</span>,
+      label: uName !== '' ? <Link href={'/Support'}>Support</Link> : <span onClick={() => { if (uName === '') alert('You haven\'t logged in yet') }}>Support</span>,
       key: 'Support',
     },
     {
@@ -133,9 +133,9 @@ const Title: React.FC<TitleProps> = ({ select }) => {
                 className={styled.search}
                 onChange={(value) => { setTages(value) }}
               />
-              
-              </Col>
-              <Col flex="1">
+
+            </Col>
+            <Col flex="1">
               <Button icon={<SearchOutlined />} onClick={() => { router.push({ pathname: '/Search', query: { tagsArray: tags } }, undefined, { shallow: true }) }} style={{ top: '0px' }} />
             </Col>
             <Col flex="0">

@@ -77,7 +77,7 @@ const Title: React.FC<TitleProps> = ({ select }) => {
       key: 'Value',
     },
     {
-      label: uName === '' ? <Link href={'/Support'}>Support</Link> : <span onClick={() => { if (uName === '') alert('You haven\'t logged in yet') }}>Support</span>,
+      label: uName !== '' ? <Link href={'/Support'}>Support</Link> : <span onClick={() => { if (uName === '') alert('You haven\'t logged in yet') }}>Support</span>,
       key: 'Support',
     },
     {

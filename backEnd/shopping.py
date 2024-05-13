@@ -3,6 +3,7 @@ from flask_restful import Resource, reqparse
 from database import db
 from good import Good
 from flask_cors import cross_origin
+from order import Order
 
 # 定义购物车模型
 class ShoppingCart(db.Model):
@@ -112,62 +113,29 @@ class SubmitCart(Resource):
     @cross_origin()
     def post(self):
         parser = reqparse.RequestParser()
-        parser.add_argument('cartId', type=int, required=True, help="Cart ID is required")
+        parser.add_argument('uId', type=int, required=True, help="Cart ID is required")
+        parser.add_argument('date', type=str, required=True)
         args = parser.parse_args()
-
-        cart_id = args['cartId']
-
-        try:
-            # 查找指定的购物车
-            cart = ShoppingCart.query.filter_by(id=cart_id).first()
-            if cart:
-                # 检查购物车是否已被提交
-                if cart.is_submit == 0:
-                    # 标记购物车为已提交
-                    cart.is_submit = 1
-                    db.session.commit()
-
-                    # 拉取购物车中的所有商品信息
-                    cart_goods = ShoppingCart.query.filter_by(id=cart_id).all()
-                    goods_list = []
-                    for item in cart_goods:
-                        good = Good.query.get(item.good_id)
-                        if good:
-                            good_info = {
-                                'id': good.id,
-                                'name': good.name,
-                                'quantity': item.quantity
-                            }
-                            goods_list.append(good_info)
-
-                    return jsonify({'message': 'Cart submitted successfully', 'goods': goods_list}), 200
-                else:
-                    return jsonify({'error': 'Cart already submitted'}), 400
-            else:
-                return jsonify({'error': 'Cart not found'}), 404
-        except Exception as e:
-            return jsonify({'error': str(e)}), 400
-class AdminConfirm(Resource):
-    @cross_origin()
-    def post(self):
-        parser = reqparse.RequestParser()
-        parser.add_argument('id', type=int, required=True, help="Cart ID is required")
-        parser.add_argument('date', type=str, required=True, help="Date is required")
-        args = parser.parse_args()
-
-        cart_id = args['id']
+        user_id = args['uId']
         date = args['date']
 
-        try:
-            cart = ShoppingCart.query.filter_by(id=cart_id, is_submit=1).first()
-            if cart:
-                # 更改购物车状态为管理员确认
-                cart.is_submit = 2
-                db.session.commit()
+        cart_goods = ShoppingCart.query.filter_by(user_id=user_id, is_submit=0).all()
+        order_id = Order.getNewID()
 
-                # 这里可以记录确认的日期，或进行其他的业务逻辑处理
-                return jsonify({'message': 'Admin has confirmed the purchase'}), 200
-            else:
-                return jsonify({'error': 'Cart not found or not ready for confirmation'}), 404
-        except Exception as e:
-            return jsonify({'error': str(e)}), 400
+        for item in cart_goods:
+            good = Good.query.get(item.good_id)
+            if good:
+                Order.addOrder(good, order_id, user_id, date)
+                # good_info = {
+                #     'id': good.id,
+                #     'name': good.name,
+                #     'quantity': item.quantity
+                #     }
+                # goods_list.append(good_info)
+
+        carts = ShoppingCart.query.filter_by(user_id=user_id).all()
+        for cart in carts:
+            cart.is_submit = 1
+        db.session.commit()
+
+        return jsonify({'message': 'Cart submitted successfully'}), 200

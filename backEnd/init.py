@@ -8,7 +8,8 @@ from register import Register, Login, RePassword
 from admin_register import AdminRegister, AdminLogin
 from admin import AddGoods
 from present import MainDisplay, Display, SingleDisplay
-from shopping import AddToCart, DeleteGood, ShowGoods,SubmitCart,AdminConfirm
+from shopping import AddToCart, DeleteGood, ShowGoods,SubmitCart
+from order import AdminConfirm
 from good import FindGoodsByTags, RecommendGoods
 from flask_cors import CORS, cross_origin
 from getFormBig import GetFormBig, DeleteFormItem

@@ -100,7 +100,8 @@ class ShowGoods(Resource):
                         'name': good.name,
                         'value': good.value,
                         'description': good.description,
-                        'hint': good.hint
+                        'hint': good.hint,
+                        'quantity': item.quantity 
                     }
                     goods_list.append(good_info)
 

@@ -1,0 +1,105 @@
+@import '../../assert/font/font.module.css';
+
+
+
+.title {
+    margin-left: 20px;
+    /* Added */
+    margin-top: 40px;
+    font-size: 30px;
+    font-family: "QFMedium", sans-serif;
+}
+
+.subtitle {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 26px;
+    font-family: "QFMedium", sans-serif;
+}
+
+.button {
+    /* left: 38%; */
+    border-radius: 100px;
+    width: 100px;
+    /* border: 1.5px solid #1a07e9; */
+    margin-top: 30px;
+    font-family: "playball", sans-serif;
+    text-align: center;
+}
+
+.container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    height: 100%;
+}
+
+.h1 {
+
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+
+}
+
+.form {
+    margin-top: 20px;
+    font-size: large;
+}
+
+.input {
+    height: 400px;
+
+}
+
+.formItem {
+    font-size: 16px;
+}
+
+.field {
+    margin-bottom: 20px;
+}
+
+.field label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.field input[type="text"] {
+    width: 100%;
+    max-width: 350px;
+    padding: 10px;
+    border: 1px solid #418dff;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    height: 40px;
+    max-lines: 8;
+    size: large;
+
+}
+
+#button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #418dff;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#button:hover {
+    background-color: #45a049;
+}

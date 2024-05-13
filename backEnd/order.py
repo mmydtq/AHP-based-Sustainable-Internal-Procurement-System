@@ -13,7 +13,7 @@ class Order(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     date = db.Column(db.String(255))
     state = db.Column(db.Integer, default=0)
-    goods = db.relationship('goods', secondary=order_goods_association, backref=db.backref('orders', lazy='dynamic'))
+    goods = db.relationship('Good', secondary=order_goods_association, backref=db.backref('orders', lazy='dynamic'))
 
     @classmethod
     def addOrder(cls, good, order_id, given_user_id, given_date):

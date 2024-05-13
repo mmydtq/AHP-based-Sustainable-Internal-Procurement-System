@@ -8,6 +8,7 @@ import { Good, Goods } from '@/type/appType';
 import { Message } from '@arco-design/web-react';
 import useBearStore from '@/Store/store';
 import { postBuy, postShowGoods } from '@/api/hello';
+import dayjs from 'dayjs';
 
 
 
@@ -21,8 +22,6 @@ const Faculty: React.FC = () => {
     const [messageApi, contextHolder] = message.useMessage();
     const [reRender, setReRender] = useState(true);
     const uid = useBearStore((state) => state.uId)
-    const id = useBearStore((state) => state.id)
-    const setId = useBearStore((state) => state.setId)
     const totalValue = Goods?.reduce((total, good: Good) => {
         return total + good.value;
     }, 0);
@@ -30,11 +29,11 @@ const Faculty: React.FC = () => {
     const getInfo = async () => {
         const res = await postShowGoods({uId : uid});
         res !== null ? setGoods(res.goods) : Message.error('get Goods error');
-        setId(res.id)
     }
 
     const success = async () => {
-        const res = await postBuy({id: id});
+        const date = dayjs().format('YYYY-MM')
+        const res = await postBuy({uId: uid, date: date});
         setReRender(!reRender)
         messageApi.open({
             type: 'success',

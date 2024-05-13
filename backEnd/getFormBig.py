@@ -23,9 +23,7 @@ class GetFormBig(Resource):
                         "name": item.name,
                         "value": item.value,
                         "address": item.address,
-                        "tag": json.loads(item.tag),  
-                        "brief": item.category,  
-                        "number": item.number
+                        "tag": item.tag, 
                     }
                     for item in items
                 ]

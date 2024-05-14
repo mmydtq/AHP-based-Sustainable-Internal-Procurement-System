@@ -62,15 +62,20 @@ class DeleteGood(Resource):
             cart_item = ShoppingCart.query.filter_by(user_id=user_id, good_id=good_id).first()
 
             if cart_item:
-                # 如果找到购物车条目，则删除它
-                db.session.delete(cart_item)
+                if cart_item.quantity > 1:
+                    # 如果商品数量大于1，减少数量
+                    cart_item.quantity -= 1
+                else:
+                    # 如果商品数量为1，删除该商品条目
+                    db.session.delete(cart_item)
                 db.session.commit()
-                return {'message': 'Good removed from cart successfully'}, 200
+                return {'message': 'Updated or removed good successfully'}, 200
             else:
                 return {'message': 'Item not found in the cart'}, 404
 
         except Exception as e:
             return {'error': str(e)}, 400
+
 class ShowGoods(Resource):
     @cross_origin()
     def post(self):

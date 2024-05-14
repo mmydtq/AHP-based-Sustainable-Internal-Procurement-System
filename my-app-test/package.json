@@ -19,6 +19,7 @@
     "babel-preset-env": "^0.0.0",
     "dayjs": "^1.11.11",
     "echarts": "^5.5.0",
+    "emailjs-com": "^3.2.0",
     "json5": "^2.2.3",
     "lodash": "^4.17.21",
     "next": "14.1.4",

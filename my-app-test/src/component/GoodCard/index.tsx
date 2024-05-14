@@ -24,7 +24,7 @@ function GoodCard(props: Card1) {
       <div style={{position:'relative', left:'1vw', width:'8vw'}}>{props.alt}</div>
       <div style={{position:'relative', left:'6vw', width:'20vw'}}>{props.quantity}</div>
       <div style={{position:'relative', left:'11vw', width:'3vw'}}>${props.value}</div>
-      <Rate disabled defaultValue={props.env} style={{position:'relative', left:'16vw', color:'green'}}/>
+      <div style={{ color: 'lightgreen', width:'15vw', padding: '5px', fontSize:'48px' }}>{props.env} <span role="img" aria-label="environmental icon" style={{ fontSize: '24px' }}>🌿</span></div>      
       <Button danger style={{position:'relative', left:'20vw'}} onClick={async () => {await postDeleteToCart({id: props.id, uId: uid}); props.setrerender(!props.rerender)}}>Remove</Button>
     </Space>
   );

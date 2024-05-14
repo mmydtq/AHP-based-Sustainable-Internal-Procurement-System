@@ -467,7 +467,7 @@ export const postGoodInfo = async (args: any) => {
 };
 
 export const postOrder = async () => {
-  const { data } = await axios.post('http://' + host + ':' + port + 'getFormBig');
+  const { data } = await axios.post('http://' + host + ':' + port + '/getFormBig');
   return data;
   // return {data: [
   //   {
@@ -513,7 +513,7 @@ export const postAddGood = async (args: any) => {
 
 export const postLineChart = async () => {
   const { data } = await axios.post(
-    'http://' + host + ':' + port + 'component/chart11/getLineChart');
+    'http://' + host + ':' + port + '/component/chart11/getLineChart');
   return data;
 }
 
@@ -525,13 +525,13 @@ export const postPredictNum = async () => {
 
 export const postFormdDataList = async () => {
   const { data } = await axios.post(
-    'http://' + host + ':' + port + 'compenont/FormdDataList');
+    'http://' + host + ':' + port + '/compenont/FormdDataList');
   return data;
 }
 
 export const postGoodDetail = async (args: any) => {
   const { data } = await axios.post(
-    'http://' + host + ':' + port + 'Adiminister/getGoodDetail',
+    'http://' + host + ':' + port + '/Adiminister/getGoodDetail',
     {
       ...args
     });

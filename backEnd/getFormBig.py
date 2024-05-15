@@ -14,31 +14,33 @@ class GetFormBig(Resource):
     @cross_origin()
     def post(self):
         try:
-            # Query orders with state=0 from the database
-            orders = db.session.query(Order).filter_by(state=0).all()
-            
-            # Transform the orders into the desired response format
-            response_data = {
-                "data": []
-            }
+            # Query orders with state=0
+            orders = db.session.query(Order).filter(Order.state == 0).all()
+
+            response_data = {"data": []}
 
             for order in orders:
-                # Query user info
-                user = db.session.query(User).filter_by(id=order.user_id).first()
-                user_name = user.name
-                user_room = user.room
-                
-                # Query good info
-                good = db.session.query(Good).filter_by(id=order.id).first()
-                good_value = good.value
-                good_tag = good.tag
-                
+                # Get user information
+                user = db.session.query(User).filter(User.id == order.user_id).first()
+                if not user:
+                    continue
+
+                # Get all goods associated with this order
+                goods = db.session.query(Good).filter(Good.id == order.id).all()
+                if not goods:
+                    continue
+
+                # Calculate total value and collect briefs
+                value = sum(good.value for good in goods)
+                brief_set = {good.brief for good in goods}  # Collect briefs into a set for uniqueness
+                tag = list(brief_set)  # Convert set to list for JSON serialization
+
                 response_data["data"].append({
                     "key": order.id,
-                    "name": user_name,
-                    "value": good_value,
-                    "address": user_room,
-                    "tag": good_tag
+                    "name": user.name,
+                    "value": value,
+                    "address": user.room,
+                    "tag": tag
                 })
 
             # Return the response data with a success code

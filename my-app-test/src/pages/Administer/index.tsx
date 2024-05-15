@@ -19,7 +19,6 @@ import { Cascader, DatePicker, Input, InputNumber, Mentions, Select, TreeSelect 
 import { ChartDataType, OrderInfo } from '@/type/appType';
 import { postOrder, postAddGood, postDeleteFormInfo, postPredictNum, postConsentToPurchase } from '@/api/hello';
 import LineChartWithButtons from '@/component/CardChartLine';
-import { stringify } from 'querystring';
 import TitleAdmin from '@/component/TitleAdmin';
 import useBearStore from '@/Store/store';
 import dayjs from 'dayjs';

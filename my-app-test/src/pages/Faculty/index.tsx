@@ -23,7 +23,7 @@ const Faculty: React.FC = () => {
     const [reRender, setReRender] = useState(true);
     const uid = useBearStore((state) => state.uId)
     const totalValue = Goods?.reduce((total, good: Good) => {
-        return total + good.value;
+        return total + good.value * good.quantity;
     }, 0);
 
     const getInfo = async () => {
@@ -60,7 +60,7 @@ const Faculty: React.FC = () => {
                 </Space>
                 <div className={styled.good}>
                     {currentGoods?.map((good: Good) => (
-                        <GoodCard id={good.id} url={good.url} alt={good.name} brief={good.brief} value={good.value} env={good.environmentalValue} rerender={reRender} setrerender={setReRender} />
+                        <GoodCard id={good.id} url={good.url} alt={good.name} quantity={good.quantity} value={good.value} env={good.environmentalValue} rerender={reRender} setrerender={setReRender} />
                     ))}
                 </div>
                 <Pagination

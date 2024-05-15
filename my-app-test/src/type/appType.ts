@@ -31,6 +31,7 @@ export interface Good {
     value: number;
     description: string;
     hint: number;
+    quantity: number;
 }
 
 export interface Goods {
@@ -61,11 +62,11 @@ export interface Card1{
     id: number;
     url: string;
     alt: string;//good name
-    brief: string;
     value: number;
     env: number;
     rerender: boolean;
     setrerender: Function;
+    quantity: number;
 }
 
 export interface ChartDataType {

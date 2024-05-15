@@ -1,7 +1,9 @@
 from flask import Flask
-from flask_restful import Resource, Api, reqparse
-import json
-from item import Item
+from flask_restful import Resource, Api
+from flask import request
+from order import Order
+from good import Good
+from user import User
 from flask_cors import cross_origin
 from database import db
 
@@ -12,22 +14,32 @@ class GetFormBig(Resource):
     @cross_origin()
     def post(self):
         try:
-            # Query all items from the database
-            items = db.session.query(Item).all()
+            # Query orders with state=0 from the database
+            orders = db.session.query(Order).filter_by(state=0).all()
             
-            # Transform the items into the desired response format
+            # Transform the orders into the desired response format
             response_data = {
-                "data": [
-                    {
-                        "key": item.key,
-                        "name": item.name,
-                        "value": item.value,
-                        "address": item.address,
-                        "tag": item.tag, 
-                    }
-                    for item in items
-                ]
+                "data": []
             }
+
+            for order in orders:
+                # Query user info
+                user = db.session.query(User).filter_by(id=order.user_id).first()
+                user_name = user.name
+                user_room = user.room
+                
+                # Query good info
+                good = db.session.query(Good).filter_by(id=order.id).first()
+                good_value = good.value
+                good_tag = good.tag
+                
+                response_data["data"].append({
+                    "key": order.id,
+                    "name": user_name,
+                    "value": good_value,
+                    "address": user_room,
+                    "tag": good_tag
+                })
 
             # Return the response data with a success code
             return response_data, 200
@@ -39,19 +51,18 @@ class GetFormBig(Resource):
 class DeleteFormItem(Resource):
     @cross_origin()
     def post(self):
-        parser = reqparse.RequestParser()
-        parser.add_argument('id', type=str, required=True, help='ID is required for deletion')
-
-        args = parser.parse_args()
-        item_id = args['id']
-
         try:
-            item_to_delete = db.session.query(Item).filter_by(id=item_id).first()
+            # Parse incoming request data
+            order_id = request.json.get('id')
 
-            if not item_to_delete:
-                return {"status": 1, "error": "Item not found"}, 200
+            # Check if order exists
+            order_to_delete = db.session.query(Order).filter_by(id=order_id).first()
 
-            db.session.delete(item_to_delete)
+            if not order_to_delete:
+                return {"status": 1, "error": "Order not found"}, 200
+
+            # Delete the order
+            db.session.delete(order_to_delete)
             db.session.commit()
 
             return {"status": 0}, 200

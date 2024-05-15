@@ -1,26 +1,46 @@
 import numpy as np
 import pandas as pd
+from sqlalchemy import desc
 from statsmodels.tsa.arima.model import ARIMA
 from flask import Flask
 from flask_restful import Resource, Api, reqparse
 import json
 from flask_cors import cross_origin
+from order import Order
 
 class getPredictNum(Resource):
     @cross_origin()
     def post(self):
         try:
-            parser = reqparse.RequestParser()
-            parser.add_argument('monthlyEnv', type=list, required=True,
-                                help='Monthly sales environmental number is required')
-            parser.add_argument('monthlySale', type=list, required=True, help = "Monthly sales goods' number is required")
+            sorted_orders = Order.query.order_by(desc(Order.date)).all()
+            # 创建一个空字典，用于存储日期和订单列表的映射
+            date_order_dict = {}
 
-            # Parse the incoming request data
-            args = parser.parse_args()
+            # 遍历已排序的订单
+            for order in sorted_orders:
+                order_date = order.date  # 获取订单的日期
+                if order_date not in date_order_dict:
+                    date_order_dict[order_date] = []  # 如果日期不在字典中，创建一个空列表
+                date_order_dict[order_date].append(order)  # 将订单添加到对应日期的列表中
+
+            # 存储每个月的环境值和销售值
+            monthly_env=[]
+            monthly_sale=[]
+            for orders in list(date_order_dict.values())[:12]:
+                env_value = 0
+                sale_value = 0
+                for order in orders:
+                    if order.state == 1:
+                        goods = order.goods.all()
+                        for good in goods:
+                            env_value = env_value + good.environmental_value
+                            sale_value = sale_value + good.value
+                monthly_env.append(env_value)
+                monthly_sale.append(sale_value)
 
             # 创建时间序列数据
-            monthly_env = pd.Series(args['monthlyEnv'])
-            monthly_sale = pd.Series(args['monthlySale'])
+            monthly_env = pd.Series(monthly_env)
+            monthly_sale = pd.Series(monthly_sale)
 
             # 拟合ARIMA模型
             model = ARIMA(monthly_env, order=(1, 1, 1))  # 这里选择ARIMA(p,d,q)中的p=1, d=1, q=1

@@ -6,6 +6,7 @@ from good import Good
 from user import User
 from flask_cors import cross_origin
 from database import db
+import logging
 
 app = Flask(__name__)
 api = Api(app)
@@ -40,7 +41,7 @@ class GetFormBig(Resource):
                     "name": user.name,
                     "value": value,
                     "address": user.room,
-                    "tag": tag
+                    "tags": tag
                 })
 
             # Return the response data with a success code
@@ -54,20 +55,26 @@ class DeleteFormItem(Resource):
     @cross_origin()
     def post(self):
         try:
-            # Parse incoming request data
-            order_id = request.json.get('id')
+            order_id = request.json.get('key')
+            if not order_id:
+                logging.error("ID is required")
+                return {"status": 1, "error": "ID is required"}, 400
 
-            # Check if order exists
+            logging.info(f"Received request to delete order with ID: {order_id}")
+
             order_to_delete = db.session.query(Order).filter_by(id=order_id).first()
 
             if not order_to_delete:
+                logging.error(f"Order with ID {order_id} not found")
                 return {"status": 1, "error": "Order not found"}, 200
 
-            # Delete the order
             db.session.delete(order_to_delete)
             db.session.commit()
+
+            logging.info(f"Order with ID {order_id} deleted successfully")
 
             return {"status": 0}, 200
 
         except Exception as e:
+            logging.error(f"Error occurred: {str(e)}")
             return {"status": 1, "error": str(e)}, 400

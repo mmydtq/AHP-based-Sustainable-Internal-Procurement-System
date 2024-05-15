@@ -229,7 +229,7 @@ const Administer: React.FC = () => {
       dataIndex: 'tags',
       render: (_, { tags }) => (
         <>
-          {tags.map((tag) => {
+          {tags.length !== 1 ? tags.map((tag) => {
             let color = tag.length > 5 ? 'geekblue' : 'green';
             if (tag === 'loser') {
               color = 'volcano';
@@ -239,7 +239,13 @@ const Administer: React.FC = () => {
                 {tag.toUpperCase()}
               </Tag>
             );
-          })}
+          }) : () => {let color = tags.length > 5 ? 'geekblue' : 'green';
+          return (
+            <Tag color={color}>
+              {tags}
+            </Tag>
+      )}
+          }
         </>
       ),
     },

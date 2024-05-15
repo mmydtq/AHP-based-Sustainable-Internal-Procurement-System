@@ -1,6 +1,5 @@
 import numpy as np
 import pandas as pd
-from sqlalchemy import desc
 from statsmodels.tsa.arima.model import ARIMA
 from flask import Flask
 from flask_restful import Resource, Api, reqparse

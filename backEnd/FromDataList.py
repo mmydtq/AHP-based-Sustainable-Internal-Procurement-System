@@ -1,36 +1,64 @@
-from flask import Flask, request
-from flask_restful import Resource, Api, reqparse
+from flask import Flask
+from flask_restful import Resource, Api
 from flask_cors import cross_origin
-app = Flask(__name__)
-api = Api(app)
+from sqlalchemy import desc
+from database import db
+from order import Order
 
-# 解析器设置
-parser = reqparse.RequestParser()
-parser.add_argument('data', type=list, location='json', required=True, help="Data cannot be blank!")
 
 class FormDataList(Resource):
     @cross_origin()
     def post(self):
-        # 解析请求参数
-        args = parser.parse_args()
-        data = args['data']
+        try:
+            sorted_orders = db.session.query(Order).order_by(Order.date.desc())
+            # 创建一个空字典，用于存储日期和订单列表的映射
+            sorted_orders = list(sorted_orders)
+            date_order_dict = {}
 
-        # 处理数据
-        result = []
+            # 遍历已排序的订单
+            for order in sorted_orders:
+                order_date = order.date  # 获取订单的日期
+                if order_date not in date_order_dict:
+                    date_order_dict[order_date] = []  # 如果日期不在字典中，创建一个空列表
+                date_order_dict[order_date].append(order)  # 将订单添加到对应日期的列表中
 
-        for item in data:
-            month = item.get('month')
-            transaction_amount = item.get('transactionAmount')
-            eco_friendly_transaction_amount = item.get('ecoFriendlyTransactionAmount')
+            # 存储过去的月份
+            months = []
+            for date in list(date_order_dict.keys())[:7]:
+                months.append(date)
 
-            result.append({
-                'month': month,
-                'transactionAmount': transaction_amount,
-                'ecoFriendlyTransactionAmount': eco_friendly_transaction_amount
-            })
+            # 存储每个月的环境值和销售值
+            monthly_env = []
+            monthly_sale = []
+            monthly_order_number = []
+            for orders in list(date_order_dict.values())[:7]:
+                env_value = 0
+                sale_value = 0
+                order_num = 0
+                for order in orders:
+                    if order.state == 1:
+                        order_num = order_num + 1
+                        goods = list(order.goods)
+                        for good in goods:
+                            env_value = env_value + good.environmental_value
+                            sale_value = sale_value + good.value
+                monthly_order_number.append(order_num)
+                monthly_env.append(env_value)
+                monthly_sale.append(sale_value)
 
-        return {'data': result}, 200
+            months.reverse()
+            monthly_sale.reverse()
+            monthly_env.reverse()
+           
 
+            response_data = {
+                "date": months,
+                "transactionAmount": monthly_sale,
+                "ecoFriendlyTransactionAmount": monthly_env
+                
+            }
 
+            return response_data, 200
 
-
+        except Exception as e:
+            return {"error": str(e)}, 400

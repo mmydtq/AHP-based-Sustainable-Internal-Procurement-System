@@ -32,7 +32,7 @@ const LineChart: React.FC = () => {
             // X-axis configuration
             xAxis: {
                 type: 'category', // Category type for discrete data
-                data: chartValue?.data    // Data for X-axis
+                data: chartValue?.date    // Data for X-axis
             },
             // Y-axis configuration
             yAxis: {

@@ -437,7 +437,7 @@ const Administer: React.FC = () => {
             <Col span={1}></Col>
             <Col span={7} className={styled.staticright} style={{ backgroundColor: '#FFFFFF', borderRadius: '10px', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' }}>
 
-              {/*<FormDataList />*/}
+              <FormDataList />*/
               {/* <ChartLine2 /> */}
               {/* <div id="chart-container2" className={styled.chart3} ></div> */}
             </Col>

@@ -45,6 +45,11 @@ class get_line_chart(Resource):
                 monthly_env.append(env_value)
                 monthly_sale.append(sale_value)
 
+            months.reverse()
+            monthly_sale.reverse()
+            monthly_env.reverse()
+            monthly_order_number.reverse()
+
             response_data = {
                 "date": months,
                 "value1": monthly_sale,

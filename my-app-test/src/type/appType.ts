@@ -84,7 +84,7 @@ export interface OrderInfo {
 }
 
 export interface chart11 {
-    data: string[];
+    date: string[];
     value1: string[];
     value2: string[];
     value3: string[];

@@ -47,13 +47,14 @@ const FormDataList: React.FC = () =>{
         getInfo()
     }, [])
 
-    for (let i = 1; i <= 12; i++) { // 修改循环以匹配月份
-        data.push({
-            key: i,
-            month: `Month ${info[i].month}`, // 修改月份格式
-            transactionAmount: info[i].transactionAmount, // 随机生成交易额
-            ecoFriendlyTransactionAmount: info[i].ecoFriendlyTransactionAmount, // 随机生成环保值交易额
-        });
+    for (let i = 0; i < 12; i++) { // 修改循环以匹配月份
+        console.log(info)
+        // data.push({
+        //     key: i,
+        //     month: `Month ${info[i].month}`, // 修改月份格式
+        //     transactionAmount: info[i].transactionAmount, // 随机生成交易额
+        //     ecoFriendlyTransactionAmount: info[i].ecoFriendlyTransactionAmount, // 随机生成环保值交易额
+        // });
 }
 
     return (

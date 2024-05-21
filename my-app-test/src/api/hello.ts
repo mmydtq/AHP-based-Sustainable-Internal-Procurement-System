@@ -31,7 +31,7 @@ import axios from 'axios';
 // const port = '5000';
 
 
-const host = 'csi6220-2-V4.ucd.ie';
+const host = 'csi6220-2-vm4.ucd.ie';
 const port = '80/api';
 
 

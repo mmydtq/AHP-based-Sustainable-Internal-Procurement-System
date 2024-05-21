@@ -1,5 +1,5 @@
 import os
-from flask import Flask, jsonify
+from flask import Flask,Blueprint
 from flask_sqlalchemy import SQLAlchemy
 from database import db
 from router import HelloWorld
@@ -28,27 +28,27 @@ def create_app():
     api = Api(app)
     # 路由路径待定
     api.add_resource(HelloWorld, '/') #for testing
-    api.add_resource(Register, '/Register/register')
-    api.add_resource(Login, '/login/login')
-    api.add_resource(RePassword, '/login/changePassword')
-    api.add_resource(AdminLogin, '/Administer/login')
-    api.add_resource(AdminRegister, '/Administer/register')
-    api.add_resource(AddGoods, '/Admin/addGood')
-    api.add_resource(MainDisplay, '/HomePage/mainDisplay')
-    api.add_resource(Display, '/HomePage/display')
-    api.add_resource(SingleDisplay, '/Goods/getGoodInfo')
-    api.add_resource(AddToCart, '/Fancy/addToCart')
-    api.add_resource(DeleteGood, '/Fancy/deleteGood')
-    api.add_resource(ShowGoods, '/Fancy/showGoods')
-    api.add_resource(FindGoodsByTags, '/Good/FindGood') 
-    api.add_resource(RecommendGoods, '/Good/recommend') 
-    api.add_resource(GetFormBig, '/getFormBig')
-    api.add_resource(get_line_chart, '/component/chart11/getLineChart')
-    api.add_resource(DeleteFormItem, '/Admin/deleteFormItem')
-    api.add_resource(FormDataList, '/compenont/FormdDataList')
-    api.add_resource(getPredictNum, '/pages/administer/getPredictNum')
-    api.add_resource(AdminConfirm, '/admin/confirm')
-    api.add_resource(SubmitCart, '/Cart/buy')
+    api.add_resource(Register, '/api/Register/register')
+    api.add_resource(Login, '/api/login/login')
+    api.add_resource(RePassword, '/api/login/changePassword')
+    api.add_resource(AdminLogin, '/api/Administer/login')
+    api.add_resource(AdminRegister, '/api/Administer/register')
+    api.add_resource(AddGoods, '/api/Admin/addGood')
+    api.add_resource(MainDisplay, '/api/HomePage/mainDisplay')
+    api.add_resource(Display, '/api/HomePage/display')
+    api.add_resource(SingleDisplay, '/api/Goods/getGoodInfo')
+    api.add_resource(AddToCart, '/api/Fancy/addToCart')
+    api.add_resource(DeleteGood, '/api/Fancy/deleteGood')
+    api.add_resource(ShowGoods, '/api/Fancy/showGoods')
+    api.add_resource(FindGoodsByTags, '/api/Good/FindGood') 
+    api.add_resource(RecommendGoods, '/api/Good/recommend') 
+    api.add_resource(GetFormBig, '/api/getFormBig')
+    api.add_resource(get_line_chart, '/api/component/chart11/getLineChart')
+    api.add_resource(DeleteFormItem, '/api/Admin/deleteFormItem')
+    api.add_resource(FormDataList, '/api/compenont/FormdDataList')
+    api.add_resource(getPredictNum, '/api/pages/administer/getPredictNum')
+    api.add_resource(AdminConfirm, '/api/admin/confirm')
+    api.add_resource(SubmitCart, '/api/Cart/buy')
     return app
 
 def create_database(app):

@@ -40,21 +40,21 @@ const FormDataList: React.FC = () =>{
 
     const getInfo = async () => {
         const res = await postFormdDataList()
-        setInfo(res)
+        setInfo(res.data)
       }
 
     useEffect(() => {
         getInfo()
     }, [])
 
-    for (let i = 0; i < 12; i++) { // 修改循环以匹配月份
+    for (let i = 0; i < info.length; i++) { // 修改循环以匹配月份
         console.log(info)
-        // data.push({
-        //     key: i,
-        //     month: `Month ${info[i].month}`, // 修改月份格式
-        //     transactionAmount: info[i].transactionAmount, // 随机生成交易额
-        //     ecoFriendlyTransactionAmount: info[i].ecoFriendlyTransactionAmount, // 随机生成环保值交易额
-        // });
+        data.push({
+            key: i,
+            month: `${info[i].month}`, // 修改月份格式
+            transactionAmount: info[i].transactionAmount, // 随机生成交易额
+            ecoFriendlyTransactionAmount: info[i].ecoFriendlyTransactionAmount, // 随机生成环保值交易额
+        });
 }
 
     return (

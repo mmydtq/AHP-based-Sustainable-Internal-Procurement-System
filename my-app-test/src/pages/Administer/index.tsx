@@ -173,7 +173,6 @@ const Administer: React.FC = () => {
 
   const handleFormInfo = async (key: string) => {
     openNotificationWithIcon('success');
-    const date = dayjs().format('YYYY-MM')
     const res = await postDeleteFormInfo({id: key})
     const res1 = await postConsentToPurchase({id: key})
     setReRender(!reRender)

@@ -105,7 +105,7 @@ const Title: React.FC<TitleProps> = ({ select }) => {
               <Image src={shop} alt='shopIcon' width={30} height={30} className={styled.im} />
             </Col>
             <Col flex="1"></Col>
-            <Col flex="9">
+            <Col flex="11">
 
               <Menu
                 onClick={onClick}

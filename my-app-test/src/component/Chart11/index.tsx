@@ -77,7 +77,7 @@ const LineChart: React.FC = () => {
         return () => {
             myChart.dispose();
         };
-    }, []); // Empty dependency array ensures that this effect runs only once
+    }, [chartValue]); // Empty dependency array ensures that this effect runs only once
 
     return (
         <div id="chart" style={{ width: '100%', height: '500px', maxWidth: '90vw' }}></div>

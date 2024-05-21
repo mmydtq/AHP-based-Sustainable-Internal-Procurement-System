@@ -12,7 +12,10 @@ const LineChart: React.FC = () => {
       }
 
     useEffect(() => {
-        getChartInfo();
+        getChartInfo()
+    }, [])
+
+    useEffect(() => {
         // Get the HTML element where the chart will be rendered
         const chartDom = document.getElementById('chart');
 

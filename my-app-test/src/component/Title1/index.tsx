@@ -31,7 +31,16 @@ const options: SelectProps['options'] = [
 const Title: React.FC<TitleProps> = ({ select }) => {
   const [current, setCurrent] = useState(select);
   const [tags, setTages] = useState<string[]>([]);
-  const uName = localStorage.getItem('uName')
+  const [uName, setUName] = useState<string>('');
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const storedUName = localStorage.getItem('uName');
+      if (storedUName) {
+        setUName(storedUName);
+      }
+    }
+}, []);
 
   const onClick: MenuProps['onClick'] = (e) => {
     setCurrent(e.key);
@@ -46,10 +55,12 @@ const Title: React.FC<TitleProps> = ({ select }) => {
         </div>
       ),
       onOk() {
-        localStorage.setItem('uName', ''),
-        localStorage.setItem('password', ''),
-        localStorage.setItem('uId', '-1'),
-        router.push('/Login')
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('uName', '');
+          localStorage.setItem('password', '');
+          localStorage.setItem('uId', '-1');
+          router.push('/Login')
+        }
       },
     });
   };

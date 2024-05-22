@@ -21,10 +21,18 @@ const Faculty: React.FC = () => {
     const currentGoods = Goods?.slice(startIndex, endIndex);
     const [messageApi, contextHolder] = message.useMessage();
     const [reRender, setReRender] = useState(true);
-    const uid = Number(localStorage.getItem('uId'))
     const totalValue = Goods?.reduce((total, good: Good) => {
         return total + good.value * good.quantity;
     }, 0);
+    const [uid, setUid] = useState<number>();
+
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+        const storedUId = localStorage.getItem('uId');
+        if (storedUId) {
+            setUid(Number(storedUId));
+        }}
+    }, []);
 
     const getInfo = async () => {
         const res = await postShowGoods({uId : uid});

@@ -32,9 +32,25 @@ const Goodss: React.FC = () => {
   const [goods, setGoods] = useState<Goods>({ goods: [] })
   const showGoods = goods.goods
   const [isfac, setIsfac] = useState<boolean>(false)
-  const uid = Number(localStorage.getItem('uId'))
-  const uname = localStorage.getItem('uName')
   const [messageApi, contextHolder] = message.useMessage();
+  const [uid, setUid] = useState<number>();
+  const [uName, setUName] = useState<string>('');
+
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+        const storedUId = localStorage.getItem('uId');
+        if (storedUId) {
+            setUid(Number(storedUId));
+        }}
+    }, []);
+
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+        const storedUName = localStorage.getItem('uName');
+        if (storedUName) {
+          setUName(storedUName);
+        }}
+    }, []);
 
   const items: DescriptionsProps['items'] = [
     {
@@ -75,7 +91,7 @@ const Goodss: React.FC = () => {
 };
 
   const handleHeartClick = async () => {
-    if (uname === '') {
+    if (uName === '') {
       alert('You haven\'t logged in yet')
       return
     }

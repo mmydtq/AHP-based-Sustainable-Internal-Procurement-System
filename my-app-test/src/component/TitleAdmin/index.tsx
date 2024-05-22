@@ -23,11 +23,6 @@ for (let i = 10; i < 36; i++) {
 
 const TitleAdmin: React.FC<TitleProps> = ({ select }) => {
   const [current, setCurrent] = useState(select);
-  const [tags, setTages] = useState<string[]>([]);
-  const setUName = useBearStore((state) => state.setUName);
-  const setPassword = useBearStore((state) => state.setPassword);
-  const setUId = useBearStore((state) => state.setUId);
-  const uName = useBearStore((state) => state.uName)
 
   const onClick: MenuProps['onClick'] = (e) => {
     setCurrent(e.key);
@@ -42,10 +37,12 @@ const TitleAdmin: React.FC<TitleProps> = ({ select }) => {
         </div>
       ),
       onOk() {
-        setUName(''),
-          setPassword(''),
-          setUId(0),
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('uName', '');
+          localStorage.setItem('password', '');
+          localStorage.setItem('uId', '-1');
           router.push('/Login')
+        }
       },
     });
   };
@@ -53,7 +50,7 @@ const TitleAdmin: React.FC<TitleProps> = ({ select }) => {
   const items: MenuProps['items'] = [
     {
       label: (
-        <Link href={'/Administer'}>Administer</Link>
+        'Administer'
       ),
       key: 'Administer',
     },

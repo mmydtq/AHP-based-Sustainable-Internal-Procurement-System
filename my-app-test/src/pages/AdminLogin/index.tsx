@@ -7,7 +7,6 @@ import styled from "./index.module.css"
 import Link from 'next/link';
 import Bottom from '@/component/Bottom';
 import { postAdminLogin } from '@/api/hello';
-import useBearStore from '@/Store/store';
 import router from 'next/router';
 import TitleAdmin from '@/component/TitleAdmin';
 
@@ -18,9 +17,6 @@ const AdminLogin: React.FC = () => {
     const Context = React.createContext({ name: 'Default' });
     const [api, contextHolder] = notification.useNotification();
     const contextValue = useMemo(() => ({ name: 'Ant Design' }), []);
-    const setUName = useBearStore((state) => state.setUName);
-    const setPassword = useBearStore((state) => state.setPassword);
-    const setUId = useBearStore((state) => state.setUId);
 
     const openNotification = (placement: NotificationPlacement) => {
         api.info({
@@ -35,14 +31,18 @@ const AdminLogin: React.FC = () => {
             uName: form.getFieldValue('uName'),
             password: form.getFieldValue('password')
         }
+        console.log(params)
         const callback = await postAdminLogin(params)
-        callback.status === 0 ?
-            (setUName(form.getFieldValue('uName')),
-                setPassword(form.getFieldValue('password')),
-                setUId(callback.user.id),
-                router.push('/Administer'))
-            :
-            openNotification('topRight')
+        if (callback.status === 0) {
+            if (typeof window !== 'undefined') {
+                localStorage.setItem('uName', form.getFieldValue('uName'));
+                localStorage.setItem('password', form.getFieldValue('password'));
+                localStorage.setItem('uId', callback.user.uId);
+            }
+            router.push('/Administer');
+        } else {
+            openNotification('topRight');
+        }
     }
 
     return (

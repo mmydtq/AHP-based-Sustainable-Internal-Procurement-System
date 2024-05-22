@@ -53,7 +53,6 @@ const Administer: React.FC = () => {
   const [messageApi, contextHolder] = message.useMessage();
   const [fileList, setFileList] = useState<UploadFile<any>[]>([]);
   const [formInfo, setFormInfo] = useState<string[]>([])
-  const id = useBearStore((state) => state.id)
   const setConform = useBearStore((state) => state.setConform)
   const [reRender, setReRender] = useState(true);
 

@@ -1,5 +1,5 @@
 import Title from '@/component/Title1';
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 import { Input, Form, Button, NotificationArgsProps, notification } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import { LoginType } from '@/type/appType';
@@ -8,7 +8,6 @@ import Link from 'next/link';
 import Bottom from '@/component/Bottom';
 import { postUserLogin } from '@/api/hello';
 import router from 'next/router';
-import useBearStore from '@/Store/store';
 
 
 type NotificationPlacement = NotificationArgsProps['placement'];
@@ -34,14 +33,16 @@ const Login: React.FC = () => {
         }
         console.log(params)
         const callback = await postUserLogin(params)
-        callback.status === 0
-            ?
-            (localStorage.setItem('uName', form.getFieldValue('uName')),
-            localStorage.setItem('password', form.getFieldValue('password')),
-            localStorage.setItem('uId', callback.user.uId),
-            router.push('/HomePage'))
-            :
-            openNotification('topRight')
+        if (callback.status === 0) {
+            if (typeof window !== 'undefined') {
+                localStorage.setItem('uName', form.getFieldValue('uName'));
+                localStorage.setItem('password', form.getFieldValue('password'));
+                localStorage.setItem('uId', callback.user.uId);
+            }
+            router.push('/HomePage');
+        } else {
+            openNotification('topRight');
+        }
     }
 
     return (

@@ -29,7 +29,7 @@ class AddToCart(Resource):
             user_id = args['uId']
 
             # 检查购物车中是否已存在相同的商品
-            existing_item = ShoppingCart.query.filter_by(user_id=user_id, good_id=good_id).first()
+            existing_item = ShoppingCart.query.filter_by(user_id=user_id, good_id=good_id, is_submit=0).first()
 
             if existing_item:
                 # 如果已存在相同的商品，则更新数量

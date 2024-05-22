@@ -77,7 +77,7 @@ class ShowGoods(Resource):
     def post(self):
         try:
             parser = reqparse.RequestParser()
-            parser.add_argument('uId', type=str, required=True, help='User ID is required')
+            parser.add_argument('uId', type=int, required=True, help='User ID is required')
             args = parser.parse_args()
 
             user_id = args['uId']

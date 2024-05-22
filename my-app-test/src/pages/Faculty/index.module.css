@@ -1,8 +1,7 @@
 @import '../../assert/font/font.module.css';
 .button{
     position: absolute;
-    left: 90vw;
-    top: 1.3vh;
+    left: 60vw;
     border-radius: 100px;
     width: 100px;
     border: 1.5px solid #0a0a0a;

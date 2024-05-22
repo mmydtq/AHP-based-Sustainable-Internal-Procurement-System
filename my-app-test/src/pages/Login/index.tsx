@@ -38,6 +38,7 @@ const Login: React.FC = () => {
                 localStorage.setItem('uName', form.getFieldValue('uName'));
                 localStorage.setItem('password', form.getFieldValue('password'));
                 localStorage.setItem('uId', callback.user.uId);
+                console.log(callback.user.uId)
             }
             router.push('/HomePage');
         } else {

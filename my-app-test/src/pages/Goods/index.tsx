@@ -37,11 +37,10 @@ const Goodss: React.FC = () => {
   const [uName, setUName] = useState<string>('');
 
     useEffect(() => {
-        if (typeof window !== 'undefined') {
-        const storedUId = localStorage.getItem('uId');
-        if (storedUId) {
-            setUid(Number(storedUId));
-        }}
+      if (typeof window !== 'undefined') {
+          setUid(Number(localStorage.getItem('uId')));
+          console.log(uid)
+      }
     }, []);
 
     useEffect(() => {
@@ -96,6 +95,7 @@ const Goodss: React.FC = () => {
       return
     }
     setIsfac(true); 
+    console.log({ id: good?.id, uId: uid })
     await postAddToCart({ id: good?.id, uId: uid });
   };
 

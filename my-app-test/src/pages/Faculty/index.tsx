@@ -26,14 +26,6 @@ const Faculty: React.FC = () => {
     }, 0);
     const [uid, setUid] = useState<number>();
 
-    useEffect(() => {
-        if (typeof window !== 'undefined') {
-        const storedUId = localStorage.getItem('uId');
-        if (storedUId) {
-            setUid(Number(storedUId));
-        }}
-    }, []);
-
     const getInfo = async () => {
         const res = await postShowGoods({uId : uid});
         res !== null ? setGoods(res.goods) : Message.error('get Goods error');
@@ -53,6 +45,9 @@ const Faculty: React.FC = () => {
     };
 
     useEffect(() => {
+        if (typeof window !== 'undefined') {
+            setUid(Number(localStorage.getItem('uId')));
+        }
         getInfo();
     }, [reRender])
 

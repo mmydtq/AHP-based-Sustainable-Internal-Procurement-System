@@ -20,11 +20,11 @@ function GoodCard(props: Card1) {
           onError={(e) => console.error('Image loading error:', e)}
         />
       </div>
-      <div style={{position:'relative', left:'1vw', width:'8vw'}}>{props.alt}</div>
-      <div style={{position:'relative', left:'10vw', width:'5vw'}}>{props.quantity}</div>
-      <div style={{position:'relative', left:'16vw', width:'3vw'}}>${props.value}</div>
-      <div style={{ color: 'lightgreen', width:'20vw', padding: '5px', fontSize:'48px' }}>{props.env} <span role="img" aria-label="environmental icon" style={{ fontSize: '24px' }}>🌿</span></div>      
-      <Button danger style={{position:'relative', left:'25vw', width:'5vw'}} onClick={async () => {await postDeleteToCart({id: props.id, uId: uid}); props.setrerender(!props.rerender)}}>Remove</Button>
+      <div style={{position:'relative', left:'1vw', width:'5vw'}}>{props.alt}</div>
+      <div style={{position:'relative', left:'6vw', width:'5vw'}}>{props.quantity}</div>
+      <div style={{position:'relative', left:'11vw', width:'3vw'}}>${props.value}</div>
+      <div style={{position:'relative', left:'15vw', color: 'lightgreen', padding: '5px', fontSize:'36px' }}>{props.env} <span role="img" aria-label="environmental icon" style={{ fontSize: '24px' }}>🌿</span></div>      
+      <Button danger style={{position:'relative', left:'25vw', width:'6vw'}} onClick={async () => {await postDeleteToCart({id: props.id, uId: uid}); props.setrerender(!props.rerender)}}>Remove</Button>
     </Space>
   );
 }

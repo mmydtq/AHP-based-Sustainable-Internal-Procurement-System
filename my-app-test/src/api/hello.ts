@@ -27,12 +27,12 @@ import wall from '@/assert/wall.png'
 
 import axios from 'axios';
 
-// const host = '127.0.0.1';
-// const port = '5000';
+const host = '127.0.0.1';
+const port = '5000/api';
 
 
-const host = 'csi6220-2-vm4.ucd.ie';
-const port = '80/api';
+// const host = 'csi6220-2-vm4.ucd.ie';
+// const port = '80/api';
 
 
 export const postUserLogin = async (args: LoginType) => {
@@ -223,12 +223,16 @@ export const getDisplayInfo = async () => {
 };
 
 export const postSearchInfo = async (args: String[]) => {
-  const { data } = await axios.post(
-    'http://' + host + ':' + port + '/Good/findGood',
-    {
-      args
-    });
-  return data;
+  try {
+    const { data } = await axios.post(
+      'http://' + host + ':' + port + '/Good/findGood',
+      { args }
+    );
+    return data;
+  } catch (error) {
+    console.error('Error during Axios request:', error);
+    throw error;
+  }
   //   return {goods : [{
   //     id: 0,
   //     url: table.src,

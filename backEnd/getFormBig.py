@@ -14,25 +14,36 @@ api = Api(app)
 class GetFormBig(Resource):
     @cross_origin()
     def post(self):
+        logging.info("Received POST request")
         try:
             # Query orders with state=0
+            logging.debug("Querying orders with state=0")
             orders = db.session.query(Order).filter(Order.state == 0).all()
+            logging.debug(f"Found {len(orders)} orders with state=0")
 
             response_data = {"data": []}
 
             for order in orders:
+                logging.debug(f"Processing order ID: {order.id}")
+
                 # Get user information
                 user = db.session.query(User).filter(User.id == order.user_id).first()
                 if not user:
+                    logging.warning(f"User with ID {order.user_id} not found")
                     continue
 
-                # Get all goods associated with this order
-                goods = db.session.query(Good).filter(Good.id == order.id).all()
+                # Get all goods associated with this order via the relationship defined in the Order model
+                goods = order.goods
+                logging.debug(f"Found {len(goods)} goods associated with order ID {order.id}")
+
                 if not goods:
+                    logging.warning(f"No goods found for order ID {order.id}")
                     continue
 
                 # Calculate total value and collect briefs
                 value = sum(good.value for good in goods)
+                logging.debug(f"Calculated value for order ID {order.id}: {value}")
+
                 brief_set = {good.brief for good in goods}  # Collect briefs into a set for uniqueness
                 tag = list(brief_set)  # Convert set to list for JSON serialization
 
@@ -43,11 +54,14 @@ class GetFormBig(Resource):
                     "address": user.room,
                     "tags": tag
                 })
+                logging.debug(f"Added data for order ID {order.id}")
 
             # Return the response data with a success code
+            logging.info("Successfully processed request")
             return response_data, 200
 
         except Exception as e:
+            logging.error(f"An error occurred: {str(e)}", exc_info=True)
             # Return an error response with an appropriate message
             return {"error": str(e)}, 400
 

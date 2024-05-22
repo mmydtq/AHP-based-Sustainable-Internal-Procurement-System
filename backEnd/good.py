@@ -129,22 +129,22 @@ class FindGoodsByTags(Resource):
         tags = args['tags']
         
         # Find goods that match at least one of the given tags
-        matching_goods = []
-        all_goods = Good.query.all()
+        matching_goods = Good.query.filter(
+            db.or_(*[Good.tag.like(f'%{tag}%') for tag in tags])
+        ).all()
 
-        for good in all_goods:
-            good_tags = json.loads(good.tag)
-            if any(tag in good_tags for tag in tags):
-                matching_goods.append({
-                    'id': good.id,
-                    'url': good.url,
-                    'environmentalValue': good.environmental_value,
-                    'brief': good.brief,
-                    'tag': good_tags,
-                    'name': good.name,
-                    'value': good.value,
-                    'description': good.description,
-                    'hint': good.hint
-                })
+        goods_list = []
+        for good in matching_goods:
+            goods_list.append({
+                'id': good.id,
+                'url': good.url,
+                'environmentalValue': good.environmental_value,
+                'brief': good.brief,
+                'tag': json.loads(good.tag),
+                'name': good.name,
+                'value': good.value,
+                'description': good.description,
+                'hint': good.hint
+            })
         
-        return {"goods": matching_goods}, 200
+        return {"goods": goods_list}, 200

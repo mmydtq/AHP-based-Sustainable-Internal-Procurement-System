@@ -75,13 +75,14 @@ class AddGoods(Resource):
         parser.add_argument('url', type=str, required=True)
         # 后端生成
         parser.add_argument('brief', type=str, required=True)
-        parser.add_argument('tag', type=list, required=True)
+        parser.add_argument('tag', type=str, action='append', required=True)
         parser.add_argument('name', type=str, required=True)
         parser.add_argument('value', type=float, required=True)
         parser.add_argument('description', type=str, required=True)
         data = parser.parse_args()
 
         tag_array = data['tag']
+        # print(tag_array)
 
         carbon_footprint = 0
         resource_efficient = 0
@@ -90,41 +91,41 @@ class AddGoods(Resource):
         alt_part = 0
 
         # assign scores to carbon footprint
-        if "LCE" in tag_array:
+        if "Low Carbon Emissions" in tag_array:
             carbon_footprint = 1
-        elif "MCE" in tag_array:
+        elif "Moderate Carbon Emissions" in tag_array:
             carbon_footprint = 0.6
-        elif "HCE" in tag_array:
+        elif "High Carbon Emissions" in tag_array:
             carbon_footprint = 0.3
 
         # assign scores to resource efficient
-        if "HRE" in tag_array:
+        if "High Resource Efficiency" in tag_array:
             resource_efficient = 1
-        elif "MRE" in tag_array:
+        elif "Moderate Resource Efficiency" in tag_array:
             resource_efficient = 0.7
-        elif "LRE" in tag_array:
+        elif "Low Resource Efficiency" in tag_array:
             resource_efficient = 0.3
 
         # assign scores to recyclable
-        if "FR" in tag_array:
+        if "Fully Recyclable" in tag_array:
             recyclable = 1
-        elif "PR" in tag_array:
+        elif "Partially Recyclable" in tag_array:
             recyclable = 0.5
-        elif "NR" in tag_array:
+        elif "Not Recyclable" in tag_array:
             recyclable = 0.2
 
         # assign scores to environmental certification
-        if "EC" in tag_array:
+        if "Environmental Certification" in tag_array:
             env_certification = 1
-        elif "NEC" in tag_array:
+        elif "No Environmental Certification" in tag_array:
             env_certification = 0
 
         # assign scores to alternative part
-        if "APA" in tag_array:
+        if "Alternative Part Available" in tag_array:
             alt_part = 1
-        elif "APA 50%" in tag_array:
+        elif "Alternative Part Available 50%" in tag_array:
             alt_part = 0.4
-        elif "NAPartA" in tag_array:
+        elif "No Alternative Part Available" in tag_array:
             alt_part = 0
 
         environmentalValue = (carbon_footprint * 0.293 + resource_efficient * 0.212 + recyclable * 0.143

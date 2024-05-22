@@ -31,10 +31,7 @@ const options: SelectProps['options'] = [
 const Title: React.FC<TitleProps> = ({ select }) => {
   const [current, setCurrent] = useState(select);
   const [tags, setTages] = useState<string[]>([]);
-  const setUName = useBearStore((state) => state.setUName);
-  const setPassword = useBearStore((state) => state.setPassword);
-  const setUId = useBearStore((state) => state.setUId);
-  const uName = useBearStore((state) => state.uName)
+  const uName = localStorage.getItem('uName')
 
   const onClick: MenuProps['onClick'] = (e) => {
     setCurrent(e.key);
@@ -49,10 +46,10 @@ const Title: React.FC<TitleProps> = ({ select }) => {
         </div>
       ),
       onOk() {
-        setUName(''),
-          setPassword(''),
-          setUId(0),
-          router.push('/Login')
+        localStorage.setItem('uName', ''),
+        localStorage.setItem('password', ''),
+        localStorage.setItem('uId', '-1'),
+        router.push('/Login')
       },
     });
   };

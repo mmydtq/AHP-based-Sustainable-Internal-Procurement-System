@@ -32,8 +32,8 @@ const Goodss: React.FC = () => {
   const [goods, setGoods] = useState<Goods>({ goods: [] })
   const showGoods = goods.goods
   const [isfac, setIsfac] = useState<boolean>(false)
-  const uid = useBearStore((state) => state.uId)
-  const uname = useBearStore((state) => state.uName)
+  const uid = Number(localStorage.getItem('uId'))
+  const uname = localStorage.getItem('uName')
   const [messageApi, contextHolder] = message.useMessage();
 
   const items: DescriptionsProps['items'] = [

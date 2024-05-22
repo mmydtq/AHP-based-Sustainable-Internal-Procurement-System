@@ -5,10 +5,11 @@ import Card from '@/component/Card';
 import Title from '@/component/Title1';
 import { Good, Goods } from '@/type/appType';
 import { Carousel, Message } from '@arco-design/web-react';
-import { Space } from 'antd';
+import { Space, message } from 'antd';
 import router from 'next/router';
 import styled from './index.module.css'
 import React, { useEffect, useState } from 'react';
+import useBearStore from '@/Store/store';
 
 
 const HomePage: React.FC = () => {
@@ -16,6 +17,19 @@ const HomePage: React.FC = () => {
     const [Goods, setGoods] = useState<Goods>({ goods: [] })
     const [centerIndex, setCenterIndex] = useState(0);
     const goods = Goods.goods
+    const conform = useBearStore(state => state.conform)
+    const setConform = useBearStore(state => state.setConform)
+    const [messageApi, contextHolder] = message.useMessage();
+
+    const success = () => {
+        messageApi.open({
+            type: 'success',
+            content: 'Your order has been approved',
+            style: {
+                marginTop: '5vh',
+            },
+        });
+    };
 
     const getCarouselInfo = async () => {
         const res = await getMainDisplayInfo();
@@ -29,6 +43,10 @@ const HomePage: React.FC = () => {
     useEffect(() => {
         getCarouselInfo();
         getInfo();
+        if (conform) {
+            success()
+            setConform(false)
+        }
     }, [])
 
     return (

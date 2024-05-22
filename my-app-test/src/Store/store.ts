@@ -1,25 +1,17 @@
 import { create } from "zustand";
 
 interface BearState {
-    uName: string;
-    password: string;
-    uId:number;
     id:number
-    setUName: (uName: string) => void;
-    setPassword: (password: string) => void;
-    setUId: (uId: number) => void;
+    conform: boolean;
     setId: (id: number) => void;
+    setConform: (conform: boolean) => void;
   }
 
 const useBearStore = create<BearState>((set) => ({
-    uName: '',
-    password: '',
-    uId: 0,
     id: 0,
-    setUName: (uname: string) => set({ uName: uname }), 
-    setPassword: (password1: string) => set({ password: password1 }),
-    setUId: (uid: number) => set({uId: uid}),
-    setId: (ID: number) => set({id: ID})
+    conform: false,
+    setId: (ID: number) => set({id: ID}),
+    setConform: (conform1: boolean) => set({conform: conform1}),
   }))
 
 export default useBearStore

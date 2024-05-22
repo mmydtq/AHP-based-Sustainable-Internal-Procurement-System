@@ -21,7 +21,7 @@ const Faculty: React.FC = () => {
     const currentGoods = Goods?.slice(startIndex, endIndex);
     const [messageApi, contextHolder] = message.useMessage();
     const [reRender, setReRender] = useState(true);
-    const uid = useBearStore((state) => state.uId)
+    const uid = Number(localStorage.getItem('uId'))
     const totalValue = Goods?.reduce((total, good: Good) => {
         return total + good.value * good.quantity;
     }, 0);

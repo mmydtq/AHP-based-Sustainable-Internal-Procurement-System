@@ -18,9 +18,6 @@ const Login: React.FC = () => {
     const Context = React.createContext({ name: 'Default' });
     const [api, contextHolder] = notification.useNotification();
     const contextValue = useMemo(() => ({ name: 'Ant Design' }), []);
-    const setUName = useBearStore((state) => state.setUName);
-    const setPassword = useBearStore((state) => state.setPassword);
-    const setUId = useBearStore((state) => state.setUId);
 
     const openNotification = (placement: NotificationPlacement) => {
         api.info({
@@ -39,10 +36,10 @@ const Login: React.FC = () => {
         const callback = await postUserLogin(params)
         callback.status === 0
             ?
-            (setUName(form.getFieldValue('uName')),
-                setPassword(form.getFieldValue('password')),
-                setUId(callback.user.uId),
-                router.push('/HomePage'))
+            (localStorage.setItem('uName', form.getFieldValue('uName')),
+            localStorage.setItem('password', form.getFieldValue('password')),
+            localStorage.setItem('uId', callback.user.uId),
+            router.push('/HomePage'))
             :
             openNotification('topRight')
     }

@@ -54,6 +54,7 @@ const Administer: React.FC = () => {
   const [fileList, setFileList] = useState<UploadFile<any>[]>([]);
   const [formInfo, setFormInfo] = useState<string[]>([])
   const id = useBearStore((state) => state.id)
+  const setConform = useBearStore((state) => state.setConform)
   const [reRender, setReRender] = useState(true);
 
 
@@ -173,15 +174,16 @@ const Administer: React.FC = () => {
 
   const handleFormInfo = async (key: string) => {
     openNotificationWithIcon('success');
-    const res = await postDeleteFormInfo({id: key})
-    const res1 = await postConsentToPurchase({id: key})
+    const filteredItem = order.data.find(item => item.key === key);
+    if (filteredItem) {
+      setOrder1(prevState => ({
+        data: [...prevState.data, filteredItem]
+      }));
+    }
+    setConform(true)
+    await postConsentToPurchase({id: key})
+    await postDeleteFormInfo({id: key})
     setReRender(!reRender)
-    order.data.forEach(item => {
-      if (item.key === key) {
-        setOrder1(prevState => ({
-          data: [...prevState.data, item]
-        }));
-      }})
   }
 
   const showModal = () => {
@@ -334,18 +336,6 @@ const Administer: React.FC = () => {
     },
 
   ];
-
-
-  const containerStyle: React.CSSProperties = {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    left: '25%',
-  };
-
-  //折线图是chart-container，柱状图是chart-container1
-  //饼图是container
-
 
   return (
     <div>

@@ -27,8 +27,10 @@ const Faculty: React.FC = () => {
     const [uid, setUid] = useState<number>();
 
     const getInfo = async () => {
-        const res = await postShowGoods({uId : uid});
-        res !== null ? setGoods(res.goods) : Message.error('get Goods error');
+        if (uid) {
+            const res = await postShowGoods({uId : uid});
+            res !== null ? setGoods(res.goods) : Message.error('get Goods error');
+        }
     }
 
     const success = async () => {
@@ -48,8 +50,11 @@ const Faculty: React.FC = () => {
         if (typeof window !== 'undefined') {
             setUid(Number(localStorage.getItem('uId')));
         }
+     }, [])  
+
+    useEffect(() => {
         getInfo();
-    }, [reRender])
+    }, [reRender, uid])
 
     return (
         <div>

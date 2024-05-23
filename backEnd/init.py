@@ -62,14 +62,14 @@ def create_app():
     api.add_resource(AddToCart, '/Fancy/addToCart')
     api.add_resource(DeleteGood, '/Fancy/deleteGood')
     api.add_resource(ShowGoods, '/Fancy/showGoods')
-    api.add_resource(FindGoodsByTags, '/Good/FindGood') 
+    api.add_resource(FindGoodsByTags, '/Good/findGood') 
     api.add_resource(RecommendGoods, '/Good/recommend') 
     api.add_resource(GetFormBig, '/getFormBig')
     api.add_resource(get_line_chart, '/component/chart11/getLineChart')
     api.add_resource(DeleteFormItem, '/Admin/deleteFormItem')
     api.add_resource(FormDataList, '/compenont/FormdDataList')
     api.add_resource(getPredictNum, '/pages/administer/getPredictNum')
-    api.add_resource(AdminConfirm, '/admin/confirm')
+    api.add_resource(AdminConfirm, '/Admin/conform')
     api.add_resource(SubmitCart, '/Cart/buy')
     return app
 

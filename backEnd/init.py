@@ -69,7 +69,7 @@ def create_app():
     api.add_resource(DeleteFormItem, '/Admin/deleteFormItem')
     api.add_resource(FormDataList, '/compenont/FormdDataList')
     api.add_resource(getPredictNum, '/pages/administer/getPredictNum')
-    api.add_resource(AdminConfirm, '/admin/confirm')
+    api.add_resource(AdminConfirm, '/Admin/conform')
     api.add_resource(SubmitCart, '/Cart/buy')
     return app
 

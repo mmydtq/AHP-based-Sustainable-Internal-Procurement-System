@@ -119,35 +119,32 @@ class RecommendGoods(Resource):
 class FindGoodsByTags(Resource):
     @cross_origin()
     def post(self):
-        # Create a request parser to extract the tags array
+        # Create a request parser to extract the single tag keyword
         parser = reqparse.RequestParser()
-        parser.add_argument('tags', type=list, location='json', required=True, help='Tags are required')
+        parser.add_argument('tag', type=str, location='json', required=True, help='Tag keyword is required')
         args = parser.parse_args()
 
-        tags = args['tags']
+        tag_keyword = args['tag']
 
-        # Ensure tags is a list of strings
-        if not all(isinstance(tag, str) for tag in tags):
-            return {"error": "Tags must be a list of strings"}, 400
-        
-        # Find goods that match at least one of the given tags
+        # Find goods that contain the given tag keyword in their tags list
         matching_goods = Good.query.filter(
-            db.or_(*[Good.tag.like(f'%{tag}%') for tag in tags])
+            Good.tag.like(f'%{tag_keyword}%')
         ).all()
 
         goods_list = []
         for good in matching_goods:
-            goods_list.append({
-                'id': good.id,
-                'url': good.url,
-                'environmentalValue': good.environmental_value,
-                'brief': good.brief,
-                'tag': json.loads(good.tag),
-                'name': good.name,
-                'value': good.value,
-                'description': good.description,
-                'hint': good.hint
-            })
+            tags_list = json.loads(good.tag)
+            if tag_keyword in tags_list:
+                goods_list.append({
+                    'id': good.id,
+                    'url': good.url,
+                    'environmentalValue': good.environmental_value,
+                    'brief': good.brief,
+                    'tag': tags_list,
+                    'name': good.name,
+                    'value': good.value,
+                    'description': good.description,
+                    'hint': good.hint
+                })
         
         return {"goods": goods_list}, 200
-

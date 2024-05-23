@@ -23,13 +23,14 @@ const Search: React.FC = () => {
     const currentGoods = goods.slice(startIndex, endIndex);
 
     const getInfo = async () => {
-        const res = await postSearchInfo(tagsArray);
+        // Assumes tagsArray contains only one tag keyword
+        const res = await postSearchInfo(tagsArray[0]);
         res !== null ? setGoods(res) : Message.error('get majors error');
     }
 
     useEffect(() => {
         getInfo();
-    }, [])
+    }, [tagsArray])
 
 
     return (
@@ -43,7 +44,7 @@ const Search: React.FC = () => {
                             <Tag color="geekblue" style={{ fontSize: 24 }}>{tagsArray[0]}</Tag>
                         ) : (
                             Array.isArray(tagsArray) && tagsArray.map((array: string) => (
-                                <Tag color="geekblue" style={{ fontSize: 24 }}>{array}</Tag>
+                                <Tag color="geekblue" style={{ fontSize: 24 }} key={array}>{array}</Tag>
                             ))
                         )}
                     </Flex>

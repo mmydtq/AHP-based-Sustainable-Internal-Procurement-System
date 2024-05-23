@@ -59,7 +59,7 @@ const FormDataList: React.FC = () =>{
 
     return (
     <>
-        <Table columns={columns} dataSource={data} scroll={{ x: 450, y: 300 }} /> // 调整横向滚动范围
+        <Table columns={columns} dataSource={data} scroll={{ x: 450, y: 300 }} /> 
     </>
 );
 }

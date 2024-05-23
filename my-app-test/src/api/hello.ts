@@ -222,11 +222,11 @@ export const getDisplayInfo = async () => {
   // ]}
 };
 
-export const postSearchInfo = async (tag: string) => {
+export const postSearchInfo = async (tagsArray: string[]) => {
   try {
     const { data } = await axios.post(
       `http://${host}:${port}/Good/findGood`,
-      { tag: tag }
+      { tags: tagsArray }
     );
     return data;
   } catch (error) {

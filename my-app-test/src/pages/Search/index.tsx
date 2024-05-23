@@ -23,15 +23,13 @@ const Search: React.FC = () => {
     const currentGoods = goods.slice(startIndex, endIndex);
 
     const getInfo = async () => {
-        // Assumes tagsArray contains only one tag keyword
-        const res = await postSearchInfo(tagsArray[0]);
+        const res = await postSearchInfo(tagsArray);
         res !== null ? setGoods(res) : Message.error('get majors error');
     }
 
     useEffect(() => {
         getInfo();
     }, [tagsArray])
-
 
     return (
         <div>
@@ -43,8 +41,8 @@ const Search: React.FC = () => {
                         {tagsArray && tagsArray.length === 1 ? (
                             <Tag color="geekblue" style={{ fontSize: 24 }}>{tagsArray[0]}</Tag>
                         ) : (
-                            Array.isArray(tagsArray) && tagsArray.map((array: string) => (
-                                <Tag color="geekblue" style={{ fontSize: 24 }} key={array}>{array}</Tag>
+                            Array.isArray(tagsArray) && tagsArray.map((tag: string) => (
+                                <Tag color="geekblue" style={{ fontSize: 24 }} key={tag}>{tag}</Tag>
                             ))
                         )}
                     </Flex>
@@ -99,3 +97,5 @@ const Search: React.FC = () => {
 }
 
 export default Search;
+
+

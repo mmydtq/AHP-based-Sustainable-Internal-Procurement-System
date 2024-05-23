@@ -119,22 +119,28 @@ class RecommendGoods(Resource):
 class FindGoodsByTags(Resource):
     @cross_origin()
     def post(self):
-        # Create a request parser to extract the single tag keyword
+        # Create a request parser to extract the tags array
         parser = reqparse.RequestParser()
-        parser.add_argument('tag', type=str, location='json', required=True, help='Tag keyword is required')
+        parser.add_argument('tags', type=list, location='json', required=True, help='Tags are required')
         args = parser.parse_args()
 
-        tag_keyword = args['tag']
+        tags = args['tags']
 
-        # Find goods that contain the given tag keyword in their tags list
-        matching_goods = Good.query.filter(
-            Good.tag.like(f'%{tag_keyword}%')
-        ).all()
+        # Ensure tags is a list of strings
+        if not all(isinstance(tag, str) for tag in tags):
+            return {"error": "Tags must be a list of strings"}, 400
+
+        # Find goods that match all of the given tags
+        query = Good.query
+        for tag in tags:
+            query = query.filter(Good.tag.like(f'%{tag}%'))
+        
+        matching_goods = query.all()
 
         goods_list = []
         for good in matching_goods:
             tags_list = json.loads(good.tag)
-            if tag_keyword in tags_list:
+            if all(tag in tags_list for tag in tags):
                 goods_list.append({
                     'id': good.id,
                     'url': good.url,

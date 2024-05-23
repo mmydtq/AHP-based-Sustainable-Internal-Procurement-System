@@ -125,6 +125,10 @@ class FindGoodsByTags(Resource):
         args = parser.parse_args()
 
         tags = args['tags']
+
+        # Ensure tags is a list of strings
+        if not all(isinstance(tag, str) for tag in tags):
+            return {"error": "Tags must be a list of strings"}, 400
         
         # Find goods that match at least one of the given tags
         matching_goods = Good.query.filter(
@@ -146,3 +150,4 @@ class FindGoodsByTags(Resource):
             })
         
         return {"goods": goods_list}, 200
+

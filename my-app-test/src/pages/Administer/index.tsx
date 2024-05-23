@@ -181,7 +181,6 @@ const Administer: React.FC = () => {
     }
     setConform(true)
     await postConsentToPurchase({id: key})
-    await postDeleteFormInfo({id: key})
     setReRender(!reRender)
   }
 

@@ -7,7 +7,6 @@ import { postDeleteToCart } from '@/api/hello';
 import { number } from 'echarts';
 
 function GoodCard(props: Card1) {
-  console.log(props)
   const uid = Number(localStorage.getItem('uId'))
   return (
     <Space style={{marginBottom:'2vh'}}>
@@ -23,7 +22,7 @@ function GoodCard(props: Card1) {
       <div style={{position:'relative', left:'1vw', width:'5vw'}}>{props.alt}</div>
       <div style={{position:'relative', left:'6vw', width:'5vw'}}>{props.quantity}</div>
       <div style={{position:'relative', left:'11vw', width:'3vw'}}>${props.value}</div>
-      <div style={{position:'relative', left:'15vw', color: 'lightgreen', padding: '5px', fontSize:'36px' }}>{props.env} <span role="img" aria-label="environmental icon" style={{ fontSize: '24px' }}>🌿</span></div>      
+      <div style={{position:'relative', left:'15vw', color: 'lightgreen', padding: '5px', fontSize:'36px' }}>{props.env.toFixed(3)} <span role="img" aria-label="environmental icon" style={{ fontSize: '24px' }}>🌿</span></div>      
       <Button danger style={{position:'relative', left:'25vw', width:'6vw'}} onClick={async () => {await postDeleteToCart({id: props.id, uId: uid}); props.setrerender(!props.rerender)}}>Remove</Button>
     </Space>
   );

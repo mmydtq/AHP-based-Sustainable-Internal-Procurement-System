@@ -61,7 +61,7 @@ const Administer: React.FC = () => {
     {value: 'Low Carbon Emissions', label: 'LCE'},
     {value: 'Moderate Carbon Emissions', label: 'MCE'},
     {value: 'High Carbon Emissions', label: 'HCE'},
-    {value: 'Low Resource Efficiency', label: 'LBE'},
+    {value: 'Low Resource Efficiency', label: 'LRE'},
     {value: 'Moderate Resource Efficiency', label: 'MRE'},
     {value: 'High Resource Efficiency', label: 'HRE'},
     {value: 'Fully Recyclable', label: 'FR'},
@@ -154,7 +154,7 @@ const Administer: React.FC = () => {
   const success = () => {
     messageApi.open({
       type: 'success',
-      content: 'The purchase request was successfully submitted to the administrator',
+      content: 'Product upload success',
       style: {
         marginTop: '10vh',
       },

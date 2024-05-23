@@ -222,17 +222,18 @@ export const getDisplayInfo = async () => {
   // ]}
 };
 
-export const postSearchInfo = async (args: String[]) => {
+export const postSearchInfo = async (tagsArray: string[]) => {
   try {
     const { data } = await axios.post(
-      'http://' + host + ':' + port + '/Good/findGood',
-      { args }
+      `http://${host}:${port}/Good/findGood`,
+      { tags: tagsArray }
     );
     return data;
   } catch (error) {
     console.error('Error during Axios request:', error);
     throw error;
   }
+
   //   return {goods : [{
   //     id: 0,
   //     url: table.src,

@@ -36,26 +36,27 @@ const Goodss: React.FC = () => {
   const [uid, setUid] = useState<number>();
   const [uName, setUName] = useState<string>('');
 
-    useEffect(() => {
-      if (typeof window !== 'undefined') {
-          setUid(Number(localStorage.getItem('uId')));
-          console.log(uid)
-      }
-    }, []);
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setUid(Number(localStorage.getItem('uId')));
+      console.log(uid)
+    }
+  }, []);
 
-    useEffect(() => {
-        if (typeof window !== 'undefined') {
-        const storedUName = localStorage.getItem('uName');
-        if (storedUName) {
-          setUName(storedUName);
-        }}
-    }, []);
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const storedUName = localStorage.getItem('uName');
+      if (storedUName) {
+        setUName(storedUName);
+      }
+    }
+  }, []);
 
   const items: DescriptionsProps['items'] = [
     {
       key: '1',
       label: 'Name',
-      children: good?.name,
+      children: <span style={{ fontWeight: 'bold', fontSize: '24px' }}>{good?.name}</span>,
     },
     {
       key: '2',
@@ -81,20 +82,20 @@ const Goodss: React.FC = () => {
 
   const success = () => {
     messageApi.open({
-        type: 'success',
-        content: 'The product has been added to the shopping cart',
-        style: {
-            marginTop: '5vh',
-        },
+      type: 'success',
+      content: 'The product has been added to the shopping cart',
+      style: {
+        marginTop: '5vh',
+      },
     });
-};
+  };
 
   const handleHeartClick = async () => {
     if (uName === '') {
       alert('You haven\'t logged in yet')
       return
     }
-    setIsfac(true); 
+    setIsfac(true);
     console.log({ id: good?.id, uId: uid })
     await postAddToCart({ id: good?.id, uId: uid });
   };
@@ -105,25 +106,26 @@ const Goodss: React.FC = () => {
       const timer = setTimeout(() => {
         setIsfac(false);
       }, 500);
-  
+
       return () => clearTimeout(timer);
     }
   }, [isfac]);
 
   const getInfo = async () => {
-    const res = await postGoodInfo({id: parseInt(goodId)});
+    const res = await postGoodInfo({ id: parseInt(goodId) });
     res !== null ? setGood(res.good) : Message.error('get majors error');
   }
 
   const getShowInfo = async () => {
-    const res = await postRecommendInfo({id: parseInt(goodId)});
+    const res = await postRecommendInfo({ id: parseInt(goodId) });
     res !== null ? setGoods(res) : Message.error('get majors error');
   }
 
   useEffect(() => {
     getInfo();
     getShowInfo()
-  }, [])
+  }, []);
+
 
   return (
     <div>
@@ -142,10 +144,15 @@ const Goodss: React.FC = () => {
         </Card>
       </div>
       <div className={styled.heart}>
-        <div style={{ color: 'lightgreen', width:'15vw', padding: '5px', fontSize:'48px' }}>{good?.environmentalValue.toFixed(3)} <span role="img" aria-label="environmental icon" style={{ fontSize: '24px' }}>🌿</span></div>
-        <div style={{ position: 'relative',top: '-10vh', left: '30vw' }} onClick={handleHeartClick}>
-          <HeartOutlined twoToneColor="red" style={{ fontSize: '140px', color: isfac ? 'red' : 'black', transition: 'color 0.3s' }}/>
+        <div style={{ color: 'lightgreen', width: '15vw', padding: '5px', fontSize: '48px' }}>{good?.environmentalValue.toFixed(3)} <span role="img" aria-label="environmental icon" style={{ fontSize: '24px' }}>🌿</span></div>
+        <div style={{ color: 'lightgreen', width: '15vw', padding: '5px', fontSize: '48px' }}>
+          {good?.value}
         </div>
+        <div style={{ position: 'relative', top: '-10vh', left: '30vw' }} onClick={handleHeartClick}>
+          <HeartOutlined twoToneColor="red" style={{ fontSize: '140px', color: isfac ? 'red' : 'black', transition: 'color 0.3s' }} />
+
+        </div>
+
       </div>
       <div style={{ position: 'relative', top: '50vh' }}>
         <Divider style={{ borderColor: 'black' }}>Recommend</Divider>

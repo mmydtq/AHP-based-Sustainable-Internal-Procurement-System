@@ -35,6 +35,7 @@ const Goodss: React.FC = () => {
   const [messageApi, contextHolder] = message.useMessage();
   const [uid, setUid] = useState<number>();
   const [uName, setUName] = useState<string>('');
+  const [reRander, setRander] = useState<boolean>(true);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -71,7 +72,7 @@ const Goodss: React.FC = () => {
     {
       key: '4',
       label: 'Environmental Value',
-      children: good?.environmentalValue,
+      children: good?.environmentalValue.toFixed(3),
     },
     {
       key: '5',
@@ -124,7 +125,7 @@ const Goodss: React.FC = () => {
   useEffect(() => {
     getInfo();
     getShowInfo()
-  }, []);
+  }, [reRander]);
 
 
   return (
@@ -145,12 +146,8 @@ const Goodss: React.FC = () => {
       </div>
       <div className={styled.heart}>
         <div style={{ color: 'lightgreen', width: '15vw', padding: '5px', fontSize: '48px' }}>{good?.environmentalValue.toFixed(3)} <span role="img" aria-label="environmental icon" style={{ fontSize: '24px' }}>🌿</span></div>
-        <div style={{ color: 'lightgreen', width: '15vw', padding: '5px', fontSize: '48px' }}>
-          {good?.value}
-        </div>
         <div style={{ position: 'relative', top: '-10vh', left: '30vw' }} onClick={handleHeartClick}>
           <HeartOutlined twoToneColor="red" style={{ fontSize: '140px', color: isfac ? 'red' : 'black', transition: 'color 0.3s' }} />
-
         </div>
 
       </div>
@@ -158,7 +155,7 @@ const Goodss: React.FC = () => {
         <Divider style={{ borderColor: 'black' }}>Recommend</Divider>
         <Space style={{ position: 'relative', top: '20vh', left: '4vw' }} size='large'>
           {showGoods.map((good: Good) => (
-            <SmallCard id={good.id} url={good.url} alt={good.name} brief={good.brief} />
+            <SmallCard id={good.id} url={good.url} alt={good.name} brief={good.brief} reRander={reRander} setRander={setRander} />
           ))}
         </Space>
       </div>

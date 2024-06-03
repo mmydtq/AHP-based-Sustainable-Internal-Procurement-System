@@ -3,7 +3,7 @@ import router from 'next/router';
 import React from 'react';
 import styled from "./index.module.css"
 
-function SmallCard(props: any) {
+function SmallCard(props: Card) {
   let imageUrl = ''; 
   if (props.url.startsWith('data:image/jpeg;base64,')) {
     imageUrl = props.url;
@@ -20,11 +20,11 @@ function SmallCard(props: any) {
         <div className={styled.brief}>{props.brief}</div>
         <div 
           onClick={() => {
-            props.setRander(props.reRander);
             router.push({
               pathname: '/Goods',
               query: {id: props.id}
-            })}}
+            })
+          }}
           className={styled.link}
           >{'Detail >'}</div>
       </div>

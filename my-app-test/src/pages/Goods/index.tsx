@@ -35,7 +35,6 @@ const Goodss: React.FC = () => {
   const [messageApi, contextHolder] = message.useMessage();
   const [uid, setUid] = useState<number>();
   const [uName, setUName] = useState<string>('');
-  const [reRander, setRander] = useState<boolean>(true);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -125,7 +124,7 @@ const Goodss: React.FC = () => {
   useEffect(() => {
     getInfo();
     getShowInfo()
-  }, [reRander]);
+  }, [goodId]);
 
 
   return (
@@ -155,7 +154,7 @@ const Goodss: React.FC = () => {
         <Divider style={{ borderColor: 'black' }}>Recommend</Divider>
         <Space style={{ position: 'relative', top: '20vh', left: '4vw' }} size='large'>
           {showGoods.map((good: Good) => (
-            <SmallCard id={good.id} url={good.url} alt={good.name} brief={good.brief} reRander={reRander} setRander={setRander} />
+            <SmallCard id={good.id} url={good.url} alt={good.name} brief={good.brief}/>
           ))}
         </Space>
       </div>

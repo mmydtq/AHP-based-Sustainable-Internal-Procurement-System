@@ -29,8 +29,7 @@ const Search: React.FC = () => {
 
     useEffect(() => {
         getInfo();
-    }, [])
-
+    }, [tagsArray])
 
     return (
         <div>
@@ -42,8 +41,8 @@ const Search: React.FC = () => {
                         {tagsArray && tagsArray.length === 1 ? (
                             <Tag color="geekblue" style={{ fontSize: 24 }}>{tagsArray[0]}</Tag>
                         ) : (
-                            Array.isArray(tagsArray) && tagsArray.map((array: string) => (
-                                <Tag color="geekblue" style={{ fontSize: 24 }}>{array}</Tag>
+                            Array.isArray(tagsArray) && tagsArray.map((tag: string) => (
+                                <Tag color="geekblue" style={{ fontSize: 24 }} key={tag}>{tag}</Tag>
                             ))
                         )}
                     </Flex>
@@ -98,3 +97,5 @@ const Search: React.FC = () => {
 }
 
 export default Search;
+
+

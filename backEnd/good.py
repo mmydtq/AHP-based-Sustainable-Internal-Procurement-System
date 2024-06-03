@@ -129,25 +129,28 @@ class FindGoodsByTags(Resource):
         # Ensure tags is a list of strings
         if not all(isinstance(tag, str) for tag in tags):
             return {"error": "Tags must be a list of strings"}, 400
+
+        # Find goods that match all of the given tags
+        query = Good.query
+        for tag in tags:
+            query = query.filter(Good.tag.like(f'%{tag}%'))
         
-        # Find goods that match at least one of the given tags
-        matching_goods = Good.query.filter(
-            db.or_(*[Good.tag.like(f'%{tag}%') for tag in tags])
-        ).all()
+        matching_goods = query.all()
 
         goods_list = []
         for good in matching_goods:
-            goods_list.append({
-                'id': good.id,
-                'url': good.url,
-                'environmentalValue': good.environmental_value,
-                'brief': good.brief,
-                'tag': json.loads(good.tag),
-                'name': good.name,
-                'value': good.value,
-                'description': good.description,
-                'hint': good.hint
-            })
+            tags_list = json.loads(good.tag)
+            if all(tag in tags_list for tag in tags):
+                goods_list.append({
+                    'id': good.id,
+                    'url': good.url,
+                    'environmentalValue': good.environmental_value,
+                    'brief': good.brief,
+                    'tag': tags_list,
+                    'name': good.name,
+                    'value': good.value,
+                    'description': good.description,
+                    'hint': good.hint
+                })
         
         return {"goods": goods_list}, 200
-

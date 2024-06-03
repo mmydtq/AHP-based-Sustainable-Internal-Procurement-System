@@ -53,19 +53,26 @@ class DeleteGood(Resource):
             parser = reqparse.RequestParser()
             parser.add_argument('id', type=int, required=True, help='ID is required')
             parser.add_argument('uId', type=int, required=True, help='User ID is required')
+            parser.add_argument('quantity', type=int, required=False, help='Quantity to remove', default=1)
             args = parser.parse_args()
 
             good_id = args['id']
             user_id = args['uId']
+            quantity_to_remove = args['quantity']
 
-            # 查找购物车中指定用户和商品的条目
+            # Find the cart item for the specified user and good
             cart_item = ShoppingCart.query.filter_by(user_id=user_id, good_id=good_id).first()
 
             if cart_item:
-                # 如果找到购物车条目，则删除它
-                db.session.delete(cart_item)
+                if cart_item.quantity > quantity_to_remove:
+                    # If the quantity is greater than the quantity to remove, just decrease it
+                    cart_item.quantity -= quantity_to_remove
+                else:
+                    # If the quantity to remove is greater than or equal to the current quantity, delete the item
+                    db.session.delete(cart_item)
+                
                 db.session.commit()
-                return {'message': 'Good removed from cart successfully'}, 200
+                return {'message': 'Good quantity updated in cart successfully'}, 200
             else:
                 return {'message': 'Item not found in the cart'}, 404
 

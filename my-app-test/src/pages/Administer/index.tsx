@@ -259,7 +259,7 @@ const Administer: React.FC = () => {
           </Button>
           <Modal title="Order Details" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
             <Statistic title="Name" value={record.name}/>
-            <Statistic title="Room" value={record.room}/>
+            <Statistic title="Room" value={record.address}/>
             <Statistic title="Transaction" value={record.value.toFixed(3)}/>
           </Modal>
 
@@ -322,9 +322,8 @@ const Administer: React.FC = () => {
           </Button>
           <Modal title="Order Details" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
             <Statistic title="Name" value={record.name}/>
-            <Statistic title="Brief" value={record.brief}/>
-            <Statistic title="Transaction" value={record.value}/>
-            <Statistic title="Volume" value={record.number}/>
+            <Statistic title="Room" value={record.address}/>
+            <Statistic title="Transaction" value={record.value.toFixed(3)}/>
           </Modal>
 
 

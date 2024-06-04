@@ -260,8 +260,8 @@ const Administer: React.FC = () => {
           <Modal title="Order Details" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
             <Statistic title="Name" value={record.name}/>
             <Statistic title="Brief" value={record.brief}/>
-            <Statistic title="Transaction" value={record.value}/>
-            <Statistic title="Volume" value={record.number}/>
+            <Statistic title="Transaction" value={record.value.toFixed(3)}/>
+            <Statistic title="Volume" value={record.number.toFixed(3)}/>
           </Modal>
 
           <Button type="primary" danger onClick={() => deletOrderInfo(record.key)}>

@@ -27,12 +27,12 @@ import wall from '@/assert/wall.png'
 
 import axios from 'axios';
 
-// const host = '127.0.0.1';
-// const port = '5000';
+const host = '127.0.0.1';
+const port = '5000';
 
 
-const host = 'csi6220-2-vm4.ucd.ie';
-const port = '80/api';
+// const host = 'csi6220-2-vm4.ucd.ie';
+// const port = '80/api';
 
 
 export const postUserLogin = async (args: LoginType) => {

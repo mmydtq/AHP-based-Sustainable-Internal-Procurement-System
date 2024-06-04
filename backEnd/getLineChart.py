@@ -41,9 +41,9 @@ class get_line_chart(Resource):
                         for good in goods:
                             env_value = env_value + good.environmental_value
                             sale_value = sale_value + good.value
-                monthly_order_number.append(order_num)
-                monthly_env.append(env_value)
-                monthly_sale.append(sale_value)
+                monthly_order_number.append(round_to_three_decimals(order_num))
+                monthly_env.append(round_to_three_decimals(env_value))
+                monthly_sale.append(round_to_three_decimals(sale_value))
 
             months.reverse()
             monthly_sale.reverse()
@@ -61,3 +61,14 @@ class get_line_chart(Resource):
 
         except Exception as e:
             return {"error": str(e)}, 400
+        
+def round_to_three_decimals(number):
+    # 将数字转换为字符串，分割小数部分
+    number_str = str(number)
+    if '.' in number_str:
+        integer_part, decimal_part = number_str.split('.')
+        if len(decimal_part) > 3:
+            # 如果小数部分超过三位，进行四舍五入
+            return round(number, 3)
+    # 如果小数部分不超过三位，直接返回原数字
+    return number

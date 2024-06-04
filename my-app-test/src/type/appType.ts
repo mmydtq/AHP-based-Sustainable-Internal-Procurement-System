@@ -70,6 +70,7 @@ export interface Card1{
 }
 
 export interface ChartDataType {
+    room: string;
     key: string;
     name: string;
     value: number;

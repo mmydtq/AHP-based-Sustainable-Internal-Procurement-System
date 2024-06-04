@@ -63,7 +63,7 @@ const Faculty: React.FC = () => {
             <div>
                 <Space style={{ position: 'absolute', top: '10vh', fontSize: 34 }}>
                     <div className={styled.intro}><b>Review your bag.</b></div>
-                    <div className={styled.value}>Total: {`$ ${totalValue}`}</div>
+                    <div className={styled.value}>Total: {`$ ${totalValue.toFixed(3)}`}</div>
                     <Button className={styled.button} onClick={success}>SUBMIT</Button>
                 </Space>
                 <div className={styled.good}>

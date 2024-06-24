@@ -1,4 +1,4 @@
-# Group-9
+#AHP-based Sustainable Internal Procurement System
 
 ### AHP-based Sustainable Internal Procurement System
 
